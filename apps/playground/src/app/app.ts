@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
+import { QuaiComponents } from '@quai/quai-components';
 
 @Component({
-  imports: [NxWelcome, RouterModule],
+  imports: [RouterModule, QuaiComponents],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',
