@@ -6,6 +6,7 @@
 
     "start": "nx serve playground",
     "start:playground": "nx serve playground",
+    "start:example": "nx serve quai-example",
     "dev": "nx serve playground",
 
 
