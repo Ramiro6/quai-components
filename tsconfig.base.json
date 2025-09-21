@@ -18,5 +18,13 @@
       "@quai/quai-components": ["libs/quai-components/src/index.ts"]
     }
   },
+  "angularCompilerOptions": {
+    "strictTemplates": true
+  },
+  "plugins": [
+    {
+      "name": "@angular/language-service"
+    }
+  ],
   "exclude": ["node_modules", "tmp"]
 }

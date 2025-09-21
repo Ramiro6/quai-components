@@ -4,8 +4,9 @@ import { Component } from '@angular/core';
   standalone: true,
   selector: 'quai-components',
   imports: [],
-  template: `
-    <h1>testtt....</h1>
-  `
+  template: ` <h1>testtt....</h1> `,
 })
-export class QuaiComponents {}
+export class QuaiComponents {
+  constructor() {
+  }
+}
