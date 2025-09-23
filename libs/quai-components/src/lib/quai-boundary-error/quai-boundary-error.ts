@@ -31,11 +31,15 @@ type ErrorLabelsType = {
     }
   `,
   styles: ``,
+  // viewProviders: [{
+  //   provide: ControlContainer,
+  //   useFactory: () => inject(ControlContainer, { skipSelf: true }),
+  // }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuaiBoundaryError implements OnInit {
   controlName: InputSignal<string> = input.required<string>();
-  showGroupError: InputSignal<any> = input<any>();
+  showGroupError: InputSignal<unknown> = input<unknown>();
   private _formGroupDir: FormGroupDirective | null = inject(FormGroupDirective, {optional: true});
   private _errorLabels: ErrorLabelsConfig | null = inject(ERROR_LABELS_TOKEN, {optional: true});
   protected isValidForm: WritableSignal<boolean> = signal<boolean>(false);

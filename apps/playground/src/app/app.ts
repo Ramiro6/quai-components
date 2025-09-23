@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { QuaiBoundaryError } from '@quai/quai-components';
@@ -9,6 +9,7 @@ import { QuaiBoundaryError } from '@quai/quai-components';
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
   protected title = 'playground';
@@ -24,7 +25,6 @@ export class App {
 
   handleSubmit() {
     console.log('submit');
-    debugger;
   }
 
 

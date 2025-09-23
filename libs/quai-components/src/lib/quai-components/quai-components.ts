@@ -6,7 +6,4 @@ import { Component } from '@angular/core';
   imports: [],
   template: ` <h1>testtt....</h1> `,
 })
-export class QuaiComponents {
-  constructor() {
-  }
-}
+export class QuaiComponents {}
