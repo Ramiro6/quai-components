@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { QuaiBoundaryError } from '../../../../libs/quai-components/src/lib/quai-boundary-error/quai-boundary-error';
+import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { QuaiBoundaryError } from '@quai/quai-components';
 
 @Component({
   imports: [RouterModule, ReactiveFormsModule, QuaiBoundaryError],
@@ -15,12 +15,24 @@ export class App {
   private fb: FormBuilder = inject(FormBuilder);
 
   form = this.fb.nonNullable.group({
-    email: ['', Validators.required],
-    password: ['', Validators.required],
-    repeatPassword: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+    repeatPassword: ['', [Validators.required ]],
+  }, {
+    validators: [this.passwordsMatchValidator],
   });
 
   handleSubmit() {
     console.log('submit');
+    debugger;
   }
+
+
+  passwordsMatchValidator(group: AbstractControl): ValidationErrors | null {
+    const password = group.get('password')?.value;
+    const confirm = group.get('repeatPassword')?.value;
+
+    return password === confirm ? null : { passwordMismatch: true };
+  }
+
 }
