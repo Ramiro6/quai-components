@@ -1,1 +1,1 @@
-export * from './lib/quai-components/quai-components';
+export * from './lib/quai-boundary-error/quai-boundary-error';

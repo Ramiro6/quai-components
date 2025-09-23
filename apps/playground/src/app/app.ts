@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { QuaiBoundaryError } from '../../../../libs/quai-components/src/lib/quai-boundary-error/quai-boundary-error';
+import { QuaiBoundaryError } from '@quai/quai-components';
 
 @Component({
   imports: [RouterModule, ReactiveFormsModule, QuaiBoundaryError],
