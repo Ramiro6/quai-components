@@ -12,7 +12,7 @@
       "options": {
         "outputPath": "dist/apps/quai-example",
         "browser": "apps/quai-example/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [],
         "tsConfig": "apps/quai-example/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [

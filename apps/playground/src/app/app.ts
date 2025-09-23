@@ -1,17 +1,18 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { QuaiBoundaryError } from '@quai/quai-components';
+
+// import { QuaiBoundaryError } from '@quai/quai-components';
 
 @Component({
-  imports: [RouterModule, ReactiveFormsModule, QuaiBoundaryError],
+  imports: [RouterModule, ReactiveFormsModule],
   standalone: true,
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
-  protected title = 'playground';
   private fb: FormBuilder = inject(FormBuilder);
 
   form = this.fb.nonNullable.group({

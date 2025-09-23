@@ -12,7 +12,6 @@
       "options": {
         "outputPath": "dist/apps/playground",
         "browser": "apps/playground/src/main.ts",
-        "polyfills": ["zone.js"],
         "tsConfig": "apps/playground/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
