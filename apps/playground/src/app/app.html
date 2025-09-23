@@ -2,13 +2,18 @@
 <!--<quai-components />-->
 
 
-<!--<form [formGroup]="form" (ngSubmit)="handleSubmit()">-->
-<!--  <input formControlName="email" type="email" />-->
-<!--  <input formControlName="password" type="password" />-->
+<form [formGroup]="form" (ngSubmit)="handleSubmit()" autocomplete="off">
+  <quai-boundary-error controlName="email">
+    <input formControlName="email" type="email" autocomplete="off" />
+  </quai-boundary-error>
 
-<!--  <quai-boundary-error controlName="repeatPassword">-->
-<!--    <input formControlName="repeatPassword" type="password" />-->
-<!--  </quai-boundary-error>-->
-<!--  <button>Submit</button>-->
-<!--</form>-->
+  <quai-boundary-error controlName="password">
+    <input formControlName="password" type="password" autocomplete="new-password" />
+  </quai-boundary-error>
+
+  <quai-boundary-error controlName="repeatPassword" showGruopError="">
+    <input formControlName="repeatPassword" type="password" autocomplete="new-password" />
+  </quai-boundary-error>
+  <button>Submit</button>
+</form>
 <router-outlet></router-outlet>
