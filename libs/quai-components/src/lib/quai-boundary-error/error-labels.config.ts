@@ -9,6 +9,7 @@ export const DEFAULT_ERROR_LABELS: ErrorLabelsConfig = {
   email: () => 'Email inválido.',
   pattern: () => 'Formato incorrecto.',
   passwordMismatch: () => {
+    // debugger;
     return 'Las contraseñas no coinciden.';
   },
   usernameTaken: () => 'Este nombre de usuario ya está en uso.',
