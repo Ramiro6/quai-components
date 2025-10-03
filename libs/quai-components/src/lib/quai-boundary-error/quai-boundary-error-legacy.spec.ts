@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { QuaiBoundaryError } from './quai-boundary-error';
+import { QuaiBoundaryErrorLegacy } from './quai-boundary-error-legacy';
 
 describe('QuaiBoundaryError', () => {
-  let component: QuaiBoundaryError;
-  let fixture: ComponentFixture<QuaiBoundaryError>;
+  let component: QuaiBoundaryErrorLegacy;
+  let fixture: ComponentFixture<QuaiBoundaryErrorLegacy>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QuaiBoundaryError],
+      imports: [QuaiBoundaryErrorLegacy],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(QuaiBoundaryError);
+    fixture = TestBed.createComponent(QuaiBoundaryErrorLegacy);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

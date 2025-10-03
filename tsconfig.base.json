@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@quai/quai-components": ["libs/quai-components/src/index.ts"]
+      "@quai/quai-components": ["libs/quai-components/src/index.ts"],
+      "@quai/quai-components/styles": ["libs/quai-components/src/styles"]
     }
   },
   "angularCompilerOptions": {
