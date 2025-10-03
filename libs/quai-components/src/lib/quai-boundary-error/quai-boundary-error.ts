@@ -9,11 +9,11 @@ import {
   signal,
   WritableSignal
 } from '@angular/core';
-import { AbstractControl, FormControlStatus, FormGroupDirective, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormControlStatus, FormGroup, FormGroupDirective, ValidationErrors } from '@angular/forms';
 import { ERROR_LABELS_TOKEN } from './error-labels.token';
 import { ErrorLabelsConfig } from './error-labels.config';
+import { combineLatestWith, distinctUntilChanged, Observable, startWith } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { of, switchMap } from 'rxjs';
 
 type ErrorLabelsType = {
   uuid: string;
@@ -47,50 +47,43 @@ export class QuaiBoundaryError implements OnInit {
   private destroyRef: DestroyRef = inject(DestroyRef);
 
   ngOnInit() {
-    if (this.controlName() && this._formGroupDir?.form?.get(this.controlName())) {
-      const ctrl: AbstractControl | null = this._formGroupDir.form.get(this.controlName());
-      if (!ctrl) return;
-      ctrl.statusChanges
-        .pipe(
-          switchMap(status => {
-            return of(status);
-          }),
-          takeUntilDestroyed(this.destroyRef)
-        )
-        .subscribe({
-          next: (_value: FormControlStatus) => {
-            this.isValidFormName.set(this._formIsValid(ctrl));
-            this.checkError(ctrl);
-          }
-      });
-    }
+    const controlName: string = this.controlName();
+    const formGroup = this._formGroupDir?.form;
+    if (!formGroup || !controlName) return;
 
-    if (this.showGroupError() &&  this._formGroupDir?.statusChanges) {
-      this._formGroupDir.statusChanges
-        .pipe(
-          takeUntilDestroyed(this.destroyRef)
-        )
-        .subscribe({
-          next: (_value: FormControlStatus) => {
-            this.isValidFormGroup.set(false);
-            if (this._formGroupDir?.hasError(this.showGroupError()) && this._formGroupDir?.errors && this._formGroupDir?.invalid) {
-              const labels: ErrorLabelsType[] = this._setLabelErrors(this._formGroupDir.errors);
-              this.labelErrorText.update((prev: ErrorLabelsType[]) => {
-                const checkIfExists = prev.find(item => item?.label === labels[0]?.label)
-                if (checkIfExists) {
-                  return prev;
-                }
-                return [...prev, ...labels ?? []];
-              });
-              this.isValidFormGroup.set(this._formGroupDir?.invalid)
-            }
-          }
-      })
-    }
+    const ctrl: AbstractControl | null = formGroup.get(controlName);
+    if (!ctrl) return;
+
+    const formNameObs$: Observable<FormControlStatus> = ctrl.statusChanges.pipe(startWith(ctrl.status), distinctUntilChanged());
+    const formGroupObs$: Observable<FormControlStatus> = formGroup.statusChanges.pipe(startWith(formGroup.status));
+
+    if (!formNameObs$ || !formGroupObs$) return;
+
+    formNameObs$.pipe(
+      combineLatestWith(formGroupObs$),
+      // distinctUntilChanged(([prevCtrl, prevGroup], [ctrl, group]) => {
+      //   console.log('prev', prevCtrl, prevGroup, 'next', ctrl, group);
+      //   return prevCtrl === prevGroup && ctrl === group;
+      // }),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(([_response1, _response2]) => {
+      console.log('1', _response1, '2', _response2);
+      // this.labelErrorText.set([]);
+      // this.isValidFormName.set((ctrl?.invalid || this._formGroupDir?.invalid) ?? false)
+      // if (ctrl?.errors || this._formGroupDir?.errors)  {
+      //   let merge;
+      //   if (this.showGroupError()) {
+      //     merge = { ...ctrl.errors ?? {}, ...this._formGroupDir?.errors ?? {}}
+      //   } else {
+      //     merge = { ...ctrl.errors ?? {} }
+      //   }
+      //   this.labelErrorText.set(this._setLabelErrors(merge));
+      // }
+    })
   }
 
   private checkError(ctrl: AbstractControl) {
-    if (this._errorLabels && ctrl?.errors) {
+    if (ctrl?.errors) {
       this.labelErrorText.set(this._setLabelErrors(ctrl.errors));
     }
   }
