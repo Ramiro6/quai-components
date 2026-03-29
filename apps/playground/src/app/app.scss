@@ -1,1 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100dvh;
+}
 
+
+main {
+  padding-top: calc(var(--quai-spacing-lg) * 2);
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}

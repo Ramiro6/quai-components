@@ -1,17 +1,36 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Aside } from '../../share/aside';
 
 @Component({
   selector: 'playground-components',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Aside, RouterLink, RouterLinkActive],
   template: `
-    <aside>
-      de lado
-    </aside>
-    <router-outlet />
+    <playground-aside>
+      <ul>
+        <li>
+          <a routerLink="buttons" routerLinkActive="is-active">Buttons</a>
+        </li>
+      </ul>
+    </playground-aside>
+    <main>
+      <router-outlet />
+    </main>
   `,
-  styles: ``,
-  standalone: true,
+  styles: `
+    :host {
+      display: grid;
+      grid-template-columns: 18rem 1fr;
+      height: 100%;
+      background: var(--quai-color-bg);
+    }
+
+    main {
+      padding: var(--quai-spacing-xl);
+      background: var(--quai-color-bg);
+      overflow-y: auto; // este componente decide hacer scroll
+    }
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Components {}

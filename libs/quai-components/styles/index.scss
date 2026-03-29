@@ -1,0 +1,7 @@
+// Bridge file — development only.
+// Points to the source styles so @use '@quai/quai-components/styles' works
+// in the monorepo via npm workspaces symlink.
+//
+// When published, ng-packagr copies src/styles/** directly to dist/styles/**,
+// so this file is NOT included in the npm package.
+@forward '../src/styles/index';
