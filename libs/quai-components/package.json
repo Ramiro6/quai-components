@@ -2,16 +2,14 @@
   "name": "@quai/quai-components",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/core": "20.3.1",
-    "@angular/forms": "20.3.1",
+    "@angular/core": "^21.2.6",
+    "@angular/forms": "^21.2.6",
     "rxjs": "~7.8.0"
   },
   "exports": {
     ".": {
-      "types": "./index.d.ts",
       "esm2022": "./esm2022/quai-components.mjs",
-      "esm": "./esm2022/quai-components.mjs",
-      "default": "./fesm2022/quai-components.mjs"
+      "esm": "./esm2022/quai-components.mjs"
     },
     "./styles": "./styles/index.scss",
     "./styles/*": "./styles/*.scss"
