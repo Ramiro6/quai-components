@@ -1,0 +1,13 @@
+// ===== SPACING VARIABLES =====
+// rem-based 8px grid (1rem = 16px default).
+// Use these for layout: gaps, margins, section padding.
+// For component-internal padding use em instead (scales with font-size).
+
+:root {
+  --quai-spacing-xs:  0.25rem;  //  4px
+  --quai-spacing-sm:  0.5rem;   //  8px
+  --quai-spacing-md:  1rem;     // 16px
+  --quai-spacing-lg:  1.5rem;   // 24px
+  --quai-spacing-xl:  2rem;     // 32px
+  --quai-spacing-2xl: 3rem;     // 48px
+}

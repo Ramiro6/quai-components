@@ -2,6 +2,9 @@ export default {
   displayName: 'quai-components',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  testEnvironmentOptions: {
+    customExportConditions: ['node', 'require', 'default', 'esm2022'],
+  },
   coverageDirectory: '../../coverage/libs/quai-components',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [

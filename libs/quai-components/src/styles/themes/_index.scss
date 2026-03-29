@@ -1,0 +1,24 @@
+@use 'dark';
+@use 'light';
+
+// Default: dark theme
+:root {
+  @include dark.dark;
+}
+
+// Auto: respects the OS setting (System Preferences / Windows Settings)
+@media (prefers-color-scheme: light) {
+  :root {
+    @include light.light;
+  }
+}
+
+// Manual override via data-theme attribute on <html>
+// Usage:  <html data-theme="light">  or  <html data-theme="dark">
+[data-theme='dark'] {
+  @include dark.dark;
+}
+
+[data-theme='light'] {
+  @include light.light;
+}

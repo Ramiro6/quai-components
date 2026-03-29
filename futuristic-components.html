@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 Futuristic UI Components - Design System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* ===== DARK MODE PALETTE ===== */
+            --color-bg: #14121F;
+            --color-bg-secondary: #1F192A;
+            --color-surface: #262135;
+            --color-text: #F2F2F7;
+            --color-text-secondary: #A6A6B3;
+            --color-border: #403A58;
+            
+            /* ===== NEON ACCENTS ===== */
+            --color-primary: #00CCFF;
+            --color-secondary: #9933FF;
+            --color-success: #33F299;
+            --color-error: #FF3366;
+            --color-warning: #FFB300;
+            
+            /* ===== SPACING (8px Grid) ===== */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+            
+            /* ===== RADIUS ===== */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-full: 9999px;
+            
+            /* ===== TYPOGRAPHY ===== */
+            --font-display: 'Courier New', monospace;
+            --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-weight-regular: 400;
+            --font-weight-medium: 500;
+            --font-weight-bold: 700;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== SCROLLBAR STYLING ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-secondary);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-secondary) 100%);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header h1 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: var(--font-weight-bold);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        header p {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            max-width: 600px;
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-2xl) var(--spacing-lg);
+        }
+
+        /* ===== SECTION ===== */
+        section {
+            margin-bottom: var(--spacing-2xl);
+            animation: fadeIn 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
+        section:nth-child(5) { animation-delay: 0.5s; }
+        section:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: var(--font-display);
+        }
+
+        section h2::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: 2px;
+        }
+
+        /* ===== COMPONENT GRID ===== */
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .component-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .component-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .component-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 30px rgba(0, 204, 255, 0.1);
+            transform: translateY(-8px);
+        }
+
+        .component-card:hover::before {
+            opacity: 1;
+        }
+
+        .component-card h3 {
+            font-size: 1rem;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-md);
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .component-card p {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            font-weight: var(--font-weight-bold);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: var(--font-display);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Button Variants */
+        .btn-primary {
+            background: var(--color-primary);
+            color: var(--color-bg);
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(0, 204, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--color-surface);
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-primary);
+            color: var(--color-bg);
+            box-shadow: 0 0 30px rgba(0, 204, 255, 0.4);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            box-shadow: inset 0 0 20px rgba(0, 204, 255, 0.1);
+        }
+
+        .btn-success {
+            background: var(--color-success);
+            color: var(--color-bg);
+        }
+
+        .btn-success:hover {
+            box-shadow: 0 0 30px rgba(51, 242, 153, 0.5);
+        }
+
+        .btn-error {
+            background: var(--color-error);
+            color: white;
+        }
+
+        .btn-error:hover {
+            box-shadow: 0 0 30px rgba(255, 51, 102, 0.5);
+        }
+
+        .btn-sm {
+            padding: var(--spacing-sm) var(--spacing-md);
+            font-size: 0.85rem;
+        }
+
+        .btn-lg {
+            padding: var(--spacing-lg) var(--spacing-xl);
+            font-size: 1.1rem;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* Button Group */
+        .btn-group {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        /* ===== INPUTS ===== */
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .input-group label {
+            font-size: 0.9rem;
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        textarea,
+        select {
+            background: var(--color-bg-secondary);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            color: var(--color-text);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="email"]::placeholder,
+        input[type="password"]::placeholder,
+        textarea::placeholder {
+            color: var(--color-text-secondary);
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.2);
+            background: var(--color-surface);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .card:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 8px 32px rgba(0, 204, 255, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .card-header h3 {
+            font-size: 1.2rem;
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text);
+        }
+
+        .card-body {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .card-body p {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+        }
+
+        .card-footer {
+            display: flex;
+            gap: var(--spacing-md);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* ===== BADGES ===== */
+        .badge {
+            display: inline-block;
+            padding: 4px var(--spacing-md);
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .badge-primary {
+            background: var(--color-primary);
+            color: var(--color-bg);
+        }
+
+        .badge-secondary {
+            background: var(--color-secondary);
+            color: white;
+        }
+
+        .badge-success {
+            background: var(--color-success);
+            color: var(--color-bg);
+        }
+
+        .badge-error {
+            background: var(--color-error);
+            color: white;
+        }
+
+        .badge-warning {
+            background: var(--color-warning);
+            color: var(--color-bg);
+        }
+
+        .badge-outline {
+            background: transparent;
+            border: 1px solid var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        /* ===== CHIPS ===== */
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: var(--font-weight-medium);
+        }
+
+        .chip:hover,
+        .chip.active {
+            border-color: var(--color-primary);
+            background: var(--color-primary);
+            color: var(--color-bg);
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.3);
+        }
+
+        .chip-group {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        /* ===== ALERTS ===== */
+        .alert {
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            border-left: 4px solid;
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            animation: slideInLeft 0.4s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .alert-primary {
+            background: rgba(0, 204, 255, 0.1);
+            border-left-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .alert-success {
+            background: rgba(51, 242, 153, 0.1);
+            border-left-color: var(--color-success);
+            color: var(--color-success);
+        }
+
+        .alert-error {
+            background: rgba(255, 51, 102, 0.1);
+            border-left-color: var(--color-error);
+            color: var(--color-error);
+        }
+
+        .alert-warning {
+            background: rgba(255, 179, 0, 0.1);
+            border-left-color: var(--color-warning);
+            color: var(--color-warning);
+        }
+
+        .alert-close {
+            margin-left: auto;
+            cursor: pointer;
+            font-size: 1.5rem;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .alert-close:hover {
+            opacity: 1;
+        }
+
+        /* ===== TOGGLES ===== */
+        .toggle {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 28px;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--color-border);
+            transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: var(--radius-full);
+        }
+
+        .toggle-slider::before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--color-primary);
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.4);
+        }
+
+        input:checked + .toggle-slider::before {
+            transform: translateX(22px);
+        }
+
+        /* ===== TOOLTIPS ===== */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            background-color: var(--color-secondary);
+            color: white;
+            text-align: center;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            width: 120px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(153, 51, 255, 0.3);
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* ===== DIVIDERS ===== */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+            margin: var(--spacing-lg) 0;
+        }
+
+        /* ===== COLORS PALETTE ===== */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .color-swatch {
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            text-align: center;
+            border: 1px solid var(--color-border);
+            transition: transform 0.3s ease;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.05);
+        }
+
+        .color-swatch-label {
+            font-size: 0.75rem;
+            color: var(--color-text-secondary);
+            margin-top: var(--spacing-sm);
+            font-family: var(--font-display);
+            text-transform: uppercase;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .components-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--color-bg-secondary);
+            border-top: 1px solid var(--color-border);
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            text-align: center;
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            margin-top: var(--spacing-2xl);
+        }
+
+        footer a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--color-secondary);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>⚡ FUTURISTIC UI COMPONENTS</h1>
+        <p>Un sistema de diseño moderno y futurista inspirado en estética gaming. Completamente responsive para web y mobile.</p>
+    </header>
+
+    <div class="container">
+        <!-- SECTION: BUTTONS -->
+        <section>
+            <h2>Buttons</h2>
+            <div class="components-grid">
+                <div class="component-card">
+                    <h3>Primary Buttons</h3>
+                    <p>Botones principales para acciones destacadas</p>
+                    <div class="btn-group">
+                        <button class="btn btn-primary">Primary</button>
+                        <button class="btn btn-primary btn-sm">Small</button>
+                        <button class="btn btn-primary btn-lg">Large</button>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Secondary Buttons</h3>
+                    <p>Botones secundarios con contorno</p>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary">Secondary</button>
+                        <button class="btn btn-secondary btn-sm">Small</button>
+                        <button class="btn btn-secondary btn-lg">Large</button>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Ghost Buttons</h3>
+                    <p>Botones transparentes para acciones secundarias</p>
+                    <div class="btn-group">
+                        <button class="btn btn-ghost">Ghost</button>
+                        <button class="btn btn-ghost btn-sm">Small</button>
+                        <button class="btn btn-ghost btn-lg">Large</button>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Status Buttons</h3>
+                    <p>Botones para diferentes estados</p>
+                    <div class="btn-group">
+                        <button class="btn btn-success">Success</button>
+                        <button class="btn btn-error">Error</button>
+                        <button class="btn btn-primary" disabled>Disabled</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: INPUTS -->
+        <section>
+            <h2>Form Inputs</h2>
+            <div class="components-grid">
+                <div class="component-card">
+                    <h3>Text Input</h3>
+                    <div class="input-group">
+                        <label for="text-input">Full Name</label>
+                        <input type="text" id="text-input" placeholder="Enter your name...">
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Email Input</h3>
+                    <div class="input-group">
+                        <label for="email-input">Email Address</label>
+                        <input type="email" id="email-input" placeholder="your@email.com">
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Password Input</h3>
+                    <div class="input-group">
+                        <label for="password-input">Password</label>
+                        <input type="password" id="password-input" placeholder="••••••••">
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Textarea</h3>
+                    <div class="input-group">
+                        <label for="textarea">Message</label>
+                        <textarea id="textarea" placeholder="Enter your message..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: CARDS -->
+        <section>
+            <h2>Cards</h2>
+            <div class="components-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Premium Feature</h3>
+                        <span class="badge badge-primary">New</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Experience the future with our cutting-edge components designed for modern web applications. Built with precision and attention to detail.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-sm">Learn More</button>
+                        <button class="btn btn-ghost btn-sm">Dismiss</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Interactive Design</h3>
+                        <span class="badge badge-secondary">Featured</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Smooth animations, intuitive interactions, and a sleek dark aesthetic that stands out from the crowd.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-sm">Explore</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Developer Friendly</h3>
+                        <span class="badge badge-success">Ready</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Copy and paste components directly into your project. Built with modern CSS and vanilla JavaScript for maximum compatibility.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-sm">View Code</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: BADGES & CHIPS -->
+        <section>
+            <h2>Badges & Chips</h2>
+            <div class="components-grid">
+                <div class="component-card">
+                    <h3>Badges</h3>
+                    <p>Small labels para marcar estados y categorías</p>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <span class="badge badge-primary">Primary</span>
+                        <span class="badge badge-secondary">Secondary</span>
+                        <span class="badge badge-success">Success</span>
+                        <span class="badge badge-error">Error</span>
+                        <span class="badge badge-warning">Warning</span>
+                        <span class="badge badge-outline">Outline</span>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Interactive Chips</h3>
+                    <p>Selecciona los que te interesen</p>
+                    <div class="chip-group">
+                        <div class="chip">🎨 Design</div>
+                        <div class="chip">⚙️ Code</div>
+                        <div class="chip active">✨ Animation</div>
+                        <div class="chip">📱 Responsive</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: ALERTS -->
+        <section>
+            <h2>Alerts & Notifications</h2>
+            <div class="alert alert-primary">
+                <span>ℹ️</span>
+                <div>
+                    <strong>Information:</strong> This is a general information message for users.
+                </div>
+                <span class="alert-close">✕</span>
+            </div>
+            <div class="alert alert-success">
+                <span>✓</span>
+                <div>
+                    <strong>Success:</strong> Your operation has been completed successfully!
+                </div>
+                <span class="alert-close">✕</span>
+            </div>
+            <div class="alert alert-error">
+                <span>⚠</span>
+                <div>
+                    <strong>Error:</strong> Something went wrong. Please try again later.
+                </div>
+                <span class="alert-close">✕</span>
+            </div>
+            <div class="alert alert-warning">
+                <span>!</span>
+                <div>
+                    <strong>Warning:</strong> Please be careful with this action.
+                </div>
+                <span class="alert-close">✕</span>
+            </div>
+        </section>
+
+        <!-- SECTION: TOGGLES -->
+        <section>
+            <h2>Interactive Controls</h2>
+            <div class="components-grid">
+                <div class="component-card">
+                    <h3>Toggle Switches</h3>
+                    <p>Activar o desactivar opciones</p>
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <label class="toggle">
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span>Dark Mode</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <label class="toggle">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span>Notifications</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <label class="toggle">
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span>Performance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="component-card">
+                    <h3>Tooltips</h3>
+                    <p>Información adicional al pasar el mouse</p>
+                    <div style="display: flex; gap: 16px; padding: 20px; flex-wrap: wrap;">
+                        <div class="tooltip">
+                            Hover me
+                            <span class="tooltip-text">Tooltip text</span>
+                        </div>
+                        <div class="tooltip">
+                            Click me
+                            <span class="tooltip-text">More info here</span>
+                        </div>
+                        <div class="tooltip">
+                            Help
+                            <span class="tooltip-text">Need assistance?</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: COLOR PALETTE -->
+        <section>
+            <h2>Color Palette</h2>
+            <div class="color-grid">
+                <div class="color-swatch" style="background: #14121F; border-color: #403A58;">
+                    <div class="color-swatch-label">BG Primary</div>
+                    <div class="color-swatch-label">#14121F</div>
+                </div>
+                <div class="color-swatch" style="background: #262135; border-color: #403A58;">
+                    <div class="color-swatch-label">Surface</div>
+                    <div class="color-swatch-label">#262135</div>
+                </div>
+                <div class="color-swatch" style="background: #00CCFF; border-color: #403A58;">
+                    <div class="color-swatch-label" style="color: #14121F;">Primary</div>
+                    <div class="color-swatch-label" style="color: #14121F;">#00CCFF</div>
+                </div>
+                <div class="color-swatch" style="background: #9933FF; border-color: #403A58;">
+                    <div class="color-swatch-label">Secondary</div>
+                    <div class="color-swatch-label">#9933FF</div>
+                </div>
+                <div class="color-swatch" style="background: #33F299; border-color: #403A58;">
+                    <div class="color-swatch-label" style="color: #14121F;">Success</div>
+                    <div class="color-swatch-label" style="color: #14121F;">#33F299</div>
+                </div>
+                <div class="color-swatch" style="background: #FF3366; border-color: #403A58;">
+                    <div class="color-swatch-label">Error</div>
+                    <div class="color-swatch-label">#FF3366</div>
+                </div>
+                <div class="color-swatch" style="background: #FFB300; border-color: #403A58;">
+                    <div class="color-swatch-label" style="color: #14121F;">Warning</div>
+                    <div class="color-swatch-label" style="color: #14121F;">#FFB300</div>
+                </div>
+                <div class="color-swatch" style="background: #A6A6B3; border-color: #403A58;">
+                    <div class="color-swatch-label" style="color: #14121F;">Text Secondary</div>
+                    <div class="color-swatch-label" style="color: #14121F;">#A6A6B3</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- SECTION: SPECIFICATIONS -->
+        <section>
+            <h2>Specifications</h2>
+            <div class="components-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Typography</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Display:</strong> Courier New (Monospace)</p>
+                        <p><strong>Body:</strong> System Stack</p>
+                        <p><strong>Sizes:</strong> 0.8rem - 2.5rem</p>
+                        <p><strong>Weights:</strong> 400, 500, 700</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Grid System</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Base:</strong> 8px Grid</p>
+                        <p><strong>Spacing:</strong> 4px - 48px</p>
+                        <p><strong>Radius:</strong> 4px - Full</p>
+                        <p><strong>Max Width:</strong> 1400px</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Breakpoints</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Mobile:</strong> 320px - 767px</p>
+                        <p><strong>Tablet:</strong> 768px - 1024px</p>
+                        <p><strong>Desktop:</strong> 1025px+</p>
+                        <p><strong>Wide:</strong> 1441px+</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>🎨 Futuristic UI Components Library v1.0 | Built with HTML, CSS & JavaScript</p>
+        <p>Inspired by <a href="https://marathonthegame.com/es-es">Marathon Game</a> | Design System for Modern Web Applications</p>
+    </footer>
+
+    <script>
+        // Alert close functionality
+        document.querySelectorAll('.alert-close').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.closest('.alert').style.animation = 'slideInLeft 0.4s ease-out reverse';
+                setTimeout(() => {
+                    this.closest('.alert').remove();
+                }, 400);
+            });
+        });
+
+        // Chip toggle functionality
+        document.querySelectorAll('.chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

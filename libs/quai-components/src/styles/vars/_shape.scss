@@ -1,0 +1,9 @@
+// ===== SHAPE VARIABLES =====
+// px for border-radius — these don't need to scale with font-size.
+
+:root {
+  --quai-radius-sm:   4px;
+  --quai-radius-md:   8px;
+  --quai-radius-lg:   12px;
+  --quai-radius-full: 9999px;
+}

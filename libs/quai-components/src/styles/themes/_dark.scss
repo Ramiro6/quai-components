@@ -1,0 +1,26 @@
+// ===== DARK THEME =====
+// Futuristic dark palette using oklch color space.
+// oklch(lightness% chroma hue) — tweak L to go lighter/darker, C for saturation, H for hue shift.
+
+@mixin dark {
+  // Backgrounds — very dark violet base, hue ~290
+  --quai-color-bg:           oklch(11% 0.03 290);
+  --quai-color-bg-secondary: oklch(15% 0.04 290);
+  --quai-color-surface:      oklch(19% 0.05 290);
+
+  // Text
+  --quai-color-text:           oklch(96% 0.005 280);
+  --quai-color-text-secondary: oklch(68% 0.015 280);
+
+  // Border
+  --quai-color-border: oklch(32% 0.05 285);
+
+  // Brand accents — neon
+  --quai-color-primary:   oklch(78% 0.17 210);  // neon cyan
+  --quai-color-secondary: oklch(55% 0.28 295);  // neon purple
+
+  // Status
+  --quai-color-success: oklch(88% 0.22 160);    // neon green
+  --quai-color-error:   oklch(62% 0.26 15);     // neon red/pink
+  --quai-color-warning: oklch(78% 0.18 75);     // amber
+}
