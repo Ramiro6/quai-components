@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { QuaiBoundaryError } from '@quai/quai-components';
+import { QuaiBoundaryErrorLegacy } from '@quai/quai-components';
 
 @Component({
-  imports: [RouterModule, ReactiveFormsModule, QuaiBoundaryError],
+  imports: [RouterModule, ReactiveFormsModule, QuaiBoundaryErrorLegacy],
   standalone: true,
   selector: 'app-root',
   templateUrl: './app.html',

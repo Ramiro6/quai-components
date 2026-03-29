@@ -21,7 +21,12 @@
             "input": "apps/quai-example/public"
           }
         ],
-        "styles": ["apps/quai-example/src/styles.scss"]
+        "styles": ["apps/quai-example/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "libs/quai-components/src/styles"
+          ]
+        }
       },
       "configurations": {
         "production": {
