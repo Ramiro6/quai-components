@@ -1,0 +1,13 @@
+/* Tokens de bordes — radius, color de borde y sombra flotante */
+
+:root {
+  /* Border radius */
+  --radius-sm: 0.25rem;  /* 4px — botones, inputs, badges */
+  --radius-md: 0.375rem; /* 6px — cards, modales, tablas */
+
+  /* Border color (solo color; shorthand --border-default está en colors.css) */
+  --border-default-color: var(--zinc-200);
+
+  /* Sombra limitada a elementos flotantes (dropdowns, tooltips) */
+  --shadow-float: 0 4px 6px -1px oklch(0% 0 0 / 0.05);
+}

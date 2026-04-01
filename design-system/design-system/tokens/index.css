@@ -1,0 +1,9 @@
+/* ==========================================================================
+   Design Tokens — Punto de entrada
+   Importa todos los archivos de tokens en orden
+   ========================================================================== */
+
+@import './colors.css';
+@import './typography.css';
+@import './spacing.css';
+@import './borders.css';

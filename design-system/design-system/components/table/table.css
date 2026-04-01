@@ -1,0 +1,75 @@
+/* ==========================================================================
+   Componente Table — Design System v2
+   Elementos: <table>, <thead>, <tbody>, <tr>, <th>, <td>
+   Nomenclatura BEM: .table, .table__header, .table__body, .table__row,
+                     .table__cell, .table__cell--numeric
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Wrapper — Contenedor para overflow responsive
+   -------------------------------------------------------------------------- */
+.table {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--border-default-color);
+  border-radius: var(--radius-md);
+}
+
+/* --------------------------------------------------------------------------
+   Table element — border-collapse: separate para radius en wrapper
+   -------------------------------------------------------------------------- */
+.table table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Header — <thead>
+   -------------------------------------------------------------------------- */
+.table__header {
+  background-color: var(--surface-1);
+}
+
+.table__header .table__cell {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-muted);
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border-default-color);
+}
+
+/* --------------------------------------------------------------------------
+   Body — <tbody>
+   -------------------------------------------------------------------------- */
+.table__row {
+  transition: background-color 150ms ease;
+}
+
+.table__body .table__row:hover {
+  background-color: var(--surface-1);
+}
+
+/* --------------------------------------------------------------------------
+   Celdas — <th>, <td>
+   -------------------------------------------------------------------------- */
+.table__body .table__cell {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm);
+  line-height: var(--leading-ui);
+}
+
+/* Borde inferior en todas las filas del body excepto la última */
+.table__body .table__row:not(:last-child) .table__cell {
+  border-bottom: 1px solid var(--border-default-color);
+}
+
+/* --------------------------------------------------------------------------
+   Modificador: Numérico — tabular-nums + alineación derecha
+   -------------------------------------------------------------------------- */
+.table__cell--numeric {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}

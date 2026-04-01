@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiro DS — Design System v2</title>
+  <script>
+  // Theme Switcher — inline, no dependencies
+  (function () {
+    var root = document.documentElement;
+    var currentTheme = 'light';
+
+    function getStored() {
+      try { return localStorage.getItem('theme-preference'); } catch(e) { return null; }
+    }
+    function setStored(v) {
+      try { localStorage.setItem('theme-preference', v); } catch(e) {}
+    }
+    function systemDark() {
+      try { return window.matchMedia('(prefers-color-scheme: dark)').matches; } catch(e) { return false; }
+    }
+    function applyTheme(theme) {
+      currentTheme = theme;
+      if (theme === 'dark') {
+        root.classList.add('theme-dark');
+      } else {
+        root.classList.remove('theme-dark');
+      }
+    }
+
+    // Init: apply stored preference or system preference
+    var stored = getStored();
+    if (stored === 'dark') { applyTheme('dark'); }
+    else if (stored === 'light') { applyTheme('light'); }
+    else if (systemDark()) { applyTheme('dark'); }
+    else { applyTheme('light'); }
+
+    window.ThemeSwitcher = {
+      toggle: function () {
+        var next = currentTheme === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        setStored(next);
+        return next;
+      },
+      current: function () { return currentTheme; }
+    };
+  })();
+  </script>
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM — All styles inlined for file:// compatibility
+       ============================================================ */
+
+    /* --- Reset --- */
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; transition: background-color 200ms ease, color 200ms ease; background-color: var(--background); color: var(--color-text); }
+    body { font-family: 'Geist Sans', system-ui, -apple-system, sans-serif; font-size: 1rem; font-weight: 400; line-height: 1.6; color: var(--color-text); background-color: var(--background); transition: background-color 200ms ease, color 200ms ease; }
+    h1,h2,h3,h4,h5,h6 { font-weight: 600; line-height: 1.0; letter-spacing: -0.025em; text-wrap: balance; }
+    p { line-height: 1.6; text-wrap: pretty; }
+    ul, ol { list-style: none; }
+    a { color: inherit; text-decoration: inherit; }
+    img, picture, video, canvas, svg { display: block; max-width: 100%; }
+    button, input, select, textarea { font: inherit; color: inherit; background: none; border: none; padding: 0; }
+    button { cursor: pointer; }
+    button:disabled { cursor: not-allowed; }
+    textarea { resize: vertical; }
+    table { border-collapse: collapse; border-spacing: 0; }
+    dialog { padding: 0; border: none; }
+    :focus-visible { outline: 2px solid var(--zinc-950, #09090b); outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+    /* --- Helpers --- */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+    .skip-link { position: absolute; top: -100%; left: 0; z-index: 9999; padding: 0.5rem 1rem; font-size: 0.875rem; font-weight: 500; color: var(--color-text, #09090b); background-color: var(--background, #fafafa); border: 1px solid var(--border-default-color, #e4e4e7); border-radius: 0.25rem; text-decoration: none; }
+    .skip-link:focus { top: 0.5rem; left: 0.5rem; }
+    .tabular-nums { font-variant-numeric: tabular-nums; }
+    .container-fluid { padding-inline: clamp(1rem, 5vw, 3rem); }
+
+    /* --- Color Tokens --- */
+    :root {
+      --zinc-50: #fafafa; --zinc-100: #f4f4f5; --zinc-200: #e4e4e7;
+      --zinc-300: #d4d4d8; --zinc-400: #a1a1aa; --zinc-500: #71717a;
+      --zinc-600: #52525b; --zinc-700: #3f3f46; --zinc-800: #27272a;
+      --zinc-900: #18181b; --zinc-950: #09090b;
+      --accent: #7c3aed; --accent-subtle: #ede9fe;
+      --color-success: #16a34a; --color-success-subtle: #f0fdf4;
+      --color-error: #dc2626; --color-error-subtle: #fef2f2;
+      --color-warning: #d97706; --color-warning-subtle: #fffbeb;
+      --color-info: var(--accent); --color-info-subtle: var(--accent-subtle);
+      --background: #fafafa; --surface-1: #f4f4f5; --surface-2: #ffffff;
+      --color-primary: var(--zinc-900); --color-primary-foreground: white;
+      --color-text: var(--zinc-900); --color-text-secondary: var(--zinc-600); --color-text-muted: var(--zinc-500);
+      --border-default: 1px solid var(--zinc-200); --border-default-color: var(--zinc-200);
+      --radius-sm: 0.25rem; --radius-md: 0.375rem;
+      --shadow-float: 0 4px 6px -1px rgba(0,0,0,0.05);
+      --font-family: 'Geist Sans', system-ui, -apple-system, sans-serif;
+      --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem; --text-lg: 1.125rem; --text-xl: 1.25rem; --text-2xl: 1.5rem;
+      --font-regular: 400; --font-medium: 500; --font-semibold: 600;
+      --leading-tight: 1.0; --leading-ui: 1.4; --leading-body: 1.6;
+      --tracking-tight: -0.025em; --tracking-normal: 0; --tracking-wide: 0.025em;
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+      --space-6: 1.5rem; --space-8: 2rem; --space-12: 3rem; --space-16: 4rem; --space-24: 6rem;
+      color-scheme: light;
+    }
+
+    /* --- Dark Theme --- */
+    .theme-dark {
+      --background: #1a1a1e; --surface-1: #242428; --surface-2: #2e2e33;
+      --border-default: 1px solid #333338; --border-default-color: #333338;
+      --color-primary: #f0f0f2; --color-primary-foreground: #1a1a1e;
+      --color-text: #f0f0f2; --color-text-secondary: #8e8e96; --color-text-muted: #6e6e78;
+      --accent: oklch(55% 0.12 290); --accent-subtle: oklch(21% 0.024 290);
+      --font-regular: 350;
+      --zinc-200: #d4d4d8; --zinc-400: #8e8e96; --zinc-500: #6e6e78;
+      --zinc-800: #333338; --zinc-900: #1a1a1e; --zinc-950: #111114;
+      --zinc-50: #f0f0f2; --zinc-100: #e4e4e7;
+      color-scheme: dark;
+    }
+
+    /* --- Button --- */
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); height: 2.25rem; padding: 0.5rem 1rem; font-family: var(--font-family); font-size: var(--text-sm); font-weight: var(--font-medium); line-height: var(--leading-ui); border-radius: var(--radius-sm); border: none; cursor: pointer; transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease; text-decoration: none; white-space: nowrap; user-select: none; }
+    .button:focus-visible { outline: 2px solid var(--zinc-950); outline-offset: 2px; }
+    .button:disabled, .button[disabled] { opacity: 0.5; pointer-events: none; cursor: not-allowed; }
+    .button--primary { background-color: var(--zinc-900); color: white; }
+    .button--primary:hover { background-color: var(--zinc-800); }
+    .button--secondary { background-color: transparent; border: var(--border-default); color: var(--color-text); }
+    .button--secondary:hover { background-color: var(--surface-1); }
+    .button--ghost { background-color: transparent; color: var(--color-text-secondary); }
+    .button--ghost:hover { background-color: var(--surface-1); }
+    .button--destructive { background-color: var(--color-error); color: white; }
+    .button--destructive:hover { filter: brightness(0.9); }
+    .button--sm { height: 2rem; padding: 0.375rem 0.75rem; font-size: var(--text-sm); }
+    .button--lg { height: 2.75rem; padding: 0.625rem 1.25rem; font-size: var(--text-base); }
+    .theme-dark .button--primary { background-color: var(--color-primary); color: var(--color-primary-foreground); }
+    .theme-dark .button--primary:hover { background-color: #d4d4d8; }
+
+    /* --- Button Semantic Color Variants --- */
+    .button--success { background-color: var(--color-success); color: white; }
+    .button--success:hover { filter: brightness(0.9); }
+    .button--warning { background-color: var(--color-warning); color: white; }
+    .button--warning:hover { filter: brightness(0.9); }
+    .button--error { background-color: var(--color-error); color: white; }
+    .button--error:hover { filter: brightness(0.9); }
+    .button--info { background-color: var(--accent); color: white; }
+    .button--info:hover { filter: brightness(0.9); }
+    .button--accent { background-color: var(--accent); color: white; }
+    .button--accent:hover { filter: brightness(0.9); }
+
+    /* --- Button Outline Variants --- */
+    .button--outline-primary { background-color: transparent; border: 1px solid var(--zinc-900); color: var(--zinc-900); }
+    .button--outline-primary:hover { background-color: var(--zinc-100); }
+    .button--outline-success { background-color: transparent; border: 1px solid var(--color-success); color: var(--color-success); }
+    .button--outline-success:hover { background-color: var(--color-success-subtle); }
+    .button--outline-error { background-color: transparent; border: 1px solid var(--color-error); color: var(--color-error); }
+    .button--outline-error:hover { background-color: var(--color-error-subtle); }
+    .button--outline-warning { background-color: transparent; border: 1px solid var(--color-warning); color: var(--color-warning); }
+    .button--outline-warning:hover { background-color: var(--color-warning-subtle); }
+    .button--outline-accent { background-color: transparent; border: 1px solid var(--accent); color: var(--accent); }
+    .button--outline-accent:hover { background-color: var(--accent-subtle); }
+
+    /* --- Button Loading State --- */
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .button--loading { pointer-events: none; position: relative; }
+    .button--loading::before { content: ""; display: inline-block; width: 1rem; height: 1rem; border: 2px solid currentColor; border-top-color: transparent; border-radius: 50%; animation: spin 0.6s linear infinite; flex-shrink: 0; }
+
+    /* Inverted variants */
+    .button--inverted-primary { background-color: var(--zinc-100); color: var(--zinc-900); }
+    .button--inverted-success { background-color: var(--color-success-subtle); color: var(--color-success); }
+    .button--inverted-error { background-color: var(--color-error-subtle); color: var(--color-error); }
+    .button--inverted-accent { background-color: var(--accent-subtle); color: var(--accent); }
+    .button--inverted-primary:hover,
+    .button--inverted-success:hover,
+    .button--inverted-error:hover,
+    .button--inverted-accent:hover { filter: brightness(0.95); }
+
+    /* Icon-only */
+    .button--icon { width: 2.25rem; height: 2.25rem; padding: 0; border-radius: var(--radius-sm); }
+
+    /* Shadow */
+    .button--shadow { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); }
+    .button--shadow:hover { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); }
+
+    /* --- Dark Theme: Outline Variants --- */
+    .theme-dark .button--outline-primary { border-color: var(--zinc-100); color: var(--zinc-100); }
+    .theme-dark .button--outline-primary:hover { background-color: var(--zinc-800); }
+    .theme-dark .button--outline-success:hover { background-color: rgba(22, 163, 74, 0.15); }
+    .theme-dark .button--outline-error:hover { background-color: rgba(220, 38, 38, 0.15); }
+    .theme-dark .button--outline-warning:hover { background-color: rgba(217, 119, 6, 0.15); }
+    .theme-dark .button--outline-accent:hover { background-color: var(--accent-subtle); }
+
+    /* --- Dark Theme: Inverted Variants --- */
+    .theme-dark .button--inverted-primary { background-color: var(--zinc-800); color: var(--zinc-100); }
+    .theme-dark .button--inverted-success { background-color: rgba(22, 163, 74, 0.15); color: var(--color-success); }
+    .theme-dark .button--inverted-error { background-color: rgba(220, 38, 38, 0.15); color: var(--color-error); }
+    .theme-dark .button--inverted-accent { background-color: var(--accent-subtle); color: var(--accent); }
+
+    /* --- Input --- */
+    .input { display: flex; flex-direction: column; gap: var(--space-1); }
+    .input__label { font-size: var(--text-sm); font-weight: var(--font-medium); line-height: var(--leading-ui); color: var(--color-text); }
+    .input__field { display: block; width: 100%; height: 2.25rem; padding: 0.5rem 0.75rem; font-size: var(--text-sm); background-color: var(--surface-1); border: 1px solid var(--border-default-color); border-radius: var(--radius-sm); transition: border-color 150ms ease, box-shadow 150ms ease; color: inherit; outline: none; }
+    .input__field::placeholder { color: var(--zinc-400); }
+    .input__field:focus { border-color: var(--zinc-950); box-shadow: 0 0 0 1px var(--zinc-950); }
+    textarea.input__field { height: auto; min-height: 5rem; resize: vertical; }
+    .input__error { font-size: var(--text-sm); color: var(--color-error); }
+    .input--error .input__field { border-color: var(--color-error); }
+    .input--disabled .input__label { opacity: 0.5; }
+    .input--disabled .input__field { opacity: 0.5; cursor: not-allowed; background-color: var(--zinc-100); pointer-events: none; }
+    .theme-dark .input__field::placeholder { color: var(--zinc-500); }
+    .theme-dark .input__field:focus { border-color: var(--zinc-300); box-shadow: 0 0 0 1px var(--zinc-300); }
+
+    /* --- Card --- */
+    .card { background-color: var(--surface-1); border: 1px solid var(--border-default-color); border-radius: var(--radius-md); padding: 1.5rem; transition: background-color 200ms ease, border-color 200ms ease; }
+    .card__header { display: flex; flex-direction: column; gap: var(--space-1); }
+    .card__title { font-weight: var(--font-semibold); font-size: var(--text-base); line-height: var(--leading-ui); }
+    .card__description { color: var(--color-text-muted); font-size: var(--text-sm); line-height: var(--leading-body); }
+    .card__body { font-size: var(--text-sm); line-height: var(--leading-body); }
+    .card__footer { display: flex; justify-content: flex-end; align-items: center; gap: var(--space-2); }
+    .card__header:not(:last-child) { padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-default-color); margin-bottom: 1.5rem; }
+    .card__body:not(:last-child) { padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-default-color); margin-bottom: 1.5rem; }
+    .card--interactive { cursor: pointer; transition: background-color 150ms ease; }
+    .card--interactive:hover { background-color: var(--surface-2); }
+
+    /* --- Modal --- */
+    @keyframes modal-open { from { opacity: 0; transform: translate(-50%, -50%) scale(0.96); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+    .modal { background-color: var(--surface-1); border: 1px solid var(--border-default-color); border-radius: var(--radius-md); padding: 1.5rem; max-width: 32rem; width: calc(100% - 2rem); position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); margin: 0; }
+    .modal[open] { animation: modal-open 250ms cubic-bezier(0.16, 1, 0.3, 1); }
+    .modal::backdrop { background: rgba(0, 0, 0, 0.5); animation: backdrop-fade 200ms ease; }
+    @keyframes backdrop-fade { from { opacity: 0; } to { opacity: 1; } }
+    .modal__close { position: absolute; top: 1rem; right: 1rem; display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; padding: 0; border: none; background: none; color: var(--color-text-muted); font-size: 1.25rem; line-height: 1; cursor: pointer; border-radius: var(--radius-sm); transition: color 150ms ease, background-color 150ms ease; }
+    .modal__close:hover { color: var(--color-text); background-color: var(--surface-2); }
+    .modal__header { padding-right: 2rem; }
+    .modal__title { font-weight: var(--font-semibold); font-size: var(--text-lg); line-height: var(--leading-tight); margin: 0; }
+    .modal__body { margin-top: var(--space-4); overflow-y: auto; font-size: var(--text-sm); line-height: var(--leading-body); color: var(--color-text-secondary); }
+    .modal__footer { display: flex; justify-content: flex-end; align-items: center; gap: var(--space-2); margin-top: var(--space-6); }
+    @media (prefers-reduced-motion: reduce) { .modal[open] { animation: none; } }
+    @media (max-width: 767px) { .modal { max-width: 95vw; } }
+
+    /* --- Navigation --- */
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: var(--space-3) var(--space-6); border-bottom: 1px solid var(--border-default-color); background-color: var(--background); font-family: var(--font-family); position: relative; transition: background-color 200ms ease, border-color 200ms ease; }
+    .nav__brand { font-size: var(--text-base); font-weight: var(--font-semibold); color: var(--color-text); text-decoration: none; }
+    .nav__links { display: flex; align-items: center; gap: var(--space-6); list-style: none; margin: 0; padding: 0; }
+    .nav__link { font-size: var(--text-sm); font-weight: var(--font-medium); color: var(--color-text-secondary); text-decoration: none; transition: color 150ms ease; }
+    .nav__link:hover { color: var(--color-text); }
+    .nav__link--active { color: var(--color-text); font-weight: var(--font-semibold); }
+    .nav__toggle { display: none; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; padding: 0; background: transparent; border: none; cursor: pointer; color: var(--color-text-secondary); font-size: var(--text-lg); transition: color 150ms ease; }
+    .nav__toggle:hover { color: var(--color-text); }
+    .nav__menu { display: none; }
+    @media (max-width: 767px) {
+      .nav__links { display: none; }
+      .nav__toggle { display: inline-flex; }
+      .nav__menu { display: none; flex-direction: column; gap: var(--space-1); position: absolute; top: 100%; left: 0; right: 0; background-color: var(--surface-1); border: 1px solid var(--border-default-color); border-top: none; padding: var(--space-3); list-style: none; margin: 0; z-index: 100; }
+      .nav__menu--open { display: flex; }
+      .nav__menu .nav__link { display: block; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); }
+      .nav__menu .nav__link:hover { background-color: var(--surface-2); }
+    }
+
+    /* --- Toggle --- */
+    .toggle { display: inline-flex; align-items: center; padding: 0; border: none; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    .toggle__track { position: relative; display: inline-flex; align-items: center; width: 2.25rem; height: 1.25rem; border-radius: 9999px; background-color: var(--zinc-200); transition: background-color 150ms cubic-bezier(0.25, 1, 0.5, 1); }
+    .toggle__thumb { position: absolute; left: 0.125rem; display: block; width: 1rem; height: 1rem; border-radius: 9999px; background-color: white; transform: translateX(0); transition: transform 150ms cubic-bezier(0.25, 1, 0.5, 1); pointer-events: none; }
+    .toggle:focus-visible { outline: 2px solid var(--zinc-950); outline-offset: 2px; }
+    .toggle--checked .toggle__track { background-color: var(--zinc-900); }
+    .toggle--checked .toggle__thumb { transform: translateX(1rem); }
+    .toggle--disabled { opacity: 0.5; pointer-events: none; }
+    .theme-dark .toggle__track { background-color: var(--zinc-700); }
+    .theme-dark .toggle--checked .toggle__track { background-color: var(--zinc-50); }
+
+    /* --- Slider --- */
+    .slider { position: relative; display: flex; align-items: center; width: 100%; }
+    .slider input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; margin: 0; padding: 0; border: none; border-radius: 9999px; background: transparent; cursor: pointer; outline: none; }
+    .slider input[type="range"]::-webkit-slider-runnable-track { height: 4px; border-radius: 9999px; background: var(--zinc-200); }
+    .slider input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 1rem; height: 1rem; margin-top: -6px; border: 2px solid var(--zinc-900); border-radius: 9999px; background-color: white; transition: transform 150ms ease; }
+    .slider input[type="range"]:hover::-webkit-slider-thumb { transform: scale(1.15); }
+    .slider input[type="range"]::-moz-range-track { height: 4px; border: none; border-radius: 9999px; background: var(--zinc-200); }
+    .slider input[type="range"]::-moz-range-thumb { width: 1rem; height: 1rem; border: 2px solid var(--zinc-900); border-radius: 9999px; background-color: white; box-sizing: border-box; }
+    .slider--disabled { opacity: 0.5; pointer-events: none; }
+    .theme-dark .slider input[type="range"]::-webkit-slider-runnable-track { background: var(--zinc-700); }
+    .theme-dark .slider input[type="range"]::-webkit-slider-thumb { border-color: var(--zinc-50); }
+
+    /* --- Table --- */
+    .table { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--border-default-color); border-radius: var(--radius-md); }
+    .table table { width: 100%; border-collapse: separate; border-spacing: 0; }
+    .table__header { background-color: var(--surface-1); }
+    .table__header .table__cell { font-size: var(--text-sm); font-weight: var(--font-medium); color: var(--color-text-muted); text-align: left; padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--border-default-color); }
+    .table__row { transition: background-color 150ms ease; }
+    .table__body .table__row:hover { background-color: var(--surface-1); }
+    .table__body .table__cell { padding: var(--space-3) var(--space-4); font-size: var(--text-sm); line-height: var(--leading-ui); }
+    .table__body .table__row:not(:last-child) .table__cell { border-bottom: 1px solid var(--border-default-color); }
+    .table__cell--numeric { font-variant-numeric: tabular-nums; text-align: right; }
+
+    /* --- Chips --- */
+    .chip { display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.125rem 0.5rem; border-radius: var(--radius-sm); font-size: var(--text-xs); font-weight: var(--font-medium); line-height: 1.4; white-space: nowrap; vertical-align: middle; background: var(--surface-1); border: 1px solid var(--border-default-color); color: var(--color-text-secondary); }
+    button.chip { cursor: pointer; font-family: inherit; }
+    .chip--primary { background: var(--zinc-900); color: white; border: none; }
+    .chip--success { background: var(--color-success-subtle); color: oklch(35% 0.1 145); border: 1px solid oklch(80% 0.06 145); }
+    .chip--error { background: var(--color-error-subtle); color: oklch(35% 0.12 25); border: 1px solid oklch(80% 0.06 25); }
+    .chip--warning { background: var(--color-warning-subtle); color: oklch(40% 0.1 80); border: 1px solid oklch(80% 0.06 80); }
+    .chip--dismissible { padding-right: 0.25rem; }
+    .chip__close { display: inline-flex; align-items: center; justify-content: center; width: 0.75rem; height: 0.75rem; padding: 0; border: none; background: none; color: currentColor; cursor: pointer; font-size: 0.625rem; opacity: 0.7; }
+    .chip__close:hover { opacity: 1; }
+    .theme-dark .chip--primary { background: var(--zinc-50); color: var(--zinc-900); }
+    .demo-section {
+      padding: var(--space-16) 0;
+    }
+    .demo-section + .demo-section {
+      border-top: 1px solid var(--border-default-color);
+    }
+    .demo-hero {
+      padding: var(--space-24) 0 var(--space-16);
+      text-align: center;
+    }
+    .demo-hero__title {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-semibold);
+      line-height: var(--leading-tight);
+      letter-spacing: var(--tracking-tight);
+      margin: 0 0 var(--space-3);
+    }
+    .demo-hero__description {
+      font-size: var(--text-base);
+      line-height: var(--leading-body);
+      color: var(--color-text-muted);
+      max-width: 36rem;
+      margin: 0 auto var(--space-8);
+    }
+    .demo-hero__actions {
+      display: flex;
+      gap: var(--space-3);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .demo-heading {
+      font-size: var(--text-xl);
+      font-weight: var(--font-semibold);
+      line-height: var(--leading-tight);
+      letter-spacing: var(--tracking-tight);
+      margin: 0 0 var(--space-2);
+    }
+    .demo-subtext {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: var(--leading-body);
+      margin: 0 0 var(--space-8);
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-6);
+    }
+    .demo-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      max-width: 40rem;
+    }
+    .demo-form__full {
+      grid-column: 1 / -1;
+    }
+    .demo-form__actions {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: var(--space-3);
+      justify-content: flex-end;
+      padding-top: var(--space-4);
+    }
+    .demo-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+      max-width: 40rem;
+    }
+    .demo-control-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+    .demo-control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+    .demo-control-label {
+      font-size: var(--text-sm);
+      font-weight: var(--font-medium);
+      line-height: var(--leading-ui);
+    }
+    .demo-control-hint {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+    .demo-slider-row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .demo-slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .demo-slider-value {
+      font-size: var(--text-sm);
+      font-weight: var(--font-medium);
+      font-variant-numeric: tabular-nums;
+      color: var(--color-text-muted);
+    }
+    .demo-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+    .demo-theme-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      padding: 0;
+      border: 1px solid var(--border-default-color);
+      border-radius: var(--radius-sm);
+      background: transparent;
+      cursor: pointer;
+      font-size: var(--text-base);
+      color: var(--color-text-secondary);
+      transition: color 150ms ease, background-color 150ms ease;
+    }
+    .demo-theme-btn:hover {
+      background-color: var(--surface-1);
+      color: var(--color-text);
+    }
+    .demo-theme-btn:focus-visible {
+      outline: 2px solid var(--zinc-950);
+      outline-offset: 2px;
+    }
+    @media (max-width: 767px) {
+      .demo-form { grid-template-columns: 1fr; }
+      .demo-controls { grid-template-columns: 1fr; }
+      .demo-tokens-row { grid-template-columns: repeat(6, 1fr); }
+    }
+
+    /* --- Token Showcase --- */
+    .demo-palette { display: flex; flex-direction: column; gap: var(--space-8); }
+    .demo-palette-group { display: flex; flex-direction: column; gap: var(--space-3); }
+    .demo-palette-label { font-size: var(--text-sm); font-weight: var(--font-semibold); color: var(--color-text); margin: 0; }
+    .demo-tokens-row { display: grid; grid-template-columns: repeat(11, 1fr); gap: var(--space-2); }
+    .demo-swatch { display: flex; flex-direction: column; align-items: center; gap: var(--space-1); }
+    .demo-swatch__color { width: 100%; aspect-ratio: 1; border-radius: var(--radius-md); border: 1px solid var(--border-default-color); }
+    .demo-swatch__name { font-size: 0.625rem; font-weight: var(--font-medium); color: var(--color-text-muted); text-align: center; }
+    .demo-semantic-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: var(--space-3); }
+    .demo-semantic-swatch { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); border: 1px solid var(--border-default-color); border-radius: var(--radius-sm); }
+    .demo-semantic-swatch__dot { width: 1rem; height: 1rem; border-radius: 9999px; flex-shrink: 0; }
+    .demo-semantic-swatch__label { font-size: var(--text-xs); font-weight: var(--font-medium); color: var(--color-text-secondary); }
+    .demo-type-scale { display: flex; flex-direction: column; gap: var(--space-4); }
+    .demo-type-row { display: flex; align-items: baseline; gap: var(--space-6); }
+    .demo-type-meta { flex-shrink: 0; width: 6rem; font-size: var(--text-xs); color: var(--color-text-muted); font-variant-numeric: tabular-nums; text-align: right; }
+    .demo-type-sample { color: var(--color-text); }
+    .demo-spacing-row { display: flex; align-items: flex-end; gap: var(--space-3); flex-wrap: wrap; }
+    .demo-spacing-item { display: flex; flex-direction: column; align-items: center; gap: var(--space-1); }
+    .demo-spacing-bar { background-color: var(--accent, #7c3aed); border-radius: 2px; width: 2rem; }
+    .demo-spacing-label { font-size: 0.625rem; color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+  <!-- Navigation -->
+  <nav class="nav" aria-label="Principal">
+    <a class="nav__brand" href="#">Kiro DS</a>
+    <ul class="nav__links">
+      <li><a class="nav__link nav__link--active" href="#main">Inicio</a></li>
+      <li><a class="nav__link" href="#features">Características</a></li>
+      <li><a class="nav__link" href="#contact">Contacto</a></li>
+      <li><a class="nav__link" href="#data">Datos</a></li>
+    </ul>
+    <div class="demo-nav-actions">
+      <button type="button" class="demo-theme-btn" onclick="if(window.ThemeSwitcher){ThemeSwitcher.toggle();this.textContent=ThemeSwitcher.current()==='dark'?'☀':'◐';}else{alert('ThemeSwitcher not loaded');}" aria-label="Cambiar tema">◐</button>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu">☰</button>
+    </div>
+    <ul class="nav__menu" id="nav-menu">
+      <li><a class="nav__link nav__link--active" href="#main">Inicio</a></li>
+      <li><a class="nav__link" href="#features">Características</a></li>
+      <li><a class="nav__link" href="#contact">Contacto</a></li>
+      <li><a class="nav__link" href="#data">Datos</a></li>
+    </ul>
+  </nav>
+
+  <main id="main" class="container-fluid">
+
+    <!-- Hero Section -->
+    <section class="demo-section demo-hero">
+      <h1 class="demo-hero__title">Construye interfaces precisas</h1>
+      <p class="demo-hero__description">
+        Un design system modular con estética minimalista. Tokens de color OKLCH,
+        componentes accesibles y soporte completo de temas — todo sin dependencias externas.
+      </p>
+      <div class="demo-hero__actions">
+        <button type="button" class="button button--primary button--lg">Comenzar ahora</button>
+        <button type="button" class="button button--secondary button--lg">Ver documentación</button>
+      </div>
+    </section>
+
+    <!-- Tokens: Color Palette -->
+    <section class="demo-section">
+      <h2 class="demo-heading">Paleta de colores</h2>
+      <p class="demo-subtext">Escala zinc neutral-first con acento violeta y colores semánticos de estado.</p>
+      <div class="demo-palette">
+        <div class="demo-palette-group">
+          <p class="demo-palette-label">Zinc</p>
+          <div class="demo-tokens-row">
+            <div class="demo-swatch"><div class="demo-swatch__color" style="background:var(--zinc-50)"></div><span class="demo-swatch__name">50</span></div>
+            <div class="demo-swatch"><div class="demo-swatch__color" style="background:var(--zinc-100)"></div><span class="demo-swatch__name">100</span></div>
+            <div class="demo-swatch"><div class="demo-swatch__color" style="background:var(--zinc-200)"></div><span class="demo-swatch__name">200</span></div>
+            <div class="demo-swatch"><div class="demo-swatch__color" style="background:var(--zinc-300)"></div><span class="demo-swatch__name">300</span></div>
+            <div class="demo-swatch"><div class="demo-swatch__color" style="background:var(--zinc-400)"></div><span class="demo-swatch__name">400</span></div>
+            <div class="demo-swatch"><div class="demo-swatch__color" style="background:var(--zinc-500)"></div><span class="demo-swatch__name">500</span></div>
+            <div class="demo-swatch"><div class="demo-swatch__color" style="background:var(--zinc-600)"></div><span class="demo-swatch__name">600</span></div>
+            <div class="demo-swatch"><div class="demo-swatch__color" style="background:var(--zinc-700)"></div><span class="demo-swatch__name">700</span></div>
+            <div class="demo-swatch"><div class="demo-swatch__color" style="background:var(--zinc-800)"></div><span class="demo-swatch__name">800</span></div>
+            <div class="demo-swatch"><div class="demo-swatch__color" style="background:var(--zinc-900)"></div><span class="demo-swatch__name">900</span></div>
+            <div class="demo-swatch"><div class="demo-swatch__color" style="background:var(--zinc-950)"></div><span class="demo-swatch__name">950</span></div>
+          </div>
+        </div>
+        <div class="demo-palette-group">
+          <p class="demo-palette-label">Superficies</p>
+          <div class="demo-tokens-row" style="grid-template-columns: repeat(3, 1fr); max-width: 20rem;">
+            <div class="demo-swatch"><div class="demo-swatch__color" style="background:var(--background)"></div><span class="demo-swatch__name">background</span></div>
+            <div class="demo-swatch"><div class="demo-swatch__color" style="background:var(--surface-1)"></div><span class="demo-swatch__name">surface-1</span></div>
+            <div class="demo-swatch"><div class="demo-swatch__color" style="background:var(--surface-2)"></div><span class="demo-swatch__name">surface-2</span></div>
+          </div>
+        </div>
+        <div class="demo-palette-group">
+          <p class="demo-palette-label">Semánticos</p>
+          <div class="demo-semantic-row">
+            <div class="demo-semantic-swatch"><div class="demo-semantic-swatch__dot" style="background:var(--accent)"></div><span class="demo-semantic-swatch__label">Accent</span></div>
+            <div class="demo-semantic-swatch"><div class="demo-semantic-swatch__dot" style="background:var(--color-success)"></div><span class="demo-semantic-swatch__label">Success</span></div>
+            <div class="demo-semantic-swatch"><div class="demo-semantic-swatch__dot" style="background:var(--color-error)"></div><span class="demo-semantic-swatch__label">Error</span></div>
+            <div class="demo-semantic-swatch"><div class="demo-semantic-swatch__dot" style="background:var(--color-warning)"></div><span class="demo-semantic-swatch__label">Warning</span></div>
+            <div class="demo-semantic-swatch"><div class="demo-semantic-swatch__dot" style="background:var(--color-info)"></div><span class="demo-semantic-swatch__label">Info</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tokens: Typography -->
+    <section class="demo-section">
+      <h2 class="demo-heading">Tipografía</h2>
+      <p class="demo-subtext">Geist Sans con escala de 6 tamaños, 3 pesos y line-heights específicos.</p>
+      <div class="demo-type-scale">
+        <div class="demo-type-row">
+          <span class="demo-type-meta">2xl · 1.5rem</span>
+          <span class="demo-type-sample" style="font-size:var(--text-2xl);font-weight:var(--font-semibold);line-height:var(--leading-tight);">Heading principal</span>
+        </div>
+        <div class="demo-type-row">
+          <span class="demo-type-meta">xl · 1.25rem</span>
+          <span class="demo-type-sample" style="font-size:var(--text-xl);font-weight:var(--font-semibold);line-height:var(--leading-tight);">Heading de sección</span>
+        </div>
+        <div class="demo-type-row">
+          <span class="demo-type-meta">lg · 1.125rem</span>
+          <span class="demo-type-sample" style="font-size:var(--text-lg);font-weight:var(--font-medium);line-height:var(--leading-ui);">Subheading</span>
+        </div>
+        <div class="demo-type-row">
+          <span class="demo-type-meta">base · 1rem</span>
+          <span class="demo-type-sample" style="font-size:var(--text-base);font-weight:var(--font-regular);line-height:var(--leading-body);">Body text — el tamaño base para párrafos y contenido principal.</span>
+        </div>
+        <div class="demo-type-row">
+          <span class="demo-type-meta">sm · 0.875rem</span>
+          <span class="demo-type-sample" style="font-size:var(--text-sm);font-weight:var(--font-medium);line-height:var(--leading-ui);color:var(--color-text-secondary);">Labels, metadata y texto de UI secundario</span>
+        </div>
+        <div class="demo-type-row">
+          <span class="demo-type-meta">xs · 0.75rem</span>
+          <span class="demo-type-sample" style="font-size:var(--text-xs);font-weight:var(--font-medium);line-height:var(--leading-ui);letter-spacing:var(--tracking-wide);color:var(--color-text-muted);">CAPTIONS, BADGES Y TEXTO AUXILIAR</span>
+        </div>
+      </div>
+      <div style="margin-top:var(--space-8);display:flex;gap:var(--space-8);flex-wrap:wrap;">
+        <div>
+          <p class="demo-palette-label" style="margin-bottom:var(--space-2);">Pesos</p>
+          <div style="display:flex;flex-direction:column;gap:var(--space-2);">
+            <span style="font-weight:400;font-size:var(--text-sm);color:var(--color-text-secondary);">Regular 400 — Texto de cuerpo</span>
+            <span style="font-weight:500;font-size:var(--text-sm);color:var(--color-text-secondary);">Medium 500 — Labels y UI</span>
+            <span style="font-weight:600;font-size:var(--text-sm);color:var(--color-text-secondary);">Semibold 600 — Headings y énfasis</span>
+          </div>
+        </div>
+        <div>
+          <p class="demo-palette-label" style="margin-bottom:var(--space-2);">Line-heights</p>
+          <div style="display:flex;flex-direction:column;gap:var(--space-2);">
+            <span style="font-size:var(--text-sm);color:var(--color-text-secondary);">Tight 1.0 — Headings</span>
+            <span style="font-size:var(--text-sm);color:var(--color-text-secondary);">UI 1.4 — Labels y controles</span>
+            <span style="font-size:var(--text-sm);color:var(--color-text-secondary);">Body 1.6 — Párrafos</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tokens: Spacing -->
+    <section class="demo-section">
+      <h2 class="demo-heading">Espaciado</h2>
+      <p class="demo-subtext">Escala 4pt base con 9 pasos, de 4px a 96px.</p>
+      <div class="demo-spacing-row">
+        <div class="demo-spacing-item"><div class="demo-spacing-bar" style="height:0.25rem;"></div><span class="demo-spacing-label">1 · 4px</span></div>
+        <div class="demo-spacing-item"><div class="demo-spacing-bar" style="height:0.5rem;"></div><span class="demo-spacing-label">2 · 8px</span></div>
+        <div class="demo-spacing-item"><div class="demo-spacing-bar" style="height:0.75rem;"></div><span class="demo-spacing-label">3 · 12px</span></div>
+        <div class="demo-spacing-item"><div class="demo-spacing-bar" style="height:1rem;"></div><span class="demo-spacing-label">4 · 16px</span></div>
+        <div class="demo-spacing-item"><div class="demo-spacing-bar" style="height:1.5rem;"></div><span class="demo-spacing-label">6 · 24px</span></div>
+        <div class="demo-spacing-item"><div class="demo-spacing-bar" style="height:2rem;"></div><span class="demo-spacing-label">8 · 32px</span></div>
+        <div class="demo-spacing-item"><div class="demo-spacing-bar" style="height:3rem;"></div><span class="demo-spacing-label">12 · 48px</span></div>
+        <div class="demo-spacing-item"><div class="demo-spacing-bar" style="height:4rem;"></div><span class="demo-spacing-label">16 · 64px</span></div>
+        <div class="demo-spacing-item"><div class="demo-spacing-bar" style="height:6rem;"></div><span class="demo-spacing-label">24 · 96px</span></div>
+      </div>
+      <div style="margin-top:var(--space-8);display:flex;gap:var(--space-6);flex-wrap:wrap;">
+        <div>
+          <p class="demo-palette-label" style="margin-bottom:var(--space-2);">Border radius</p>
+          <div style="display:flex;gap:var(--space-3);align-items:flex-end;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-1);">
+              <div style="width:3rem;height:3rem;border:1px solid var(--border-default-color);border-radius:var(--radius-sm);"></div>
+              <span class="demo-spacing-label">sm · 4px</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-1);">
+              <div style="width:3rem;height:3rem;border:1px solid var(--border-default-color);border-radius:var(--radius-md);"></div>
+              <span class="demo-spacing-label">md · 6px</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features — Cards Grid -->
+    <section id="features" class="demo-section">
+      <h2 class="demo-heading">Características del sistema</h2>
+      <p class="demo-subtext">Cada componente está diseñado para integrarse de forma natural en productos reales.</p>
+      <div class="demo-grid">
+        <article class="card card--interactive">
+          <div class="card__header">
+            <h3 class="card__title">Tokens OKLCH</h3>
+            <p class="card__description">Paleta perceptualmente uniforme con escala zinc de 11 pasos y color de acento violeta.</p>
+          </div>
+        </article>
+        <article class="card card--interactive">
+          <div class="card__header">
+            <h3 class="card__title">Tema oscuro nativo</h3>
+            <p class="card__description">Detección automática con prefers-color-scheme y control manual con persistencia en localStorage.</p>
+          </div>
+        </article>
+        <article class="card card--interactive">
+          <div class="card__header">
+            <h3 class="card__title">Accesibilidad WCAG AA</h3>
+            <p class="card__description">Focus rings, touch targets de 44px, skip-link, ARIA attributes y contraste verificado.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card__header">
+            <h3 class="card__title">9 componentes</h3>
+            <p class="card__description">Button, Input, Card, Modal, Navigation, Toggle, Slider, Table y Chips — listos para producción.</p>
+          </div>
+          <div class="card__body">
+            <p style="font-size: var(--text-sm); color: var(--color-text-secondary); line-height: var(--leading-body); margin: 0;">
+              Cada componente sigue nomenclatura BEM, soporta ambos temas y es completamente responsive.
+            </p>
+          </div>
+          <div class="card__footer">
+            <button type="button" class="button button--ghost button--sm">Más info</button>
+            <button type="button" class="button button--primary button--sm">Explorar</button>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card__header">
+            <h3 class="card__title">CSS puro</h3>
+            <p class="card__description">Sin preprocesadores, sin frameworks. Custom properties nativas y JavaScript vanilla.</p>
+          </div>
+          <div class="card__body">
+            <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+              <span class="chip chip--primary">CSS</span>
+              <span class="chip chip--success">Accesible</span>
+              <span class="chip">Modular</span>
+              <span class="chip chip--warning">Ligero</span>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card__header">
+            <h3 class="card__title">Mobile-first</h3>
+            <p class="card__description">Breakpoints sm, md y lg con min-width. Espaciado fluido con clamp() y safe-area-inset.</p>
+          </div>
+          <div class="card__footer">
+            <span class="chip">Responsive</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Form Section -->
+    <section id="contact" class="demo-section">
+      <h2 class="demo-heading">Formulario de contacto</h2>
+      <p class="demo-subtext">Inputs con validación, estados de error y campos deshabilitados.</p>
+      <form class="demo-form" onsubmit="return false;">
+        <div class="input">
+          <label class="input__label" for="demo-name">Nombre completo</label>
+          <input class="input__field" type="text" id="demo-name" placeholder="Ingresa tu nombre">
+        </div>
+        <div class="input">
+          <label class="input__label" for="demo-email">Correo electrónico</label>
+          <input class="input__field" type="email" id="demo-email" placeholder="tu@empresa.com">
+        </div>
+        <div class="input input--error">
+          <label class="input__label" for="demo-password">Contraseña</label>
+          <input class="input__field" type="password" id="demo-password" placeholder="Mínimo 8 caracteres" aria-describedby="demo-password-error">
+          <span class="input__error" id="demo-password-error">La contraseña debe tener al menos 8 caracteres</span>
+        </div>
+        <div class="input input--disabled">
+          <label class="input__label" for="demo-search">Búsqueda</label>
+          <input class="input__field" type="search" id="demo-search" placeholder="No disponible" disabled>
+        </div>
+        <div class="input demo-form__full">
+          <label class="input__label" for="demo-message">Mensaje</label>
+          <textarea class="input__field" id="demo-message" placeholder="Describe tu proyecto o consulta"></textarea>
+        </div>
+        <div class="demo-form__actions">
+          <button type="button" class="button button--ghost">Cancelar</button>
+          <button type="submit" class="button button--primary">Enviar mensaje</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Data Section — Table + Chips -->
+    <section id="data" class="demo-section">
+      <h2 class="demo-heading">Proyectos recientes</h2>
+      <p class="demo-subtext">Tabla con datos reales, celdas numéricas y badges de estado.</p>
+      <div class="table">
+        <table>
+          <thead class="table__header">
+            <tr class="table__row">
+              <th class="table__cell">Proyecto</th>
+              <th class="table__cell">Responsable</th>
+              <th class="table__cell">Estado</th>
+              <th class="table__cell table__cell--numeric">Presupuesto</th>
+              <th class="table__cell table__cell--numeric">Progreso</th>
+            </tr>
+          </thead>
+          <tbody class="table__body">
+            <tr class="table__row">
+              <td class="table__cell">Rediseño del dashboard</td>
+              <td class="table__cell">Ana García</td>
+              <td class="table__cell"><span class="chip chip--success">Activo</span></td>
+              <td class="table__cell table__cell--numeric">$24,500</td>
+              <td class="table__cell table__cell--numeric">78%</td>
+            </tr>
+            <tr class="table__row">
+              <td class="table__cell">API de pagos v3</td>
+              <td class="table__cell">Carlos Ruiz</td>
+              <td class="table__cell"><span class="chip chip--warning">En revisión</span></td>
+              <td class="table__cell table__cell--numeric">$18,200</td>
+              <td class="table__cell table__cell--numeric">45%</td>
+            </tr>
+            <tr class="table__row">
+              <td class="table__cell">App móvil iOS</td>
+              <td class="table__cell">María López</td>
+              <td class="table__cell"><span class="chip chip--primary">Planificado</span></td>
+              <td class="table__cell table__cell--numeric">$52,000</td>
+              <td class="table__cell table__cell--numeric">12%</td>
+            </tr>
+            <tr class="table__row">
+              <td class="table__cell">Migración a cloud</td>
+              <td class="table__cell">Diego Torres</td>
+              <td class="table__cell"><span class="chip chip--error">Bloqueado</span></td>
+              <td class="table__cell table__cell--numeric">$31,750</td>
+              <td class="table__cell table__cell--numeric">60%</td>
+            </tr>
+            <tr class="table__row">
+              <td class="table__cell">Sistema de reportes</td>
+              <td class="table__cell">Laura Méndez</td>
+              <td class="table__cell"><span class="chip chip--success">Activo</span></td>
+              <td class="table__cell table__cell--numeric">$15,800</td>
+              <td class="table__cell table__cell--numeric">92%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Controls Section — Toggles + Sliders -->
+    <section class="demo-section">
+      <h2 class="demo-heading">Configuración</h2>
+      <p class="demo-subtext">Panel de ajustes con toggles y sliders en contexto real.</p>
+      <div class="demo-controls">
+        <div class="demo-control-group">
+          <h3 style="font-size: var(--text-base); font-weight: var(--font-semibold); margin: 0 0 var(--space-2);">Notificaciones</h3>
+          <div class="demo-control-row">
+            <div>
+              <div class="demo-control-label">Correo electrónico</div>
+              <div class="demo-control-hint">Recibir resúmenes diarios</div>
+            </div>
+            <button class="toggle toggle--checked" role="switch" aria-checked="true" type="button">
+              <span class="toggle__track">
+                <span class="toggle__thumb"></span>
+              </span>
+            </button>
+          </div>
+          <div class="demo-control-row">
+            <div>
+              <div class="demo-control-label">Push en navegador</div>
+              <div class="demo-control-hint">Alertas en tiempo real</div>
+            </div>
+            <button class="toggle" role="switch" aria-checked="false" type="button">
+              <span class="toggle__track">
+                <span class="toggle__thumb"></span>
+              </span>
+            </button>
+          </div>
+          <div class="demo-control-row">
+            <div>
+              <div class="demo-control-label">SMS</div>
+              <div class="demo-control-hint">No disponible en tu plan</div>
+            </div>
+            <button class="toggle toggle--disabled" role="switch" aria-checked="false" type="button" disabled>
+              <span class="toggle__track">
+                <span class="toggle__thumb"></span>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="demo-control-group">
+          <h3 style="font-size: var(--text-base); font-weight: var(--font-semibold); margin: 0 0 var(--space-2);">Preferencias</h3>
+          <div class="demo-slider-row">
+            <div class="demo-slider-header">
+              <span class="demo-control-label">Volumen de alertas</span>
+              <span class="demo-slider-value">75%</span>
+            </div>
+            <div class="slider">
+              <input type="range" min="0" max="100" value="75" step="5" aria-label="Volumen de alertas">
+            </div>
+          </div>
+          <div class="demo-slider-row">
+            <div class="demo-slider-header">
+              <span class="demo-control-label">Frecuencia de reportes</span>
+              <span class="demo-slider-value">3 días</span>
+            </div>
+            <div class="slider">
+              <input type="range" min="1" max="7" value="3" step="1" aria-label="Frecuencia de reportes en días">
+            </div>
+          </div>
+          <div class="demo-slider-row">
+            <div class="demo-slider-header">
+              <span class="demo-control-label">Límite de almacenamiento</span>
+              <span class="demo-slider-value">50 GB</span>
+            </div>
+            <div class="slider">
+              <input type="range" min="10" max="100" value="50" step="10" aria-label="Límite de almacenamiento en GB">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Button Showcase section -->
+    <section class="demo-section">
+      <h2 class="demo-heading">Botones</h2>
+      <p class="demo-subtext">Todas las variantes, estados, colores, tamaños y combinaciones del componente Button.</p>
+      <div style="display:flex;flex-direction:column;gap:var(--space-8);">
+        <!-- Grupo: Tipos -->
+        <div>
+          <h3 class="demo-palette-label" style="margin-bottom:var(--space-3);">Tipos</h3>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center;">
+            <button type="button" class="button button--primary">Primary</button>
+            <button type="button" class="button button--secondary">Secondary</button>
+            <button type="button" class="button button--ghost">Ghost</button>
+            <button type="button" class="button button--destructive">Destructive</button>
+          </div>
+        </div>
+        <!-- Grupo: Deshabilitados -->
+        <div>
+          <h3 class="demo-palette-label" style="margin-bottom:var(--space-3);">Deshabilitados</h3>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center;">
+            <button type="button" class="button button--primary" disabled>Primary</button>
+            <button type="button" class="button button--secondary" disabled>Secondary</button>
+          </div>
+        </div>
+        <!-- Grupo: Colores -->
+        <div>
+          <h3 class="demo-palette-label" style="margin-bottom:var(--space-3);">Colores</h3>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center;">
+            <button type="button" class="button button--success">Success</button>
+            <button type="button" class="button button--warning">Warning</button>
+            <button type="button" class="button button--error">Error</button>
+            <button type="button" class="button button--info">Info</button>
+            <button type="button" class="button button--accent">Accent</button>
+          </div>
+        </div>
+        <!-- Grupo: Loading -->
+        <div>
+          <h3 class="demo-palette-label" style="margin-bottom:var(--space-3);">Loading</h3>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center;">
+            <button type="button" class="button button--primary button--loading">Primary</button>
+            <button type="button" class="button button--secondary button--loading">Secondary</button>
+          </div>
+        </div>
+        <!-- Grupo: Outline -->
+        <div>
+          <h3 class="demo-palette-label" style="margin-bottom:var(--space-3);">Outline</h3>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center;">
+            <button type="button" class="button button--outline-primary">Primary</button>
+            <button type="button" class="button button--outline-success">Success</button>
+            <button type="button" class="button button--outline-error">Error</button>
+            <button type="button" class="button button--outline-warning">Warning</button>
+            <button type="button" class="button button--outline-accent">Accent</button>
+          </div>
+        </div>
+        <!-- Grupo: Con icono -->
+        <div>
+          <h3 class="demo-palette-label" style="margin-bottom:var(--space-3);">Con icono</h3>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center;">
+            <button type="button" class="button button--primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Favorito</button>
+            <button type="button" class="button button--secondary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Descargar</button>
+            <button type="button" class="button button--accent"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Me gusta</button>
+          </div>
+        </div>
+
+        <!-- Grupo: Invertidos -->
+        <div>
+          <h3 class="demo-palette-label" style="margin-bottom:var(--space-3);">Invertidos</h3>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center;">
+            <button type="button" class="button button--inverted-primary">Primary</button>
+            <button type="button" class="button button--inverted-success">Success</button>
+            <button type="button" class="button button--inverted-error">Error</button>
+            <button type="button" class="button button--inverted-accent">Accent</button>
+          </div>
+        </div>
+
+        <!-- Grupo: Solo icono -->
+        <div>
+          <h3 class="demo-palette-label" style="margin-bottom:var(--space-3);">Solo icono</h3>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center;">
+            <button type="button" class="button button--icon" aria-label="Cerrar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+            <button type="button" class="button button--icon button--primary" aria-label="Editar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+            <button type="button" class="button button--icon button--destructive" aria-label="Eliminar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+            <button type="button" class="button button--icon button--secondary" aria-label="Configuración"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+          </div>
+        </div>
+
+        <!-- Grupo: Con sombra -->
+        <div>
+          <h3 class="demo-palette-label" style="margin-bottom:var(--space-3);">Con sombra</h3>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center;">
+            <button type="button" class="button button--primary button--shadow">Primary</button>
+            <button type="button" class="button button--secondary button--shadow">Secondary</button>
+            <button type="button" class="button button--accent button--shadow">Accent</button>
+          </div>
+        </div>
+
+        <!-- Grupo: Tamaños -->
+        <div>
+          <h3 class="demo-palette-label" style="margin-bottom:var(--space-3);">Tamaños</h3>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center;">
+            <button type="button" class="button button--primary button--sm">Pequeño</button>
+            <button type="button" class="button button--primary">Default</button>
+            <button type="button" class="button button--primary button--lg">Grande</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal trigger section -->
+    <section class="demo-section" style="text-align: center; padding-bottom: var(--space-24);">
+      <h2 class="demo-heading">¿Listo para empezar?</h2>
+      <p class="demo-subtext">Abre el modal para confirmar tu configuración.</p>
+      <button type="button" class="button button--primary" data-modal-trigger="demo-modal">Confirmar configuración</button>
+    </section>
+  </main>
+
+  <!-- Modal Dialog -->
+  <dialog id="demo-modal" class="modal">
+    <button class="modal__close" type="button" aria-label="Cerrar">&times;</button>
+    <div class="modal__header">
+      <h2 class="modal__title">Confirmar cambios</h2>
+    </div>
+    <div class="modal__body">
+      <p style="margin: 0 0 var(--space-4);">
+        Estás a punto de guardar la configuración de tu proyecto. Los cambios se aplicarán
+        de forma inmediata a todos los miembros del equipo.
+      </p>
+      <p style="margin: 0;">
+        ¿Deseas continuar?
+      </p>
+    </div>
+    <div class="modal__footer">
+      <button type="button" class="button button--secondary" onclick="document.getElementById('demo-modal').close()">Cancelar</button>
+      <button type="button" class="button button--primary" onclick="document.getElementById('demo-modal').close()">Guardar cambios</button>
+    </div>
+  </dialog>
+
+  <!-- Component Scripts (inline for file:// compatibility) -->
+  <script>
+  // Modal
+  (function(){
+    'use strict';
+    function initModal(dialog){
+      var triggerElement=null;
+      dialog.addEventListener('click',function(e){if(e.target===dialog)dialog.close();});
+      var closeBtns=dialog.querySelectorAll('.modal__close');
+      for(var i=0;i<closeBtns.length;i++){closeBtns[i].addEventListener('click',function(){dialog.close();});}
+      dialog.addEventListener('close',function(){
+        if(triggerElement&&triggerElement.isConnected){triggerElement.focus();}
+        else{document.body.focus();}
+        triggerElement=null;
+      });
+      dialog._openModal=function(trigger){triggerElement=trigger||null;dialog.showModal();};
+    }
+    function bindTriggers(){
+      var triggers=document.querySelectorAll('[data-modal-trigger]');
+      for(var i=0;i<triggers.length;i++){(function(trigger){
+        var dialogId=trigger.getAttribute('data-modal-trigger');
+        var dialog=document.getElementById(dialogId);
+        if(!dialog)return;
+        if(!dialog._openModal)initModal(dialog);
+        trigger.addEventListener('click',function(){dialog._openModal(trigger);});
+      })(triggers[i]);}
+    }
+    if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',bindTriggers);}
+    else{bindTriggers();}
+  })();
+
+  // Navigation
+  (function(){
+    'use strict';
+    function initNavToggle(toggle){
+      var menuId=toggle.getAttribute('aria-controls');
+      if(!menuId)return;
+      var menu=document.getElementById(menuId);
+      if(!menu)return;
+      function openMenu(){menu.classList.add('nav__menu--open');toggle.setAttribute('aria-expanded','true');}
+      function closeMenu(){menu.classList.remove('nav__menu--open');toggle.setAttribute('aria-expanded','false');}
+      function toggleMenu(){toggle.getAttribute('aria-expanded')==='true'?closeMenu():openMenu();}
+      toggle.addEventListener('click',function(){toggleMenu();});
+      toggle.addEventListener('keydown',function(e){if(e.key===' '||e.key==='Spacebar'){e.preventDefault();toggleMenu();}});
+      document.addEventListener('keydown',function(e){if(e.key==='Escape'&&toggle.getAttribute('aria-expanded')==='true'){closeMenu();toggle.focus();}});
+      document.addEventListener('click',function(e){
+        if(toggle.getAttribute('aria-expanded')!=='true')return;
+        var nav=toggle.closest('.nav');
+        if(nav&&!nav.contains(e.target))closeMenu();
+      });
+    }
+    function initAllNavs(){var toggles=document.querySelectorAll('.nav__toggle');for(var i=0;i<toggles.length;i++){initNavToggle(toggles[i]);}}
+    if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initAllNavs);}
+    else{initAllNavs();}
+  })();
+
+  // Toggle
+  (function(){
+    'use strict';
+    function initToggle(toggle){
+      toggle.addEventListener('click',function(){
+        var isChecked=toggle.getAttribute('aria-checked')==='true';
+        if(isChecked){toggle.setAttribute('aria-checked','false');toggle.classList.remove('toggle--checked');}
+        else{toggle.setAttribute('aria-checked','true');toggle.classList.add('toggle--checked');}
+      });
+    }
+    function initAllToggles(){var toggles=document.querySelectorAll('.toggle[role="switch"]');for(var i=0;i<toggles.length;i++){initToggle(toggles[i]);}}
+    if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initAllToggles);}
+    else{initAllToggles();}
+  })();
+
+  // Chips
+  (function(){
+    'use strict';
+    function getChipId(chip){return chip.getAttribute('data-chip-id')||chip.id||null;}
+    function initCloseButton(closeBtn){
+      var chip=closeBtn.closest('.chip');
+      if(!chip)return;
+      closeBtn.addEventListener('click',function(){
+        chip.dispatchEvent(new CustomEvent('chip-dismiss',{bubbles:true,detail:{id:getChipId(chip)}}));
+      });
+    }
+    function initAllChips(){var closeBtns=document.querySelectorAll('.chip__close');for(var i=0;i<closeBtns.length;i++){initCloseButton(closeBtns[i]);}}
+    if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initAllChips);}
+    else{initAllChips();}
+  })();
+  </script>
+</body>
+</html>

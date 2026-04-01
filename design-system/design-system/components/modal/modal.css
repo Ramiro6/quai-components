@@ -1,0 +1,146 @@
+/* ==========================================================================
+   Componente Modal — Design System v2
+   Elemento base: <dialog> nativo con showModal()
+   Nomenclatura BEM: .modal, .modal__header, .modal__title, .modal__body,
+                     .modal__footer, .modal__close
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Animación de entrada — fade-in + scale
+   -------------------------------------------------------------------------- */
+@keyframes modal-open {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes backdrop-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   Base — <dialog> nativo
+   -------------------------------------------------------------------------- */
+.modal {
+  background-color: var(--surface-1);
+  border: 1px solid var(--border-default-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  max-width: 32rem;
+  width: calc(100% - 2rem);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+
+.modal[open] {
+  animation: modal-open 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   Backdrop — negro semitransparente al 50%
+   -------------------------------------------------------------------------- */
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  animation: backdrop-fade 200ms ease;
+}
+
+/* --------------------------------------------------------------------------
+   Botón de cierre — posicionado top-right, ícono "×"
+   -------------------------------------------------------------------------- */
+.modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--color-text-muted);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: color 150ms ease, background-color 150ms ease;
+}
+
+.modal__close:hover {
+  color: var(--color-text);
+  background-color: var(--surface-1);
+}
+
+.modal__close:focus-visible {
+  outline: 2px solid var(--zinc-950);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Secciones — Header, Body, Footer
+   -------------------------------------------------------------------------- */
+.modal__header {
+  padding-right: 2rem; /* espacio para el botón de cierre */
+}
+
+.modal__title {
+  font-weight: var(--font-semibold);
+  font-size: var(--text-lg);
+  line-height: var(--leading-tight);
+  margin: 0;
+}
+
+.modal__body {
+  margin-top: var(--space-4);
+  overflow-y: auto;
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--color-text-secondary);
+}
+
+.modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion — solo fade instantáneo, sin scale
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .modal[open] {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive <768px — ancho 95% del viewport
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .modal {
+    max-width: 95vw;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Touch targets — Expandir botón de cierre en dispositivos coarse
+   -------------------------------------------------------------------------- */
+@media (pointer: coarse) {
+  .modal__close {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}

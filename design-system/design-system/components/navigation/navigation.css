@@ -1,0 +1,188 @@
+/* ==========================================================================
+   Componente Navigation — Design System v2
+   Barra horizontal responsive con colapso a hamburguesa en mobile
+   Nomenclatura BEM: .nav, .nav__brand, .nav__links, .nav__link,
+                     .nav__link--active, .nav__toggle, .nav__menu
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base — <nav> con layout flex, borde inferior, sin sombra
+   -------------------------------------------------------------------------- */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-6);
+  border-bottom: 1px solid var(--border-default-color);
+  background-color: var(--background);
+  font-family: var(--font-family);
+  position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   Brand — Logo/marca a la izquierda
+   -------------------------------------------------------------------------- */
+.nav__brand {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+  text-decoration: none;
+  line-height: var(--leading-ui);
+}
+
+.nav__brand:focus-visible {
+  outline: 2px solid var(--zinc-950);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Links — Contenedor de enlaces (desktop: flex horizontal)
+   -------------------------------------------------------------------------- */
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Link — Enlace individual: texto sm, peso medium, color zinc-600
+   -------------------------------------------------------------------------- */
+.nav__link {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  line-height: var(--leading-ui);
+  transition: color 150ms ease;
+}
+
+.nav__link:hover {
+  color: var(--color-text);
+}
+
+.nav__link:focus-visible {
+  outline: 2px solid var(--zinc-950);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Link activo — color zinc-900, peso semibold
+   -------------------------------------------------------------------------- */
+.nav__link--active {
+  color: var(--color-text);
+  font-weight: var(--font-semibold);
+}
+
+/* --------------------------------------------------------------------------
+   Toggle hamburguesa — Oculto en desktop, visible en mobile
+   -------------------------------------------------------------------------- */
+.nav__toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  font-size: var(--text-lg);
+  line-height: 1;
+  transition: color 150ms ease;
+}
+
+.nav__toggle:hover {
+  color: var(--color-text);
+}
+
+.nav__toggle:focus-visible {
+  outline: 2px solid var(--zinc-950);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Menu panel — Contenedor mobile para enlaces (oculto por defecto)
+   -------------------------------------------------------------------------- */
+.nav__menu {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile (<768px) — Colapso a hamburguesa
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  /* Ocultar enlaces inline en mobile */
+  .nav__links {
+    display: none;
+  }
+
+  /* Mostrar toggle hamburguesa */
+  .nav__toggle {
+    display: inline-flex;
+  }
+
+  /* Panel de menú mobile */
+  .nav__menu {
+    display: none;
+    flex-direction: column;
+    gap: var(--space-1);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--surface-1);
+    border: 1px solid var(--border-default-color);
+    border-top: none;
+    padding: var(--space-3);
+    list-style: none;
+    margin: 0;
+    z-index: 100;
+  }
+
+  /* Mostrar menú cuando toggle está activo */
+  .nav__menu--open {
+    display: flex;
+  }
+
+  /* Links dentro del menú mobile */
+  .nav__menu .nav__link {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+  }
+
+  .nav__menu .nav__link:hover {
+    background-color: var(--surface-2);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Touch targets — Mínimo 44×44px en dispositivos táctiles
+   -------------------------------------------------------------------------- */
+@media (pointer: coarse) {
+  .nav__link {
+    position: relative;
+    min-height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .nav__toggle {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion — Eliminar transiciones
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .nav__link,
+  .nav__toggle {
+    transition: none;
+  }
+}
