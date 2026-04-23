@@ -9,6 +9,10 @@ export const COMPONENTS_ROUTES: Route[] = [
         path: 'buttons',
         loadChildren: () => import('./button/buttons.routes').then((m) => m.BUTTON_ROUTES),
       },
+      {
+        path: 'text',
+        loadChildren: () => import('./text/texts.routes').then((m) => m.TEXT_ROUTES),
+      },
     ],
   },
 ];

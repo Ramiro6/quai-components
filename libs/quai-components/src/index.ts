@@ -7,3 +7,5 @@ export * from './lib/quai-boundary-error/error-labels.config';
 // export * from './lib/theming/quai-theme.config';
 // export * from './lib/theming/quai-theme.provider';
 // export * from './lib/theming/quai-theme.service';
+
+export * from './lib/quai-text/quai-text';

@@ -10,9 +10,18 @@ import { Aside } from '../../share/aside';
       <ul>
         <li>
           <a
-            routerLink="buttons"
+            routerLink="buttons/example"
             routerLinkActive="is-active"
+            [routerLinkActiveOptions]="{ exact: false }"
             >Buttons</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="text/example"
+            routerLinkActive="is-active"
+            [routerLinkActiveOptions]="{ exact: false }"
+            >Text</a
           >
         </li>
       </ul>
