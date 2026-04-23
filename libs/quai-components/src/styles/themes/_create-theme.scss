@@ -1,0 +1,128 @@
+/* ==========================================================================
+   Create Theme Mixin — Generate custom theme
+   ========================================================================== */
+
+@mixin create-theme(
+  /* Backgrounds */
+  $background: null,
+  $surface-1: null,
+  $surface-2: null,
+
+  /* Text */
+  $text: null,
+  $text-secondary: null,
+  $text-muted: null,
+
+  /* Brand */
+  $primary: null,
+  $primary-foreground: null,
+  $accent: null,
+  $accent-subtle: null,
+
+  /* Status */
+  $success: null,
+  $success-subtle: null,
+  $error: null,
+  $error-subtle: null,
+  $warning: null,
+  $warning-subtle: null,
+  $info: null,
+  $info-subtle: null,
+
+  /* Typography */
+  $font-family: null,
+  $font-regular: null,
+  $font-medium: null,
+  $font-semibold: null,
+  $text-xs: null,
+  $text-sm: null,
+  $text-base: null,
+  $text-lg: null,
+  $text-xl: null,
+  $text-2xl: null,
+  $leading-tight: null,
+  $leading-ui: null,
+  $leading-body: null,
+  $tracking-tight: null,
+  $tracking-normal: null,
+  $tracking-wide: null,
+
+  /* Spacing */
+  $space-1: null,
+  $space-2: null,
+  $space-3: null,
+  $space-4: null,
+  $space-5: null,
+  $space-6: null,
+  $space-8: null,
+  $space-10: null,
+  $space-12: null,
+  $space-16: null,
+
+  /* Shape */
+  $radius-sm: null,
+  $radius-md: null,
+  $radius-lg: null,
+  $radius-full: null,
+  $shadow-float: null
+) {
+  /* Colors */
+  @if $background { --quai-background: #{$background}; }
+  @if $surface-1 { --quai-surface-1: #{$surface-1}; }
+  @if $surface-2 { --quai-surface-2: #{$surface-2}; }
+
+  @if $text { --quai-color-text: #{$text}; }
+  @if $text-secondary { --quai-color-text-secondary: #{$text-secondary}; }
+  @if $text-muted { --quai-color-text-muted: #{$text-muted}; }
+
+  @if $primary { --quai-color-primary: #{$primary}; }
+  @if $primary-foreground { --quai-color-primary-foreground: #{$primary-foreground}; }
+  @if $accent { --quai-accent: #{$accent}; }
+  @if $accent-subtle { --quai-accent-subtle: #{$accent-subtle}; }
+
+  @if $success { --quai-color-success: #{$success}; }
+  @if $success-subtle { --quai-color-success-subtle: #{$success-subtle}; }
+  @if $error { --quai-color-error: #{$error}; }
+  @if $error-subtle { --quai-color-error-subtle: #{$error-subtle}; }
+  @if $warning { --quai-color-warning: #{$warning}; }
+  @if $warning-subtle { --quai-color-warning-subtle: #{$warning-subtle}; }
+  @if $info { --quai-color-info: #{$info}; }
+  @if $info-subtle { --quai-color-info-subtle: #{$info-subtle}; }
+
+  /* Typography */
+  @if $font-family { --quai-font-family: #{$font-family}; }
+  @if $font-regular { --quai-font-regular: #{$font-regular}; }
+  @if $font-medium { --quai-font-medium: #{$font-medium}; }
+  @if $font-semibold { --quai-font-semibold: #{$font-semibold}; }
+  @if $text-xs { --quai-text-xs: #{$text-xs}; }
+  @if $text-sm { --quai-text-sm: #{$text-sm}; }
+  @if $text-base { --quai-text-base: #{$text-base}; }
+  @if $text-lg { --quai-text-lg: #{$text-lg}; }
+  @if $text-xl { --quai-text-xl: #{$text-xl}; }
+  @if $text-2xl { --quai-text-2xl: #{$text-2xl}; }
+  @if $leading-tight { --quai-leading-tight: #{$leading-tight}; }
+  @if $leading-ui { --quai-leading-ui: #{$leading-ui}; }
+  @if $leading-body { --quai-leading-body: #{$leading-body}; }
+  @if $tracking-tight { --quai-tracking-tight: #{$tracking-tight}; }
+  @if $tracking-normal { --quai-tracking-normal: #{$tracking-normal}; }
+  @if $tracking-wide { --quai-tracking-wide: #{$tracking-wide}; }
+
+  /* Spacing */
+  @if $space-1 { --quai-space-1: #{$space-1}; }
+  @if $space-2 { --quai-space-2: #{$space-2}; }
+  @if $space-3 { --quai-space-3: #{$space-3}; }
+  @if $space-4 { --quai-space-4: #{$space-4}; }
+  @if $space-5 { --quai-space-5: #{$space-5}; }
+  @if $space-6 { --quai-space-6: #{$space-6}; }
+  @if $space-8 { --quai-space-8: #{$space-8}; }
+  @if $space-10 { --quai-space-10: #{$space-10}; }
+  @if $space-12 { --quai-space-12: #{$space-12}; }
+  @if $space-16 { --quai-space-16: #{$space-16}; }
+
+  /* Shape */
+  @if $radius-sm { --quai-radius-sm: #{$radius-sm}; }
+  @if $radius-md { --quai-radius-md: #{$radius-md}; }
+  @if $radius-lg { --quai-radius-lg: #{$radius-lg}; }
+  @if $radius-full { --quai-radius-full: #{$radius-full}; }
+  @if $shadow-float { --quai-shadow-float: #{$shadow-float}; }
+}

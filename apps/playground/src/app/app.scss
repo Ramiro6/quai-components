@@ -1,14 +1,26 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  display: grid;
+  grid-template-rows: 56px 1fr;
+  grid-template-columns: 1fr;
+  grid-template-areas: "header"
+                        "main";
   height: 100dvh;
 }
 
 
-main {
-  padding-top: calc(var(--quai-spacing-lg) * 2);
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
+playground-header {
+  grid-area: header;
 }
+
+main {
+  grid-area: main;
+}
+
+
+main {
+  //padding-top: calc(var(--quai-space-6) * 2);
+  //flex: 1;
+  //min-height: 0;
+  //overflow: hidden;
+}
+

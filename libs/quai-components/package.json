@@ -12,7 +12,8 @@
       "esm": "./esm2022/quai-components.mjs"
     },
     "./styles": "./styles/index.scss",
-    "./styles/*": "./styles/*.scss"
+    "./styles/*": "./styles/*.scss",
+    "./styles/themes": "./styles/themes/_index.scss"
   },
   "sideEffects": false
 }
