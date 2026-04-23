@@ -1,1 +1,14 @@
 @use '@quai/quai-components/styles';
+@use '../../../libs/quai-components/src/styles/themes/_create-theme' as ct;
+
+[data-theme='pepe'] {
+  @include ct.create-theme(
+    $background: red,
+    $surface-1: oklch(90% 0.015 15),
+    $surface-2: oklch(85% 0.02 15),
+    $text: oklch(10% 0.01 15),
+    $text-secondary: oklch(35% 0.01 15),
+    $primary: oklch(65% 0.18 15),
+    $accent: oklch(70% 0.16 40)
+  );
+}

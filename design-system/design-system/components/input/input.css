@@ -1,0 +1,150 @@
+/* ==========================================================================
+   Componente Input — Design System v2
+   Variantes: text, email, password, search, textarea
+   Estados: focus, error, disabled
+   Nomenclatura BEM: .input, .input__label, .input__field, .input__error,
+                     .input--disabled, .input--error
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Wrapper — Contenedor del input con layout vertical
+   -------------------------------------------------------------------------- */
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* --------------------------------------------------------------------------
+   Label — Texto sm, peso medium, posicionado encima del campo
+   -------------------------------------------------------------------------- */
+.input__label {
+  font-family: var(--font-family);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-ui);
+  color: var(--color-text);
+}
+
+/* --------------------------------------------------------------------------
+   Field — Estilos base del input/textarea
+   -------------------------------------------------------------------------- */
+.input__field {
+  display: block;
+  width: 100%;
+  height: 2.25rem;
+  padding: 0.5rem 0.75rem;
+
+  /* Tipografía */
+  font-family: var(--font-family);
+  font-size: var(--text-sm);
+  font-weight: var(--font-regular);
+  line-height: var(--leading-ui);
+
+  /* Forma */
+  background-color: var(--surface-1);
+  border: 1px solid var(--border-default-color);
+  border-radius: var(--radius-sm);
+
+  /* Transición */
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+
+  /* Reset */
+  color: inherit;
+  outline: none;
+}
+
+/* --------------------------------------------------------------------------
+   Placeholder — zinc-400 (claro), zinc-500 (oscuro via dark theme tokens)
+   -------------------------------------------------------------------------- */
+.input__field::placeholder {
+  color: var(--zinc-400);
+}
+
+/* --------------------------------------------------------------------------
+   Focus — borde zinc-950 + ring sutil 1px, transición 150ms
+   -------------------------------------------------------------------------- */
+.input__field:focus {
+  border-color: var(--zinc-950);
+  box-shadow: 0 0 0 1px var(--zinc-950);
+}
+
+/* --------------------------------------------------------------------------
+   Textarea — min-height 5rem, altura automática
+   -------------------------------------------------------------------------- */
+textarea.input__field {
+  height: auto;
+  min-height: 5rem;
+  resize: vertical;
+}
+
+/* --------------------------------------------------------------------------
+   Error message — Texto debajo del campo con color de error
+   -------------------------------------------------------------------------- */
+.input__error {
+  font-family: var(--font-family);
+  font-size: var(--text-sm);
+  font-weight: var(--font-regular);
+  line-height: var(--leading-ui);
+  color: var(--color-error);
+}
+
+/* --------------------------------------------------------------------------
+   Modificador: Error — borde color-error en el campo
+   -------------------------------------------------------------------------- */
+.input--error .input__field {
+  border-color: oklch(55% 0.2 25);
+  box-shadow: none;
+}
+
+.input--error .input__field:focus {
+  border-color: oklch(55% 0.2 25);
+  box-shadow: 0 0 0 1px oklch(55% 0.2 25);
+}
+
+/* --------------------------------------------------------------------------
+   Modificador: Disabled — opacity 0.5, no interactivo, fondo zinc-100
+   -------------------------------------------------------------------------- */
+.input--disabled .input__label {
+  opacity: 0.5;
+}
+
+.input--disabled .input__field {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--zinc-100);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Tema oscuro — Placeholder zinc-500, focus borde zinc-300
+   -------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not(.theme-light) .input__field::placeholder {
+    color: var(--zinc-500);
+  }
+
+  :root:not(.theme-light) .input__field:focus {
+    border-color: var(--zinc-300);
+    box-shadow: 0 0 0 1px var(--zinc-300);
+  }
+
+  :root:not(.theme-light) .input--error .input__field:focus {
+    border-color: oklch(55% 0.2 25);
+    box-shadow: 0 0 0 1px oklch(55% 0.2 25);
+  }
+}
+
+.theme-dark .input__field::placeholder {
+  color: var(--zinc-500);
+}
+
+.theme-dark .input__field:focus {
+  border-color: var(--zinc-300);
+  box-shadow: 0 0 0 1px var(--zinc-300);
+}
+
+.theme-dark .input--error .input__field:focus {
+  border-color: oklch(55% 0.2 25);
+  box-shadow: 0 0 0 1px oklch(55% 0.2 25);
+}

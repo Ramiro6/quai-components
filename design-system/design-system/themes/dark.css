@@ -1,0 +1,75 @@
+/* ==========================================================================
+   Tema Oscuro — Design System v2
+   Redefinición de tokens semánticos para modo oscuro.
+   Activación dual: media query automática + clase manual .theme-dark
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Tokens compartidos del tema oscuro
+   Se extraen en un mixin-like pattern para evitar duplicación
+   -------------------------------------------------------------------------- */
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.theme-light) {
+    /* Superficies — lightness progresiva, sin negro puro (0%) */
+    --background: oklch(13% 0.005 270);
+    --surface-1: oklch(17% 0.006 270);
+    --surface-2: oklch(21% 0.007 270);
+
+    /* Bordes — invertidos a zinc-800 */
+    --border-default: 1px solid var(--zinc-800);
+    --border-default-color: var(--zinc-800);
+
+    /* Color primario — inversión: fondo claro, texto oscuro */
+    --color-primary: var(--zinc-50);
+    --color-primary-foreground: var(--zinc-900);
+
+    /* Acento — chroma reducida 20% (0.15 → 0.12) */
+    --accent: oklch(55% 0.12 290);
+    --accent-subtle: oklch(21% 0.024 290);
+
+    /* Info hereda del acento redefinido */
+    --color-info: var(--accent);
+    --color-info-subtle: var(--accent-subtle);
+
+    /* Texto — invertido para fondo oscuro */
+    --color-text: var(--zinc-50);
+    --color-text-secondary: var(--zinc-400);
+    --color-text-muted: var(--zinc-500);
+
+    /* Peso visual del texto body reducido a 350 (compensación óptica) */
+    --font-regular: 350;
+  }
+}
+
+/* Clase manual para control via JavaScript (theme-switcher.js) */
+.theme-dark {
+  /* Superficies — lightness progresiva, sin negro puro (0%) */
+  --background: oklch(13% 0.005 270);
+  --surface-1: oklch(17% 0.006 270);
+  --surface-2: oklch(21% 0.007 270);
+
+  /* Bordes — invertidos a zinc-800 */
+  --border-default: 1px solid var(--zinc-800);
+  --border-default-color: var(--zinc-800);
+
+  /* Color primario — inversión: fondo claro, texto oscuro */
+  --color-primary: var(--zinc-50);
+  --color-primary-foreground: var(--zinc-900);
+
+  /* Texto — invertido para fondo oscuro */
+  --color-text: var(--zinc-50);
+  --color-text-secondary: var(--zinc-400);
+  --color-text-muted: var(--zinc-500);
+
+  /* Acento — chroma reducida 20% (0.15 → 0.12) */
+  --accent: oklch(55% 0.12 290);
+  --accent-subtle: oklch(21% 0.024 290);
+
+  /* Info hereda del acento redefinido */
+  --color-info: var(--accent);
+  --color-info-subtle: var(--accent-subtle);
+
+  /* Peso visual del texto body reducido a 350 (compensación óptica) */
+  --font-regular: 350;
+}

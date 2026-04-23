@@ -1,0 +1,85 @@
+/* Utilidades y helpers */
+
+/* Screen reader only — contenido accesible pero visualmente oculto */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Skip-link — "Saltar al contenido principal"
+   Primer elemento focusable, visible solo con :focus */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text, #09090b);
+  background-color: var(--background, #fafafa);
+  border: 1px solid var(--border-default-color, #e4e4e7);
+  border-radius: 0.25rem;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0.5rem;
+  left: 0.5rem;
+  outline: 2px solid var(--zinc-950, #09090b);
+  outline-offset: 2px;
+}
+
+/* Tabular nums — para datos numéricos (tablas, badges, contadores) */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   Accesibilidad transversal y responsive utilities
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Safe area — padding para dispositivos con notch/barra gestual
+   Aplicar a elementos fijos inferiores (navbars, FABs, etc.)
+   -------------------------------------------------------------------------- */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* --------------------------------------------------------------------------
+   Fluid spacing — clamp() para contenedores principales
+   Padding que se adapta entre mobile (1rem) y desktop (3rem)
+   -------------------------------------------------------------------------- */
+.container-fluid {
+  padding-inline: clamp(1rem, 5vw, 3rem);
+}
+
+/* --------------------------------------------------------------------------
+   Touch targets — @media (pointer: coarse)
+   Aumentar padding/tamaño en dispositivos táctiles para elementos
+   interactivos que no manejan esto en su propio CSS
+   -------------------------------------------------------------------------- */
+@media (pointer: coarse) {
+  /* Botones: garantizar mínimo 44px de altura en táctiles */
+  .button {
+    min-height: 2.75rem; /* 44px */
+  }
+
+  /* Inputs: aumentar altura para touch */
+  .input__field {
+    min-height: 2.75rem; /* 44px */
+  }
+
+  /* Table rows: aumentar padding para touch */
+  .table__body .table__cell {
+    padding: var(--space-4) var(--space-4);
+  }
+}

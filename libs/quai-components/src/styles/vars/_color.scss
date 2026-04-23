@@ -1,26 +1,61 @@
-// ===== COLOR VARIABLES — Reference =====
-// These variables are populated by the theme files (themes/_dark.scss / themes/_light.scss).
-// Do NOT set values here. Override them in your app's :root if needed.
-//
-// Available variables:
-//
-//   Backgrounds
-//   --quai-color-bg
-//   --quai-color-bg-secondary
-//   --quai-color-surface
-//
-//   Text
-//   --quai-color-text
-//   --quai-color-text-secondary
-//
-//   Borders
-//   --quai-color-border
-//
-//   Brand accents
-//   --quai-color-primary
-//   --quai-color-secondary
-//
-//   Status
-//   --quai-color-success
-//   --quai-color-error
-//   --quai-color-warning
+/* ==========================================================================
+   Color Tokens — Quai Design System
+   Espacio de color: OKLCH
+   Paleta: neutral-first (zinc) + acento violeta
+   ========================================================================== */
+
+:root {
+  /* --------------------------------------------------------------------------
+     Primitivos zinc — Escala de 11 pasos en OKLCH
+     Chroma 0.003–0.01, Hue ~270 (tinte frío azulado sutil)
+     -------------------------------------------------------------------------- */
+  --quai-zinc-50: oklch(98% 0.003 270);
+  --quai-zinc-100: oklch(96% 0.004 270);
+  --quai-zinc-200: oklch(91% 0.005 270);
+  --quai-zinc-300: oklch(85% 0.006 270);
+  --quai-zinc-400: oklch(70% 0.007 270);
+  --quai-zinc-500: oklch(55% 0.008 270);
+  --quai-zinc-600: oklch(45% 0.008 270);
+  --quai-zinc-700: oklch(35% 0.007 270);
+  --quai-zinc-800: oklch(25% 0.006 270);
+  --quai-zinc-900: oklch(15% 0.005 270);
+  --quai-zinc-950: oklch(10% 0.004 270);
+
+  /* --------------------------------------------------------------------------
+     Color de acento — Violeta frío (≤10% de superficie visual)
+     -------------------------------------------------------------------------- */
+  --quai-accent: oklch(55% 0.15 290);
+  --quai-accent-subtle: oklch(95% 0.03 290);
+
+  /* --------------------------------------------------------------------------
+     Colores semánticos de estado — Base + Sutil
+     -------------------------------------------------------------------------- */
+  --quai-color-success: oklch(50% 0.14 145);
+  --quai-color-success-subtle: oklch(95% 0.03 145);
+
+  --quai-color-error: oklch(55% 0.2 25);
+  --quai-color-error-subtle: oklch(95% 0.03 25);
+
+  --quai-color-warning: oklch(70% 0.15 80);
+  --quai-color-warning-subtle: oklch(95% 0.04 80);
+
+  --quai-color-info: var(--quai-accent);
+  --quai-color-info-subtle: var(--quai-accent-subtle);
+
+  /* --------------------------------------------------------------------------
+     Tokens de superficie (tema claro)
+     -------------------------------------------------------------------------- */
+  --quai-background: oklch(99% 0.003 270);
+  --quai-surface-1: oklch(97% 0.004 270);
+  --quai-surface-2: oklch(100% 0.000 270);
+
+  /* --------------------------------------------------------------------------
+     Tokens semánticos
+     -------------------------------------------------------------------------- */
+  --quai-color-primary: var(--quai-zinc-900);
+  --quai-color-primary-foreground: white;
+  --quai-color-text: var(--quai-zinc-900);
+  --quai-color-text-secondary: var(--quai-zinc-600);
+  --quai-color-text-muted: var(--quai-zinc-500);
+  --quai-color-border: 1px solid var(--quai-zinc-200);
+}

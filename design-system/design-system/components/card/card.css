@@ -1,0 +1,79 @@
+/* ==========================================================================
+   Componente Card — Design System v2
+   Variantes: default, interactive
+   Secciones: header, body, footer
+   Nomenclatura BEM: .card, .card__header, .card__title, .card__description,
+                     .card__body, .card__footer, .card--interactive
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base — Contenedor principal (<article> o <div>)
+   -------------------------------------------------------------------------- */
+.card {
+  background-color: var(--surface-1);
+  border: 1px solid var(--border-default-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: none;
+}
+
+/* --------------------------------------------------------------------------
+   Secciones — Header, Body, Footer
+   -------------------------------------------------------------------------- */
+.card__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.card__title {
+  font-weight: var(--font-semibold);
+  font-size: var(--text-base);
+  line-height: var(--leading-ui);
+}
+
+.card__description {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+}
+
+.card__body {
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+}
+
+.card__footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* --------------------------------------------------------------------------
+   Separación entre secciones — borde inferior en header y body
+   cuando coexisten con secciones siguientes
+   -------------------------------------------------------------------------- */
+.card__header:not(:last-child) {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-default-color);
+  margin-bottom: 1.5rem;
+}
+
+.card__body:not(:last-child) {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-default-color);
+  margin-bottom: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Variante: Interactive — hover con fondo surface-2, cursor pointer
+   -------------------------------------------------------------------------- */
+.card--interactive {
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.card--interactive:hover {
+  background-color: var(--surface-2);
+}

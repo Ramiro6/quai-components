@@ -1,13 +1,17 @@
-// ===== SPACING VARIABLES =====
-// rem-based 8px grid (1rem = 16px default).
-// Use these for layout: gaps, margins, section padding.
-// For component-internal padding use em instead (scales with font-size).
+/* ==========================================================================
+   Spacing Tokens
+   4pt base grid (0.25rem)
+   ========================================================================== */
 
 :root {
-  --quai-spacing-xs:  0.25rem;  //  4px
-  --quai-spacing-sm:  0.5rem;   //  8px
-  --quai-spacing-md:  1rem;     // 16px
-  --quai-spacing-lg:  1.5rem;   // 24px
-  --quai-spacing-xl:  2rem;     // 32px
-  --quai-spacing-2xl: 3rem;     // 48px
+  --quai-space-1: 0.25rem;   /*  4px */
+  --quai-space-2: 0.5rem;    /*  8px */
+  --quai-space-3: 0.75rem;   /* 12px */
+  --quai-space-4: 1rem;      /* 16px */
+  --quai-space-5: 1.25rem;   /* 20px */
+  --quai-space-6: 1.5rem;    /* 24px */
+  --quai-space-8: 2rem;      /* 32px */
+  --quai-space-10: 2.5rem;   /* 40px */
+  --quai-space-12: 3rem;     /* 48px */
+  --quai-space-16: 4rem;     /* 64px */
 }

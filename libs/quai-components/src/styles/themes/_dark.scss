@@ -1,26 +1,66 @@
-// ===== DARK THEME =====
-// Futuristic dark palette using oklch color space.
-// oklch(lightness% chroma hue) — tweak L to go lighter/darker, C for saturation, H for hue shift.
+/* ==========================================================================
+   Dark Theme
+   Activated via media query (prefers-color-scheme: dark) or [data-theme=dark]
+   ========================================================================== */
 
-@mixin dark {
-  // Backgrounds — very dark violet base, hue ~290
-  --quai-color-bg:           oklch(11% 0.03 290);
-  --quai-color-bg-secondary: oklch(15% 0.04 290);
-  --quai-color-surface:      oklch(19% 0.05 290);
+@use './create-theme' as ct;
 
-  // Text
-  --quai-color-text:           oklch(96% 0.005 280);
-  --quai-color-text-secondary: oklch(68% 0.015 280);
+/* Respects OS preference for dark mode */
+//@media (prefers-color-scheme: dark) {
+//  :root {
+//    @include ct.create-theme(
+//      /* Backgrounds — dark violet tint */
+//      $background: oklch(13% 0.005 270),
+//      $surface-1: oklch(17% 0.006 270),
+//      $surface-2: oklch(21% 0.007 270),
+//
+//      /* Text — light on dark */
+//      $text: oklch(95% 0.005 270),
+//      $text-secondary: oklch(68% 0.015 270),
+//      $text-muted: oklch(55% 0.01 270),
+//
+//      /* Primary — neon cyan on dark */
+//      $primary: oklch(78% 0.17 210),
+//      $primary-foreground: oklch(15% 0.005 270),
+//      $accent: oklch(55% 0.12 290),
+//      $accent-subtle: oklch(21% 0.024 290),
+//
+//      /* Status — neon on dark */
+//      $success: oklch(88% 0.22 160),
+//      $success-subtle: oklch(25% 0.05 145),
+//      $error: oklch(62% 0.26 15),
+//      $error-subtle: oklch(30% 0.06 25),
+//      $warning: oklch(78% 0.18 75),
+//      $warning-subtle: oklch(35% 0.05 80)
+//    );
+//  }
+//}
 
-  // Border
-  --quai-color-border: oklch(32% 0.05 285);
+/* Explicit dark theme override */
+[data-theme='dark'] {
+  @include ct.create-theme(
+    /* Backgrounds — dark violet tint */
+    $background: oklch(13% 0.005 270),
+    $surface-1: oklch(17% 0.006 270),
+    $surface-2: oklch(21% 0.007 270),
 
-  // Brand accents — neon
-  --quai-color-primary:   oklch(78% 0.17 210);  // neon cyan
-  --quai-color-secondary: oklch(55% 0.28 295);  // neon purple
+    /* Text — light on dark */
+    $text: oklch(95% 0.005 270),
+    $text-secondary: oklch(68% 0.015 270),
+    $text-muted: oklch(55% 0.01 270),
 
-  // Status
-  --quai-color-success: oklch(88% 0.22 160);    // neon green
-  --quai-color-error:   oklch(62% 0.26 15);     // neon red/pink
-  --quai-color-warning: oklch(78% 0.18 75);     // amber
+    /* Primary — neon cyan on dark */
+    $primary: oklch(78% 0.17 210),
+    $primary-foreground: oklch(15% 0.005 270),
+    $accent: oklch(55% 0.12 290),
+    $accent-subtle: oklch(21% 0.024 290),
+
+    /* Status — neon on dark */
+    $success: oklch(88% 0.22 160),
+    $success-subtle: oklch(25% 0.05 145),
+    $error: oklch(62% 0.26 15),
+    $error-subtle: oklch(30% 0.06 25),
+    $warning: oklch(78% 0.18 75),
+    $warning-subtle: oklch(35% 0.05 80)
+  );
 }

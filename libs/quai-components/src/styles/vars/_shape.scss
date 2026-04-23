@@ -1,9 +1,15 @@
-// ===== SHAPE VARIABLES =====
-// px for border-radius — these don't need to scale with font-size.
+/* ==========================================================================
+   Shape & Border Tokens
+   Border radius, border widths, shadows
+   ========================================================================== */
 
 :root {
-  --quai-radius-sm:   4px;
-  --quai-radius-md:   8px;
-  --quai-radius-lg:   12px;
+  /* Border Radius */
+  --quai-radius-sm: 0.25rem;   /* 4px  — buttons, inputs, badges */
+  --quai-radius-md: 0.375rem;  /* 6px  — cards, modals, tables */
+  --quai-radius-lg: 0.75rem;   /* 12px — larger elements */
   --quai-radius-full: 9999px;
+
+  /* Shadows */
+  --quai-shadow-float: 0 4px 6px -1px oklch(0% 0 0 / 0.05);
 }

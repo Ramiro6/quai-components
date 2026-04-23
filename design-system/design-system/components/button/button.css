@@ -1,0 +1,148 @@
+/* ==========================================================================
+   Componente Button — Design System v2
+   Variantes: primary, secondary, ghost, destructive
+   Tamaños: sm, default (base), lg
+   Nomenclatura BEM: .button, .button--{variant}, .button--{size}
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base — Estilos compartidos por todas las variantes y tamaños
+   -------------------------------------------------------------------------- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+
+  /* Tamaño default */
+  height: 2.25rem;
+  padding: 0.5rem 1rem;
+
+  /* Tipografía */
+  font-family: var(--font-family);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  line-height: var(--leading-ui);
+
+  /* Forma */
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+
+  /* Transición */
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+
+  /* Reset */
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   Focus — :focus-visible con outline 2px, offset 2px, color zinc-950
+   -------------------------------------------------------------------------- */
+.button:focus-visible {
+  outline: 2px solid var(--zinc-950);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Disabled — opacity 0.5, no interactivo
+   -------------------------------------------------------------------------- */
+.button:disabled,
+.button[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   Variante: Primary — fondo zinc-900, texto blanco
+   -------------------------------------------------------------------------- */
+.button--primary {
+  background-color: var(--zinc-900);
+  color: white;
+}
+
+.button--primary:hover {
+  background-color: var(--zinc-800);
+}
+
+/* --------------------------------------------------------------------------
+   Variante: Secondary — outline, fondo transparente, borde border-default
+   -------------------------------------------------------------------------- */
+.button--secondary {
+  background-color: transparent;
+  border: var(--border-default);
+  color: var(--color-text);
+}
+
+.button--secondary:hover {
+  background-color: var(--surface-1);
+}
+
+/* --------------------------------------------------------------------------
+   Variante: Ghost — sin fondo ni borde, texto zinc-600
+   -------------------------------------------------------------------------- */
+.button--ghost {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+}
+
+.button--ghost:hover {
+  background-color: var(--surface-1);
+}
+
+/* --------------------------------------------------------------------------
+   Variante: Destructive — fondo color-error, texto blanco
+   -------------------------------------------------------------------------- */
+.button--destructive {
+  background-color: var(--color-error);
+  color: white;
+}
+
+.button--destructive:hover {
+  background-color: var(--color-error);
+  filter: brightness(0.9);
+}
+
+/* --------------------------------------------------------------------------
+   Tamaño: sm — altura 2rem, texto 0.875rem, padding 0.375rem 0.75rem
+   -------------------------------------------------------------------------- */
+.button--sm {
+  height: 2rem;
+  padding: 0.375rem 0.75rem;
+  font-size: var(--text-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Tamaño: lg — altura 2.75rem, texto 1rem, padding 0.625rem 1.25rem
+   -------------------------------------------------------------------------- */
+.button--lg {
+  height: 2.75rem;
+  padding: 0.625rem 1.25rem;
+  font-size: var(--text-base);
+}
+
+/* --------------------------------------------------------------------------
+   Tema oscuro — Inversión de primary (fondo claro, texto oscuro)
+   -------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not(.theme-light) .button--primary {
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+
+  :root:not(.theme-light) .button--primary:hover {
+    background-color: var(--zinc-200);
+  }
+}
+
+.theme-dark .button--primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+}
+
+.theme-dark .button--primary:hover {
+  background-color: var(--zinc-200);
+}

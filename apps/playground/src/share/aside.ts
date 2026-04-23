@@ -12,19 +12,19 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styles: `
     :host {
       display: block;
-      padding: var(--quai-spacing-lg);
-      border-right: 1px solid var(--quai-color-border);
-      background: var(--quai-color-bg-secondary);
+      padding: var(--quai-space-6);
+      border-right: var(--quai-color-border);
+      background: var(--quai-surface-1);
     }
 
     .nav-title {
-      font-family: var(--quai-font-display);
-      font-size: var(--quai-font-size-xs);
-      font-weight: var(--quai-font-weight-bold);
+      font-family: var(--quai-font-family);
+      font-size: var(--quai-text-xs);
+      font-weight: var(--quai-font-semibold);
       color: var(--quai-color-text-secondary);
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: var(--quai-spacing-md);
+      letter-spacing: var(--quai-tracking-wide);
+      margin-bottom: var(--quai-space-4);
     }
 
     ul {
@@ -33,7 +33,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: var(--quai-spacing-xs);
+      gap: var(--quai-space-1);
     }
 
     a {
@@ -42,17 +42,17 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       border-radius: var(--quai-radius-md);
       color: var(--quai-color-text-secondary);
       text-decoration: none;
-      font-size: var(--quai-font-size-sm);
+      font-size: var(--quai-text-sm);
       transition: color 0.2s ease, background 0.2s ease;
 
       &:hover {
         color: var(--quai-color-text);
-        background: var(--quai-color-surface);
+        background: var(--quai-surface-2);
       }
 
       &.is-active {
         color: var(--quai-color-primary);
-        background: var(--quai-color-surface);
+        background: var(--quai-surface-2);
       }
     }
   `,

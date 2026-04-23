@@ -1,26 +1,64 @@
-// ===== LIGHT THEME =====
-// Clean light palette using oklch. Backgrounds are near-white with a subtle violet tint.
-// Accent colors are deeper than dark mode to stay readable on light backgrounds.
+/* ==========================================================================
+   Light Theme
+   Default theme — light background with dark text
+   ========================================================================== */
 
-@mixin light {
-  // Backgrounds — near-white with subtle purple tint
-  --quai-color-bg:           oklch(98% 0.005 280);
-  --quai-color-bg-secondary: oklch(94% 0.01  280);
-  --quai-color-surface:      oklch(100% 0    0);
+@use './create-theme' as ct;
 
-  // Text
-  --quai-color-text:           oklch(15% 0.03 290);
-  --quai-color-text-secondary: oklch(48% 0.02 280);
+/* Default light theme */
+:root {
+  @include ct.create-theme(
+    /* Backgrounds */
+    $background: oklch(99% 0.003 270),
+    $surface-1: oklch(97% 0.004 270),
+    $surface-2: oklch(100% 0.000 270),
 
-  // Border
-  --quai-color-border: oklch(85% 0.02 280);
+    /* Text */
+    $text: oklch(15% 0.005 270),
+    $text-secondary: oklch(45% 0.01 270),
+    $text-muted: oklch(60% 0.008 270),
 
-  // Brand accents — deeper for readability on light bg
-  --quai-color-primary:   oklch(52% 0.20 210);  // deep cyan
-  --quai-color-secondary: oklch(45% 0.28 295);  // deep purple
+    /* Primary — deep colors for readability on light bg */
+    $primary: oklch(52% 0.20 210),
+    $primary-foreground: white,
+    $accent: oklch(55% 0.15 290),
+    $accent-subtle: oklch(95% 0.03 290),
 
-  // Status
-  --quai-color-success: oklch(52% 0.22 160);    // deep green
-  --quai-color-error:   oklch(52% 0.26 15);     // deep red
-  --quai-color-warning: oklch(58% 0.18 75);     // deep amber
+    /* Status */
+    $success: oklch(52% 0.22 160),
+    $success-subtle: oklch(95% 0.03 145),
+    $error: oklch(52% 0.26 15),
+    $error-subtle: oklch(95% 0.03 25),
+    $warning: oklch(58% 0.18 75),
+    $warning-subtle: oklch(95% 0.04 80)
+  );
+}
+
+/* Explicit light theme override */
+[data-theme='light'] {
+  @include ct.create-theme(
+    /* Backgrounds */
+    $background: oklch(99% 0.003 270),
+    $surface-1: oklch(97% 0.004 270),
+    $surface-2: oklch(100% 0.000 270),
+
+    /* Text */
+    $text: oklch(15% 0.005 270),
+    $text-secondary: oklch(45% 0.01 270),
+    $text-muted: oklch(60% 0.008 270),
+
+    /* Primary — deep colors for readability on light bg */
+    $primary: oklch(52% 0.20 210),
+    $primary-foreground: white,
+    $accent: oklch(55% 0.15 290),
+    $accent-subtle: oklch(95% 0.03 290),
+
+    /* Status */
+    $success: oklch(52% 0.22 160),
+    $success-subtle: oklch(95% 0.03 145),
+    $error: oklch(52% 0.26 15),
+    $error-subtle: oklch(95% 0.03 25),
+    $warning: oklch(58% 0.18 75),
+    $warning-subtle: oklch(95% 0.04 80)
+  );
 }

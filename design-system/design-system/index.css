@@ -1,0 +1,20 @@
+/* 1. Reset y normalización */
+@import './utilities/reset.css';
+@import './utilities/helpers.css';
+
+/* 2. Tokens de diseño */
+@import './tokens/index.css';
+
+/* 3. Tema oscuro */
+@import './themes/dark.css';
+
+/* 4. Componentes */
+@import './components/button/button.css';
+@import './components/input/input.css';
+@import './components/card/card.css';
+@import './components/modal/modal.css';
+@import './components/navigation/navigation.css';
+@import './components/toggle/toggle.css';
+@import './components/slider/slider.css';
+@import './components/table/table.css';
+@import './components/chips/chips.css';

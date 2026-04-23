@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "The user is editing a design-system CSS/SCSS file. Briefly remind them of the 5 key rules:\n\n1. **OKLCH only** — all colors must use oklch(L% C H), never hex/rgb/hsl\n2. **Token-first** — every value must reference a token, never hardcode\n3. **Semantic layer** — use semantic tokens (--color-text, --background) in components, never primitives (--zinc-900)\n4. **Dark mode** — all changes must work in both light and dark themes via .theme-dark on <html>\n5. **Demo sync** — after any component/token change, update demo.html\n\nBe brief and friendly—just a quick reminder, no lecture. Output a short message to the user.",
+            "if": "Edit(design-system/**/*.{css,scss})"
+          }
+        ]
+      }
+    ]
+  }
+}

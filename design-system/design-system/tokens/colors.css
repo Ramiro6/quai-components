@@ -1,0 +1,61 @@
+/* ==========================================================================
+   Color Tokens — Design System v2
+   Espacio de color: OKLCH
+   Paleta: neutral-first (zinc) + acento violeta
+   ========================================================================== */
+
+:root {
+  /* --------------------------------------------------------------------------
+     Primitivos zinc — Escala de 11 pasos en OKLCH
+     Chroma 0.003–0.01, Hue ~270 (tinte frío azulado sutil)
+     -------------------------------------------------------------------------- */
+  --zinc-50: oklch(98% 0.003 270);
+  --zinc-100: oklch(96% 0.004 270);
+  --zinc-200: oklch(91% 0.005 270);
+  --zinc-300: oklch(85% 0.006 270);
+  --zinc-400: oklch(70% 0.007 270);
+  --zinc-500: oklch(55% 0.008 270);
+  --zinc-600: oklch(45% 0.008 270);
+  --zinc-700: oklch(35% 0.007 270);
+  --zinc-800: oklch(25% 0.006 270);
+  --zinc-900: oklch(15% 0.005 270);
+  --zinc-950: oklch(10% 0.004 270);
+
+  /* --------------------------------------------------------------------------
+     Color de acento — Violeta frío (≤10% de superficie visual)
+     -------------------------------------------------------------------------- */
+  --accent: oklch(55% 0.15 290);
+  --accent-subtle: oklch(95% 0.03 290);
+
+  /* --------------------------------------------------------------------------
+     Colores semánticos de estado — Base + Sutil
+     -------------------------------------------------------------------------- */
+  --color-success: oklch(50% 0.14 145);
+  --color-success-subtle: oklch(95% 0.03 145);
+
+  --color-error: oklch(55% 0.2 25);
+  --color-error-subtle: oklch(95% 0.03 25);
+
+  --color-warning: oklch(70% 0.15 80);
+  --color-warning-subtle: oklch(95% 0.04 80);
+
+  --color-info: var(--accent);
+  --color-info-subtle: var(--accent-subtle);
+
+  /* --------------------------------------------------------------------------
+     Tokens de superficie (tema claro)
+     -------------------------------------------------------------------------- */
+  --background: oklch(99% 0.003 270);
+  --surface-1: oklch(97% 0.004 270);
+  --surface-2: oklch(100% 0.000 270);
+
+  /* --------------------------------------------------------------------------
+     Tokens semánticos
+     -------------------------------------------------------------------------- */
+  --color-primary: var(--zinc-900);
+  --color-primary-foreground: white;
+  --color-text: var(--zinc-900);
+  --color-text-secondary: var(--zinc-600);
+  --color-text-muted: var(--zinc-500);
+  --border-default: 1px solid var(--zinc-200);
+}
