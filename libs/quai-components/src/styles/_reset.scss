@@ -4,6 +4,9 @@ body {
   width: 100vw;
   min-height: 100vh;
   overflow-x: hidden;
+  font-family: var(--quai-font-family);
+  font-size: var(--quai-text-base);
+  line-height: var(--quai-leading-body);
 }
 
 

@@ -3,13 +3,17 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { Aside } from '../../share/aside';
 
 @Component({
-  selector: 'playground-components',
+  selector: 'playground-components-container',
   imports: [RouterOutlet, Aside, RouterLink, RouterLinkActive],
   template: `
     <playground-aside>
       <ul>
         <li>
-          <a routerLink="buttons" routerLinkActive="is-active">Buttons</a>
+          <a
+            routerLink="buttons"
+            routerLinkActive="is-active"
+            >Buttons</a
+          >
         </li>
       </ul>
     </playground-aside>
@@ -26,11 +30,12 @@ import { Aside } from '../../share/aside';
     }
 
     main {
-      padding: var(--quai-spacing-xl);
-      background: var(--quai-color-bg);
-      overflow-y: auto; // este componente decide hacer scroll
+      padding: var(--quai-space-2) var(--quai-space-8);
+      background: var(--quai-surface-0);
+      overflow-y: auto;
     }
   `,
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Components {}
+export class ComponentsContainer {}

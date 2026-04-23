@@ -18,7 +18,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     }
 
     .nav-title {
-      font-family: var(--quai-font-family);
       font-size: var(--quai-text-xs);
       font-weight: var(--quai-font-semibold);
       color: var(--quai-color-text-secondary);

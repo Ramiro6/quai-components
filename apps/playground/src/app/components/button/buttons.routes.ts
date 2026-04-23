@@ -6,6 +6,11 @@ export const BUTTON_ROUTES: Route[] = [
     loadComponent: () => import('./buttons').then((m) => m.ContainerButton),
     children: [
       {
+        path: '',
+        redirectTo: 'example',
+        pathMatch: 'full',
+      },
+      {
         path: 'example',
         loadComponent: () => import('./views/example/example-button').then((m) => m.ExampleButton),
       },
