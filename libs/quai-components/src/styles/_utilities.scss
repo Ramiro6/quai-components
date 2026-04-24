@@ -1,0 +1,32 @@
+/* ==========================================================================
+   Utility Classes
+   Atomic classes mapped 1:1 from design system tokens
+   ========================================================================== */
+
+/* Size */
+.size-xs   { font-size: var(--quai-text-xs); }
+.size-sm   { font-size: var(--quai-text-sm); }
+.size-base { font-size: var(--quai-text-base); }
+.size-lg   { font-size: var(--quai-text-lg); }
+.size-xl   { font-size: var(--quai-text-xl); }
+.size-2xl  { font-size: var(--quai-text-2xl); }
+
+/* Weight */
+.weight-regular  { font-weight: var(--quai-font-regular); }
+.weight-medium   { font-weight: var(--quai-font-medium); }
+.weight-semibold { font-weight: var(--quai-font-semibold); }
+
+/* Leading */
+.leading-tight { line-height: var(--quai-leading-tight); }
+.leading-ui    { line-height: var(--quai-leading-ui); }
+.leading-body  { line-height: var(--quai-leading-body); }
+
+/* Tracking */
+.tracking-tight  { letter-spacing: var(--quai-tracking-tight); }
+.tracking-normal { letter-spacing: var(--quai-tracking-normal); }
+.tracking-wide   { letter-spacing: var(--quai-tracking-wide); }
+
+/* Color */
+.color-text           { color: var(--quai-color-text); }
+.color-text-secondary { color: var(--quai-color-text-secondary); }
+.color-text-muted     { color: var(--quai-color-text-muted); }

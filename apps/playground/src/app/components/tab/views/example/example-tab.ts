@@ -1,14 +1,20 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { QuaiTabInterface, QuaiTabs } from '@quai/quai-components';
 
 @Component({
-  selector: 'playground-example-text',
-  templateUrl: './example-text.html',
+  selector: 'playground-example-tab',
+  imports: [QuaiTabs],
+  templateUrl: './example-tab.html',
   styles: `
     :host {
+      display: block;
+      padding: var(--quai-space-6);
+    }
+
+    .examples {
       display: flex;
       flex-direction: column;
       gap: var(--quai-space-8);
-      padding: var(--quai-space-6);
     }
 
     .example-label {
@@ -21,9 +27,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     }
 
     .example-card {
-      display: flex;
-      flex-direction: column;
-      gap: var(--quai-space-4);
       padding: var(--quai-space-6);
       border: 1px solid var(--quai-zinc-200);
       border-radius: var(--quai-radius-md);
@@ -32,4 +35,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ExampleText {}
+export class ExampleTab {
+  basicTabs: QuaiTabInterface[] = [
+    { label: 'First' },
+    { label: 'Second' },
+    { label: 'Third' },
+  ];
+}

@@ -1,0 +1,97 @@
+<section class="api">
+  <h2 class="size-xl weight-semibold">API reference for Tabs</h2>
+  <pre class="code-block"><code>import &#123; QuaiTabs, QuaiTabInterface &#125; from '&#64;quai/quai-components';</code></pre>
+
+  <h3 class="size-base weight-semibold">Selector</h3>
+  <pre class="code-block"><code>quai-tabs</code></pre>
+
+  <h3 class="size-base weight-semibold">Inputs</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>tabs</code></td>
+        <td><code>QuaiTabInterface[]</code></td>
+        <td><code>undefined</code></td>
+        <td>Array of tab items.</td>
+      </tr>
+      <tr>
+        <td><code>divider</code></td>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>Shows a bottom border below the tab list.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">QuaiTabInterface</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>label</code></td>
+        <td><code>string</code></td>
+        <td>Yes</td>
+        <td>Display text of the tab.</td>
+      </tr>
+      <tr>
+        <td><code>route</code></td>
+        <td><code>string</code></td>
+        <td>No</td>
+        <td>Route path for navigation.</td>
+      </tr>
+      <tr>
+        <td><code>data</code></td>
+        <td><code>T</code></td>
+        <td>No</td>
+        <td>Generic payload for custom data.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">CSS classes</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>.tabs__list</code></td>
+        <td>Container for tab buttons.</td>
+      </tr>
+      <tr>
+        <td><code>.tabs__list--divider</code></td>
+        <td>Adds bottom border to the list.</td>
+      </tr>
+      <tr>
+        <td><code>.tabs__tab</code></td>
+        <td>Individual tab element.</td>
+      </tr>
+      <tr>
+        <td><code>.tabs__tab--active</code></td>
+        <td>Active tab state.</td>
+      </tr>
+      <tr>
+        <td><code>.tabs__panel</code></td>
+        <td>Tab content panel.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

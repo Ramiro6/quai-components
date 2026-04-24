@@ -1,0 +1,13 @@
+/* ==========================================================================
+   Component Tokens
+   Variables específicas de componentes del design system
+   ========================================================================== */
+
+:root {
+  /* Sidebar */
+  --quai-sidebar-width: 16rem;
+  --quai-sidebar-padding: 0 var(--quai-space-4);
+  --quai-sidebar-link-radius: var(--quai-radius-sm);
+  --quai-sidebar-link-padding-y: var(--quai-space-2);
+  --quai-sidebar-link-padding-x: var(--quai-space-3);
+}

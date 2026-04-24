@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { QuaiTabInterface, QuaiTabs } from '@quai/quai-components';
 
 @Component({
-  selector: 'playground-container-text',
+  selector: 'playground-container-tab',
   imports: [RouterOutlet, QuaiTabs],
   template: `
     <quai-tabs [tabs]="tabs" />
@@ -11,7 +11,7 @@ import { QuaiTabInterface, QuaiTabs } from '@quai/quai-components';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContainerText {
+export class ContainerTab {
   tabs: QuaiTabInterface[] = [
     { label: 'Overview', route: 'overview' },
     { label: 'API', route: 'api' },

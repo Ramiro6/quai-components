@@ -13,6 +13,10 @@ export const COMPONENTS_ROUTES: Route[] = [
         path: 'text',
         loadChildren: () => import('./text/texts.routes').then((m) => m.TEXT_ROUTES),
       },
+      {
+        path: 'tab',
+        loadChildren: () => import('./tab/tabs.routes').then((m) => m.TAB_ROUTES),
+      },
     ],
   },
 ];

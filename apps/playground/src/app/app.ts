@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { Header } from '../share/header';
 
 @Component({
-  imports: [RouterModule, ReactiveFormsModule, Header],
+  imports: [RouterModule, ReactiveFormsModule],
   standalone: true,
   selector: 'app-root',
   templateUrl: './app.html',

@@ -1,0 +1,26 @@
+/* Styles from design-system/design-system/components/header/header.css */
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--quai-space-3) var(--quai-space-6);
+  border-bottom: 1px solid var(--quai-zinc-200);
+  background-color: var(--quai-background);
+}
+
+.header__brand {
+  font-size: var(--quai-text-base);
+  font-weight: var(--quai-font-semibold);
+  color: var(--quai-color-text);
+}
+
+.header__content {
+  flex: 1;
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--quai-space-3);
+}

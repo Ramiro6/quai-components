@@ -7,8 +7,16 @@ export const BUTTON_ROUTES: Route[] = [
     children: [
       {
         path: '',
-        redirectTo: 'example',
+        redirectTo: 'overview',
         pathMatch: 'full',
+      },
+      {
+        path: 'overview',
+        loadComponent: () => import('./views/overview/overview-button').then((m) => m.OverviewButton),
+      },
+      {
+        path: 'api',
+        loadComponent: () => import('./views/api/api-button').then((m) => m.ApiButton),
       },
       {
         path: 'example',

@@ -91,6 +91,33 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 export class ExampleButton {}
 ```
 
+## Design System Style Lookup
+
+When scaffolding a new component, **always** check if a matching CSS file exists in the design system:
+
+- **Path to check**: `design-system/design-system/components/<component-name>/<component-name>.css`
+- If the file **exists**, copy its full CSS content into the `styles` property of the **example component** (`example-<component-name>.ts`).
+- If the file **does not exist**, leave `styles` empty — do not invent styles.
+- **Only copy the CSS/SCSS** — do not add any logic, JS behavior, or template markup based on the design system file. The user handles the logic themselves.
+
+### Example with design system match
+```typescript
+// views/example/example-button.ts — when design-system/design-system/components/button/button.css exists
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+@Component({
+  selector: 'playground-example-button',
+  template: `<p>Button example works!</p>`,
+  styles: `
+    /* Styles pulled from design-system/design-system/components/button/button.css */
+    .button { /* ... */ }
+  `,
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ExampleButton {}
+```
+
 ## Integration Steps
 
 After scaffolding:

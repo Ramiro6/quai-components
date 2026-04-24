@@ -7,8 +7,16 @@ export const TEXT_ROUTES: Route[] = [
     children: [
       {
         path: '',
-        redirectTo: 'example',
+        redirectTo: 'overview',
         pathMatch: 'full',
+      },
+      {
+        path: 'overview',
+        loadComponent: () => import('./views/overview/overview-text').then((m) => m.OverviewText),
+      },
+      {
+        path: 'api',
+        loadComponent: () => import('./views/api/api-text').then((m) => m.ApiText),
       },
       {
         path: 'example',

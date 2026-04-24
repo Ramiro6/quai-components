@@ -1,0 +1,57 @@
+/* Styles from design-system/design-system/components/tabs/tabs.css */
+
+.tabs__list {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &--divider {
+    border-bottom: 1px solid var(--quai-zinc-200);
+  }
+}
+
+.tabs__tab {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--quai-space-3) var(--quai-space-4);
+  font-size: var(--quai-text-sm);
+  font-weight: var(--quai-font-medium);
+  color: var(--quai-color-text-secondary);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 150ms ease, border-color 150ms ease;
+
+  &:hover {
+    color: var(--quai-color-text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--quai-zinc-950);
+    outline-offset: -2px;
+  }
+}
+
+.tabs__tab--active {
+  color: var(--quai-color-text);
+  font-weight: var(--quai-font-semibold);
+  border-bottom-color: var(--quai-color-text);
+}
+
+.tabs__panel {
+  padding: var(--quai-space-6) 0;
+  font-size: var(--quai-text-sm);
+  line-height: var(--quai-leading-body);
+}
+
+.tabs__panel[hidden] {
+  display: none;
+}

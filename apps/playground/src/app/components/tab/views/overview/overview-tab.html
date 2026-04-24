@@ -1,0 +1,40 @@
+<section class="overview">
+  <h2 class="size-xl weight-semibold">Tabs</h2>
+  <p class="size-sm color-text-secondary">Navegación por pestañas con soporte de rutas, divider opcional y datos genéricos por tab.</p>
+
+  <h3 class="size-base weight-semibold">Uso básico</h3>
+  <pre class="code-block"><code>&lt;quai-tabs [tabs]="tabs" [divider]="true" /&gt;</code></pre>
+
+  <h3 class="size-base weight-semibold">Propiedades</h3>
+  <table class="props-table">
+    <thead>
+      <tr>
+        <th>Input</th>
+        <th>Tipo</th>
+        <th>Default</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>tabs</code></td>
+        <td><code>QuaiTabInterface[]</code></td>
+        <td><code>undefined</code></td>
+        <td>Array de tabs con label, route opcional y data genérica.</td>
+      </tr>
+      <tr>
+        <td><code>divider</code></td>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>Muestra una línea divisoria debajo de la lista de tabs.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Interfaz</h3>
+  <pre class="code-block"><code>interface QuaiTabInterface&lt;T = Record&lt;string, unknown&gt;&gt; &#123;
+  label: string;
+  route?: string;
+  data?: T;
+&#125;</code></pre>
+</section>

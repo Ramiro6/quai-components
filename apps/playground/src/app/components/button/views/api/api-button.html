@@ -1,0 +1,68 @@
+<section class="api">
+  <h2 class="size-xl weight-semibold">API reference for Button</h2>
+  <p class="size-sm color-text-secondary">CSS classes only — no Angular component required.</p>
+
+  <h3 class="size-base weight-semibold">Import</h3>
+  <pre class="code-block"><code>&#64;use '&#64;quai/quai-components/styles';</code></pre>
+
+  <h3 class="size-base weight-semibold">Base class</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.button</code></td><td>Base button styles. Required on all buttons.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Variants</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.button--primary</code></td><td>Solid dark background, white text.</td></tr>
+      <tr><td><code>.button--secondary</code></td><td>Transparent with border.</td></tr>
+      <tr><td><code>.button--ghost</code></td><td>No background or border.</td></tr>
+      <tr><td><code>.button--destructive</code></td><td>Error color background.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Sizes</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Height</th>
+        <th>Font size</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.button--sm</code></td><td>2rem</td><td>0.875rem</td></tr>
+      <tr><td>(default)</td><td>2.25rem</td><td>0.875rem</td></tr>
+      <tr><td><code>.button--lg</code></td><td>2.75rem</td><td>1rem</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">States</h3>
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>State</th>
+        <th>Behavior</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>:hover</code></td><td>Background color change per variant.</td></tr>
+      <tr><td><code>:active</code></td><td>Scale down to 0.97.</td></tr>
+      <tr><td><code>:focus-visible</code></td><td>2px outline, 2px offset.</td></tr>
+      <tr><td><code>:disabled</code></td><td>Opacity 0.5, no pointer events.</td></tr>
+    </tbody>
+  </table>
+</section>
