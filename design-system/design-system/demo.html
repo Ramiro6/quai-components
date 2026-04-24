@@ -119,8 +119,9 @@
     }
 
     /* --- Button --- */
-    .button { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); height: 2.25rem; padding: 0.5rem 1rem; font-family: var(--font-family); font-size: var(--text-sm); font-weight: var(--font-medium); line-height: var(--leading-ui); border-radius: var(--radius-sm); border: none; cursor: pointer; transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease; text-decoration: none; white-space: nowrap; user-select: none; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); height: 2.25rem; padding: 0.5rem 1rem; font-family: var(--font-family); font-size: var(--text-sm); font-weight: var(--font-medium); line-height: var(--leading-ui); border-radius: var(--radius-sm); border: none; cursor: pointer; transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, transform 150ms ease; text-decoration: none; white-space: nowrap; user-select: none; }
     .button:focus-visible { outline: 2px solid var(--zinc-950); outline-offset: 2px; }
+    .button:active:not([disabled]) { transform: scale(0.97); }
     .button:disabled, .button[disabled] { opacity: 0.5; pointer-events: none; cursor: not-allowed; }
     .button--primary { background-color: var(--zinc-900); color: white; }
     .button--primary:hover { background-color: var(--zinc-800); }
@@ -212,6 +213,19 @@
     .theme-dark .input__field::placeholder { color: var(--zinc-500); }
     .theme-dark .input__field:focus { border-color: var(--zinc-300); box-shadow: 0 0 0 1px var(--zinc-300); }
 
+    /* --- Typography Component --- */
+    .text-h1 { font-size: var(--text-2xl); font-weight: var(--font-semibold); line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); color: var(--color-text); }
+    .text-h2 { font-size: var(--text-xl); font-weight: var(--font-semibold); line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); color: var(--color-text); }
+    .text-h3 { font-size: var(--text-lg); font-weight: var(--font-semibold); line-height: var(--leading-ui); letter-spacing: var(--tracking-normal); color: var(--color-text); }
+    .text-h4 { font-size: var(--text-base); font-weight: var(--font-semibold); line-height: var(--leading-ui); letter-spacing: var(--tracking-normal); color: var(--color-text); }
+    .text-body { font-size: var(--text-base); font-weight: var(--font-regular); line-height: var(--leading-body); letter-spacing: var(--tracking-normal); color: var(--color-text); }
+    .text-body-sm { font-size: var(--text-sm); font-weight: var(--font-regular); line-height: var(--leading-body); letter-spacing: var(--tracking-normal); color: var(--color-text); }
+    .text-lead { font-size: var(--text-lg); font-weight: var(--font-regular); line-height: var(--leading-body); letter-spacing: var(--tracking-normal); color: var(--color-text-secondary); }
+    .text-label { font-size: var(--text-sm); font-weight: var(--font-medium); line-height: var(--leading-ui); letter-spacing: var(--tracking-normal); color: var(--color-text); }
+    .text-caption { font-size: var(--text-xs); font-weight: var(--font-medium); line-height: var(--leading-ui); letter-spacing: var(--tracking-wide); color: var(--color-text-secondary); }
+    .text-muted { color: var(--color-text-muted); }
+    .text-code { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 0.875em; font-weight: var(--font-regular); line-height: var(--leading-ui); color: var(--color-text); background-color: var(--surface-1); padding: 0.125em 0.25em; border-radius: var(--radius-sm); }
+
     /* --- Card --- */
     .card { background-color: var(--surface-1); border: 1px solid var(--border-default-color); border-radius: var(--radius-md); padding: 1.5rem; transition: background-color 200ms ease, border-color 200ms ease; }
     .card__header { display: flex; flex-direction: column; gap: var(--space-1); }
@@ -223,6 +237,13 @@
     .card__body:not(:last-child) { padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-default-color); margin-bottom: 1.5rem; }
     .card--interactive { cursor: pointer; transition: background-color 150ms ease; }
     .card--interactive:hover { background-color: var(--surface-2); }
+    .card--interactive:focus-visible { outline: 2px solid var(--zinc-950); outline-offset: 2px; }
+    .card--elevated { background-color: var(--surface-2); border: none; box-shadow: 0 1px 3px 0 oklch(0% 0 0 / 0.1), 0 1px 2px -1px oklch(0% 0 0 / 0.1); }
+    .card--ghost { background-color: transparent; border: none; }
+    .card--accent-left { border-left: 3px solid var(--accent); border-top-left-radius: var(--radius-sm); border-bottom-left-radius: var(--radius-sm); }
+    .card--outlined { background-color: transparent; border: 1px solid var(--border-default-color); }
+    .card--outlined.card--interactive:hover { border-color: var(--zinc-400); transition: border-color 150ms ease; }
+    .card__image { width: calc(100% + 3rem); height: var(--card-image-height, 12rem); object-fit: cover; border-radius: var(--radius-md) var(--radius-md) 0 0; margin: -1.5rem -1.5rem 1.5rem -1.5rem; display: block; background-color: var(--surface-1); }
 
     /* --- Modal --- */
     @keyframes modal-open { from { opacity: 0; transform: translate(-50%, -50%) scale(0.96); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
@@ -463,6 +484,128 @@
     .demo-spacing-item { display: flex; flex-direction: column; align-items: center; gap: var(--space-1); }
     .demo-spacing-bar { background-color: var(--accent, #7c3aed); border-radius: 2px; width: 2rem; }
     .demo-spacing-label { font-size: 0.625rem; color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
+
+    /* --- Sidebar (embedded demo) --- */
+    .demo-sidebar-container {
+      position: relative;
+      height: 400px;
+      overflow: hidden;
+      border: 1px solid var(--border-default-color);
+      border-radius: var(--radius-md);
+    }
+    .demo-sidebar-container .sidebar {
+      position: absolute;
+      height: 100%;
+      z-index: 10;
+    }
+    .demo-sidebar-container .sidebar__overlay {
+      position: absolute;
+      z-index: 9;
+    }
+    .demo-sidebar-container .sidebar__toggle {
+      position: absolute;
+      z-index: 11;
+    }
+    .sidebar {
+      --sidebar-width: 16rem;
+      --sidebar-padding: var(--space-4);
+      --sidebar-link-radius: var(--radius-sm);
+      --sidebar-link-padding-y: var(--space-2);
+      --sidebar-link-padding-x: var(--space-3);
+      left: 0;
+      top: 0;
+      width: var(--sidebar-width);
+      background: var(--background);
+      border-right: 1px solid var(--border-default-color);
+      display: flex;
+      flex-direction: column;
+      padding: var(--sidebar-padding);
+      overflow-y: auto;
+    }
+    .sidebar__header { padding-bottom: var(--space-4); }
+    .sidebar__brand { text-decoration: none; font-weight: var(--font-semibold); color: var(--color-text); font-size: var(--text-base); }
+    .sidebar__nav { flex: 1; display: flex; flex-direction: column; gap: var(--space-2); }
+    .sidebar__group { display: flex; flex-direction: column; gap: var(--space-1); }
+    .sidebar__group-label { font-size: var(--text-xs); color: var(--color-text-muted); text-transform: uppercase; font-weight: var(--font-medium); letter-spacing: var(--tracking-wide); padding: var(--sidebar-link-padding-y) var(--sidebar-link-padding-x); }
+    .sidebar__link { display: flex; align-items: center; gap: var(--space-2); padding: var(--sidebar-link-padding-y) var(--sidebar-link-padding-x); border-radius: var(--sidebar-link-radius); text-decoration: none; color: var(--color-text-secondary); font-size: var(--text-sm); transition: background-color 150ms ease; }
+    .sidebar__link:hover { background-color: var(--surface-1); }
+    .sidebar__link:focus-visible { outline: 2px solid var(--zinc-950); outline-offset: 2px; }
+    .sidebar__link:active { background-color: var(--surface-1); }
+    .sidebar__link--active { background-color: var(--surface-2); font-weight: var(--font-semibold); color: var(--color-text); }
+    .sidebar__link-icon { width: 1em; height: 1em; color: currentColor; flex-shrink: 0; }
+    .sidebar__footer { margin-top: auto; padding-top: var(--space-4); }
+    .sidebar__footer-text { font-size: var(--text-xs); color: var(--color-text-muted); }
+    .sidebar__overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); opacity: 0; visibility: hidden; transition: opacity 200ms ease, visibility 200ms ease; }
+    .sidebar__overlay--visible { opacity: 1; visibility: visible; }
+    .sidebar__toggle { display: none; }
+    .sidebar-body-lock { overflow: hidden; }
+
+    /* === Code Block Component === */
+    .codeblock { border: 1px solid var(--border-default-color); border-radius: var(--radius-md); overflow: hidden; }
+    .codeblock__header { display: flex; justify-content: space-between; align-items: center; padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--border-default-color); }
+    .codeblock__lang { font-size: var(--text-xs); font-weight: var(--font-medium); color: var(--color-text-muted); }
+    .codeblock__copy { background: transparent; color: var(--color-text-muted); border: none; border-radius: var(--radius-sm); padding: var(--space-1) var(--space-2); font-size: var(--text-xs); cursor: pointer; }
+    .codeblock__copy:hover { color: var(--color-text); background: var(--surface-2); }
+    .codeblock__pre { margin: 0; overflow-x: auto; padding: var(--space-4); background-color: var(--surface-1); }
+    .codeblock__code { font-family: 'Geist Mono', ui-monospace, monospace; font-size: var(--text-sm); line-height: var(--leading-body); color: var(--color-text); white-space: pre; }
+
+    /* === Tabs Component === */
+    .tabs__list { display: flex; gap: 0; border-bottom: 1px solid var(--border-default-color); overflow-x: auto; scrollbar-width: none; }
+    .tabs__list::-webkit-scrollbar { display: none; }
+    .tabs__tab { padding: var(--space-3) var(--space-4); font-size: var(--text-sm); font-weight: var(--font-medium); color: var(--color-text-secondary); background: transparent; border: none; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; transition: color 150ms ease, border-color 150ms ease; }
+    .tabs__tab:hover { color: var(--color-text); }
+    .tabs__tab--active { color: var(--color-text); font-weight: var(--font-semibold); border-bottom-color: var(--color-text); }
+    .tabs__tab:focus-visible { outline: 2px solid var(--zinc-950); outline-offset: -2px; }
+    .tabs__panel { padding: var(--space-6) 0; font-size: var(--text-sm); line-height: var(--leading-body); }
+    .tabs__panel[hidden] { display: none; }
+
+    /* === Header Component === */
+    .header { display: flex; align-items: center; justify-content: space-between; padding: var(--space-3) var(--space-6); border-bottom: 1px solid var(--border-default-color); background-color: var(--background); }
+    .header__brand { font-size: var(--text-base); font-weight: var(--font-semibold); color: var(--color-text); }
+    .header__content { flex: 1; }
+    .header__actions { display: flex; align-items: center; gap: var(--space-3); }
+    .header--sidebar-aligned { padding-left: var(--sidebar-width, 16rem); }
+    @media (max-width: 767px) {
+      .header--sidebar-aligned { padding-left: var(--space-6); }
+    }
+
+    /* === Spacing Utilities === */
+    .m-0 { margin: 0; } .m-1 { margin: var(--space-1); } .m-2 { margin: var(--space-2); } .m-3 { margin: var(--space-3); } .m-4 { margin: var(--space-4); } .m-6 { margin: var(--space-6); } .m-8 { margin: var(--space-8); } .m-12 { margin: var(--space-12); } .m-16 { margin: var(--space-16); } .m-24 { margin: var(--space-24); }
+    .mt-0 { margin-top: 0; } .mt-1 { margin-top: var(--space-1); } .mt-2 { margin-top: var(--space-2); } .mt-3 { margin-top: var(--space-3); } .mt-4 { margin-top: var(--space-4); } .mt-6 { margin-top: var(--space-6); } .mt-8 { margin-top: var(--space-8); } .mt-12 { margin-top: var(--space-12); } .mt-16 { margin-top: var(--space-16); } .mt-24 { margin-top: var(--space-24); }
+    .mr-0 { margin-right: 0; } .mr-1 { margin-right: var(--space-1); } .mr-2 { margin-right: var(--space-2); } .mr-3 { margin-right: var(--space-3); } .mr-4 { margin-right: var(--space-4); } .mr-6 { margin-right: var(--space-6); } .mr-8 { margin-right: var(--space-8); } .mr-12 { margin-right: var(--space-12); } .mr-16 { margin-right: var(--space-16); } .mr-24 { margin-right: var(--space-24); }
+    .mb-0 { margin-bottom: 0; } .mb-1 { margin-bottom: var(--space-1); } .mb-2 { margin-bottom: var(--space-2); } .mb-3 { margin-bottom: var(--space-3); } .mb-4 { margin-bottom: var(--space-4); } .mb-6 { margin-bottom: var(--space-6); } .mb-8 { margin-bottom: var(--space-8); } .mb-12 { margin-bottom: var(--space-12); } .mb-16 { margin-bottom: var(--space-16); } .mb-24 { margin-bottom: var(--space-24); }
+    .ml-0 { margin-left: 0; } .ml-1 { margin-left: var(--space-1); } .ml-2 { margin-left: var(--space-2); } .ml-3 { margin-left: var(--space-3); } .ml-4 { margin-left: var(--space-4); } .ml-6 { margin-left: var(--space-6); } .ml-8 { margin-left: var(--space-8); } .ml-12 { margin-left: var(--space-12); } .ml-16 { margin-left: var(--space-16); } .ml-24 { margin-left: var(--space-24); }
+    .mx-0 { margin-left: 0; margin-right: 0; } .mx-1 { margin-left: var(--space-1); margin-right: var(--space-1); } .mx-2 { margin-left: var(--space-2); margin-right: var(--space-2); } .mx-3 { margin-left: var(--space-3); margin-right: var(--space-3); } .mx-4 { margin-left: var(--space-4); margin-right: var(--space-4); } .mx-6 { margin-left: var(--space-6); margin-right: var(--space-6); } .mx-8 { margin-left: var(--space-8); margin-right: var(--space-8); } .mx-12 { margin-left: var(--space-12); margin-right: var(--space-12); } .mx-16 { margin-left: var(--space-16); margin-right: var(--space-16); } .mx-24 { margin-left: var(--space-24); margin-right: var(--space-24); } .mx-auto { margin-left: auto; margin-right: auto; }
+    .my-0 { margin-top: 0; margin-bottom: 0; } .my-1 { margin-top: var(--space-1); margin-bottom: var(--space-1); } .my-2 { margin-top: var(--space-2); margin-bottom: var(--space-2); } .my-3 { margin-top: var(--space-3); margin-bottom: var(--space-3); } .my-4 { margin-top: var(--space-4); margin-bottom: var(--space-4); } .my-6 { margin-top: var(--space-6); margin-bottom: var(--space-6); } .my-8 { margin-top: var(--space-8); margin-bottom: var(--space-8); } .my-12 { margin-top: var(--space-12); margin-bottom: var(--space-12); } .my-16 { margin-top: var(--space-16); margin-bottom: var(--space-16); } .my-24 { margin-top: var(--space-24); margin-bottom: var(--space-24); }
+    .p-0 { padding: 0; } .p-1 { padding: var(--space-1); } .p-2 { padding: var(--space-2); } .p-3 { padding: var(--space-3); } .p-4 { padding: var(--space-4); } .p-6 { padding: var(--space-6); } .p-8 { padding: var(--space-8); } .p-12 { padding: var(--space-12); } .p-16 { padding: var(--space-16); } .p-24 { padding: var(--space-24); }
+    .pt-0 { padding-top: 0; } .pt-1 { padding-top: var(--space-1); } .pt-2 { padding-top: var(--space-2); } .pt-3 { padding-top: var(--space-3); } .pt-4 { padding-top: var(--space-4); } .pt-6 { padding-top: var(--space-6); } .pt-8 { padding-top: var(--space-8); } .pt-12 { padding-top: var(--space-12); } .pt-16 { padding-top: var(--space-16); } .pt-24 { padding-top: var(--space-24); }
+    .pr-0 { padding-right: 0; } .pr-1 { padding-right: var(--space-1); } .pr-2 { padding-right: var(--space-2); } .pr-3 { padding-right: var(--space-3); } .pr-4 { padding-right: var(--space-4); } .pr-6 { padding-right: var(--space-6); } .pr-8 { padding-right: var(--space-8); } .pr-12 { padding-right: var(--space-12); } .pr-16 { padding-right: var(--space-16); } .pr-24 { padding-right: var(--space-24); }
+    .pb-0 { padding-bottom: 0; } .pb-1 { padding-bottom: var(--space-1); } .pb-2 { padding-bottom: var(--space-2); } .pb-3 { padding-bottom: var(--space-3); } .pb-4 { padding-bottom: var(--space-4); } .pb-6 { padding-bottom: var(--space-6); } .pb-8 { padding-bottom: var(--space-8); } .pb-12 { padding-bottom: var(--space-12); } .pb-16 { padding-bottom: var(--space-16); } .pb-24 { padding-bottom: var(--space-24); }
+    .pl-0 { padding-left: 0; } .pl-1 { padding-left: var(--space-1); } .pl-2 { padding-left: var(--space-2); } .pl-3 { padding-left: var(--space-3); } .pl-4 { padding-left: var(--space-4); } .pl-6 { padding-left: var(--space-6); } .pl-8 { padding-left: var(--space-8); } .pl-12 { padding-left: var(--space-12); } .pl-16 { padding-left: var(--space-16); } .pl-24 { padding-left: var(--space-24); }
+    .px-0 { padding-left: 0; padding-right: 0; } .px-1 { padding-left: var(--space-1); padding-right: var(--space-1); } .px-2 { padding-left: var(--space-2); padding-right: var(--space-2); } .px-3 { padding-left: var(--space-3); padding-right: var(--space-3); } .px-4 { padding-left: var(--space-4); padding-right: var(--space-4); } .px-6 { padding-left: var(--space-6); padding-right: var(--space-6); } .px-8 { padding-left: var(--space-8); padding-right: var(--space-8); } .px-12 { padding-left: var(--space-12); padding-right: var(--space-12); } .px-16 { padding-left: var(--space-16); padding-right: var(--space-16); } .px-24 { padding-left: var(--space-24); padding-right: var(--space-24); }
+    .py-0 { padding-top: 0; padding-bottom: 0; } .py-1 { padding-top: var(--space-1); padding-bottom: var(--space-1); } .py-2 { padding-top: var(--space-2); padding-bottom: var(--space-2); } .py-3 { padding-top: var(--space-3); padding-bottom: var(--space-3); } .py-4 { padding-top: var(--space-4); padding-bottom: var(--space-4); } .py-6 { padding-top: var(--space-6); padding-bottom: var(--space-6); } .py-8 { padding-top: var(--space-8); padding-bottom: var(--space-8); } .py-12 { padding-top: var(--space-12); padding-bottom: var(--space-12); } .py-16 { padding-top: var(--space-16); padding-bottom: var(--space-16); } .py-24 { padding-top: var(--space-24); padding-bottom: var(--space-24); }
+    .gap-1 { gap: var(--space-1); } .gap-2 { gap: var(--space-2); } .gap-3 { gap: var(--space-3); } .gap-4 { gap: var(--space-4); } .gap-6 { gap: var(--space-6); } .gap-8 { gap: var(--space-8); } .gap-12 { gap: var(--space-12); } .gap-16 { gap: var(--space-16); } .gap-24 { gap: var(--space-24); }
+    .gap-x-1 { column-gap: var(--space-1); } .gap-x-2 { column-gap: var(--space-2); } .gap-x-3 { column-gap: var(--space-3); } .gap-x-4 { column-gap: var(--space-4); } .gap-x-6 { column-gap: var(--space-6); } .gap-x-8 { column-gap: var(--space-8); } .gap-x-12 { column-gap: var(--space-12); } .gap-x-16 { column-gap: var(--space-16); } .gap-x-24 { column-gap: var(--space-24); }
+    .gap-y-1 { row-gap: var(--space-1); } .gap-y-2 { row-gap: var(--space-2); } .gap-y-3 { row-gap: var(--space-3); } .gap-y-4 { row-gap: var(--space-4); } .gap-y-6 { row-gap: var(--space-6); } .gap-y-8 { row-gap: var(--space-8); } .gap-y-12 { row-gap: var(--space-12); } .gap-y-16 { row-gap: var(--space-16); } .gap-y-24 { row-gap: var(--space-24); }
+
+    /* === Grid System === */
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--space-4); }
+    .col-1 { grid-column: span 1; } .col-2 { grid-column: span 2; } .col-3 { grid-column: span 3; } .col-4 { grid-column: span 4; } .col-5 { grid-column: span 5; } .col-6 { grid-column: span 6; } .col-7 { grid-column: span 7; } .col-8 { grid-column: span 8; } .col-9 { grid-column: span 9; } .col-10 { grid-column: span 10; } .col-11 { grid-column: span 11; } .col-12 { grid-column: span 12; }
+    .col-full { grid-column: 1 / -1; }
+    @media (min-width: 640px) {
+      .sm\:col-1 { grid-column: span 1; } .sm\:col-2 { grid-column: span 2; } .sm\:col-3 { grid-column: span 3; } .sm\:col-4 { grid-column: span 4; } .sm\:col-5 { grid-column: span 5; } .sm\:col-6 { grid-column: span 6; } .sm\:col-7 { grid-column: span 7; } .sm\:col-8 { grid-column: span 8; } .sm\:col-9 { grid-column: span 9; } .sm\:col-10 { grid-column: span 10; } .sm\:col-11 { grid-column: span 11; } .sm\:col-12 { grid-column: span 12; }
+    }
+    @media (min-width: 768px) {
+      .md\:col-1 { grid-column: span 1; } .md\:col-2 { grid-column: span 2; } .md\:col-3 { grid-column: span 3; } .md\:col-4 { grid-column: span 4; } .md\:col-5 { grid-column: span 5; } .md\:col-6 { grid-column: span 6; } .md\:col-7 { grid-column: span 7; } .md\:col-8 { grid-column: span 8; } .md\:col-9 { grid-column: span 9; } .md\:col-10 { grid-column: span 10; } .md\:col-11 { grid-column: span 11; } .md\:col-12 { grid-column: span 12; }
+    }
+    @media (min-width: 1024px) {
+      .lg\:col-1 { grid-column: span 1; } .lg\:col-2 { grid-column: span 2; } .lg\:col-3 { grid-column: span 3; } .lg\:col-4 { grid-column: span 4; } .lg\:col-5 { grid-column: span 5; } .lg\:col-6 { grid-column: span 6; } .lg\:col-7 { grid-column: span 7; } .lg\:col-8 { grid-column: span 8; } .lg\:col-9 { grid-column: span 9; } .lg\:col-10 { grid-column: span 10; } .lg\:col-11 { grid-column: span 11; } .lg\:col-12 { grid-column: span 12; }
+    }
+    .row { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+    .col { flex: 1 1 0%; }
+    .grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--grid-auto-min, 280px), 1fr)); gap: var(--space-4); }
+    .stack-v { display: flex; flex-direction: column; gap: var(--space-4); }
+    .stack-h { display: flex; flex-direction: row; gap: var(--space-4); }
   </style>
 </head>
 <body>
@@ -628,6 +771,59 @@
       </div>
     </section>
 
+    <!-- Typography Component -->
+    <section class="demo-section">
+      <h2 class="demo-heading">Tipografía — Componente</h2>
+      <p class="demo-subtext">Clases tipográficas reutilizables para aplicar estilos de texto consistentes sin escribir CSS inline. Agnósticas al elemento HTML.</p>
+
+      <!-- Headings -->
+      <div style="display:flex;flex-direction:column;gap:var(--space-4);margin-bottom:var(--space-8);">
+        <h3 class="demo-palette-label" style="margin-bottom:var(--space-2);">Headings</h3>
+        <h1 class="text-h1">Heading 1 — Título principal de la página</h1>
+        <h2 class="text-h2">Heading 2 — Sección de contenido</h2>
+        <h3 class="text-h3">Heading 3 — Subsección o grupo</h3>
+        <h4 class="text-h4">Heading 4 — Detalle o categoría</h4>
+      </div>
+
+      <!-- Body -->
+      <div style="display:flex;flex-direction:column;gap:var(--space-4);margin-bottom:var(--space-8);">
+        <h3 class="demo-palette-label" style="margin-bottom:var(--space-2);">Cuerpo</h3>
+        <p class="text-body">Texto de cuerpo principal — ideal para párrafos, descripciones y contenido extenso con line-height generoso para lectura cómoda.</p>
+        <p class="text-body-sm">Texto de cuerpo secundario — más compacto, útil para notas al pie, metadata o contenido complementario que no requiere protagonismo.</p>
+      </div>
+
+      <!-- Lead -->
+      <div style="display:flex;flex-direction:column;gap:var(--space-4);margin-bottom:var(--space-8);">
+        <h3 class="demo-palette-label" style="margin-bottom:var(--space-2);">Lead</h3>
+        <p class="text-lead">Texto introductorio destacado con color secundario, perfecto para subtítulos de hero o resúmenes de sección.</p>
+      </div>
+
+      <!-- UI: Label, Caption -->
+      <div style="display:flex;flex-direction:column;gap:var(--space-4);margin-bottom:var(--space-8);">
+        <h3 class="demo-palette-label" style="margin-bottom:var(--space-2);">UI</h3>
+        <p><label class="text-label">Label de formulario</label></p>
+        <p><span class="text-caption">Caption — texto auxiliar para tablas, imágenes o metadata</span></p>
+      </div>
+
+      <!-- Muted -->
+      <div style="display:flex;flex-direction:column;gap:var(--space-4);margin-bottom:var(--space-8);">
+        <h3 class="demo-palette-label" style="margin-bottom:var(--space-2);">Muted</h3>
+        <p class="text-body text-muted">Texto muted — color atenuado para contenido de menor importancia o placeholders.</p>
+      </div>
+
+      <!-- Code -->
+      <div style="display:flex;flex-direction:column;gap:var(--space-4);margin-bottom:var(--space-8);">
+        <h3 class="demo-palette-label" style="margin-bottom:var(--space-2);">Código</h3>
+        <p class="text-body">Usa <code class="text-code">var(--color-text)</code> para el color de texto principal y <code class="text-code">var(--surface-1)</code> para fondos secundarios.</p>
+      </div>
+
+      <!-- Composability -->
+      <div style="display:flex;flex-direction:column;gap:var(--space-4);">
+        <h3 class="demo-palette-label" style="margin-bottom:var(--space-2);">Composabilidad</h3>
+        <p><span class="text-caption text-muted">Última actualización: hace 3 minutos — .text-caption combinado con .text-muted</span></p>
+      </div>
+    </section>
+
     <!-- Features — Cards Grid -->
     <section id="features" class="demo-section">
       <h2 class="demo-heading">Características del sistema</h2>
@@ -689,6 +885,167 @@
             <span class="chip">Responsive</span>
           </div>
         </article>
+      </div>
+    </section>
+
+    <!-- Cards — Variantes -->
+    <section class="demo-section">
+      <h2 class="demo-heading">Cards — Variantes</h2>
+      <p class="demo-subtext">Variantes visuales del componente Card para distintos contextos: elevación, transparencia, acento y cabecera con imagen.</p>
+      <div class="demo-grid">
+        <!-- Elevated -->
+        <article class="card card--elevated">
+          <div class="card__header">
+            <h3 class="card__title">Elevated</h3>
+            <p class="card__description">Superficie elevada con sombra sutil. Ideal para destacar contenido sobre el fondo principal.</p>
+          </div>
+        </article>
+
+        <!-- Ghost -->
+        <article class="card card--ghost">
+          <div class="card__header">
+            <h3 class="card__title">Ghost</h3>
+            <p class="card__description">Sin fondo ni borde, solo estructura. Útil para agrupar contenido sin peso visual adicional.</p>
+          </div>
+        </article>
+
+        <!-- Accent Left -->
+        <article class="card card--accent-left">
+          <div class="card__header">
+            <h3 class="card__title">Accent Left</h3>
+            <p class="card__description">Borde izquierdo de color acento para señalar información importante o categorías.</p>
+          </div>
+        </article>
+
+        <!-- Outlined -->
+        <article class="card card--outlined card--interactive">
+          <div class="card__header">
+            <h3 class="card__title">Outlined</h3>
+            <p class="card__description">Fondo transparente con borde visible. Combinado con interactive para hover en el borde.</p>
+          </div>
+        </article>
+
+        <!-- Image Header -->
+        <article class="card">
+          <div class="card__image" role="img" aria-label="Placeholder visual de cabecera de card" style="background: linear-gradient(135deg, var(--accent) 0%, var(--surface-1) 100%);"></div>
+          <div class="card__header">
+            <h3 class="card__title">Image Header</h3>
+            <p class="card__description">Cabecera con imagen edge-to-edge. Usa márgenes negativos para extenderse al ancho completo de la card.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Sidebar -->
+    <section class="demo-section">
+      <h2 class="demo-heading">Sidebar</h2>
+      <p class="demo-subtext">Navegación lateral con header, grupos de enlaces, iconos SVG, enlace activo y footer. Incluye toggle y overlay para modo mobile.</p>
+
+      <div class="demo-sidebar-container">
+        <!-- Toggle button (for mobile demo) -->
+        <button class="sidebar__toggle" type="button"
+                aria-expanded="false"
+                aria-controls="demo-sidebar"
+                aria-label="Abrir menú lateral">
+          ☰
+        </button>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="demo-sidebar" role="complementary" aria-label="Navegación principal del demo">
+          <!-- Header -->
+          <div class="sidebar__header">
+            <a class="sidebar__brand" href="#">Kiro DS</a>
+          </div>
+
+          <!-- Navigation -->
+          <nav class="sidebar__nav" aria-label="Menú lateral">
+            <!-- Group: General -->
+            <div class="sidebar__group">
+              <span class="sidebar__group-label" id="demo-group-general">General</span>
+              <ul role="list" aria-labelledby="demo-group-general">
+                <li>
+                  <a class="sidebar__link sidebar__link--active" href="#inicio">
+                    <svg class="sidebar__link-icon" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6l6-4 6 4v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6z"/><path d="M6 14V9h4v5"/></svg>
+                    <span>Inicio</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="sidebar__link" href="#proyectos">
+                    <svg class="sidebar__link-icon" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M2 6h12"/></svg>
+                    <span>Proyectos</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="sidebar__link" href="#tareas">
+                    <svg class="sidebar__link-icon" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M5.5 8l2 2 3.5-3.5"/></svg>
+                    <span>Tareas</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Group: Configuración -->
+            <div class="sidebar__group">
+              <span class="sidebar__group-label" id="demo-group-config">Configuración</span>
+              <ul role="list" aria-labelledby="demo-group-config">
+                <li>
+                  <a class="sidebar__link" href="#equipo">
+                    <svg class="sidebar__link-icon" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="5" r="2.5"/><path d="M1 14c0-3 2.5-5 5-5s5 2 5 5"/><circle cx="12" cy="5" r="1.5"/><path d="M15 14c0-2-1.5-3.5-3-3.5"/></svg>
+                    <span>Equipo</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="sidebar__link" href="#ajustes">
+                    <svg class="sidebar__link-icon" aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2"/><path d="M13.5 8a5.5 5.5 0 0 1-.3 1.2l1.3 1-1 1.7-1.5-.6a5.5 5.5 0 0 1-1 .6L10.7 13H8.9l-.3-1.5a5.5 5.5 0 0 1-1-.6l-1.5.6-1-1.7 1.3-1A5.5 5.5 0 0 1 6.1 8c0-.4 0-.8.1-1.2L5 5.8l1-1.7 1.5.6a5.5 5.5 0 0 1 1-.6L8.9 3h1.8l.3 1.5a5.5 5.5 0 0 1 1 .6l1.5-.6 1 1.7-1.3 1c.2.4.3.8.3 1.2z"/></svg>
+                    <span>Ajustes</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          <!-- Footer -->
+          <div class="sidebar__footer">
+            <span class="sidebar__footer-text">Kiro DS v2.1.0</span>
+          </div>
+        </aside>
+
+        <!-- Overlay for mobile -->
+        <div class="sidebar__overlay" aria-hidden="true"></div>
+      </div>
+
+      <h3 style="font-size: var(--text-base); font-weight: var(--font-semibold); margin: var(--space-8) 0 var(--space-2);">Text Only (No Icons)</h3>
+      <p class="demo-subtext">Same BEM structure without icon elements — no additional CSS needed.</p>
+
+      <div class="demo-sidebar-container">
+        <aside class="sidebar" role="complementary" aria-label="Sidebar text-only demo">
+          <div class="sidebar__header">
+            <a class="sidebar__brand" href="#">Kiro DS</a>
+          </div>
+
+          <nav class="sidebar__nav" aria-label="Text-only menu">
+            <div class="sidebar__group">
+              <span class="sidebar__group-label" id="demo-group-text-general">General</span>
+              <ul role="list" aria-labelledby="demo-group-text-general">
+                <li><a href="#" class="sidebar__link">Dashboard</a></li>
+                <li><a href="#" class="sidebar__link sidebar__link--active">Projects</a></li>
+                <li><a href="#" class="sidebar__link">Tasks</a></li>
+              </ul>
+            </div>
+
+            <div class="sidebar__group">
+              <span class="sidebar__group-label" id="demo-group-text-config">Settings</span>
+              <ul role="list" aria-labelledby="demo-group-text-config">
+                <li><a href="#" class="sidebar__link">Team</a></li>
+                <li><a href="#" class="sidebar__link">Preferences</a></li>
+              </ul>
+            </div>
+          </nav>
+
+          <div class="sidebar__footer">
+            <span class="sidebar__footer-text">Kiro DS v2.1.0</span>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -962,6 +1319,394 @@
       </div>
     </section>
 
+    <!-- Code Block -->
+    <section class="demo-section">
+      <h2 class="demo-heading">Code Block</h2>
+      <p class="demo-subtext">Display code snippets with language labels and copy-to-clipboard functionality.</p>
+      <div class="stack-v gap-6">
+
+        <!-- JavaScript example -->
+        <div class="codeblock">
+          <div class="codeblock__header">
+            <span class="codeblock__lang">JavaScript</span>
+            <button class="codeblock__copy" type="button" aria-label="Copy code">Copy</button>
+          </div>
+          <pre class="codeblock__pre"><code class="codeblock__code">function debounce(fn, delay) {
+  let timer = null;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(this, args);
+    }, delay);
+  };
+}
+
+const handleSearch = debounce((query) => {
+  console.log('Searching for:', query);
+}, 300);</code></pre>
+        </div>
+
+        <!-- TypeScript example -->
+        <div class="codeblock">
+          <div class="codeblock__header">
+            <span class="codeblock__lang">TypeScript</span>
+            <button class="codeblock__copy" type="button" aria-label="Copy code">Copy</button>
+          </div>
+          <pre class="codeblock__pre"><code class="codeblock__code">interface ApiResponse&lt;T&gt; {
+  data: T;
+  status: number;
+  message: string;
+  timestamp: Date;
+}
+
+async function fetchData&lt;T&gt;(url: string): Promise&lt;ApiResponse&lt;T&gt;&gt; {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Request failed: ${response.status}`);
+  }
+  const data: T = await response.json();
+  return { data, status: response.status, message: 'OK', timestamp: new Date() };
+}</code></pre>
+        </div>
+
+        <!-- CSS example with long line for horizontal scrolling -->
+        <div class="codeblock">
+          <div class="codeblock__header">
+            <span class="codeblock__lang">CSS</span>
+            <button class="codeblock__copy" type="button" aria-label="Copy code">Copy</button>
+          </div>
+          <pre class="codeblock__pre"><code class="codeblock__code">.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  background-color: var(--surface-1);
+  border: 1px solid var(--border-default-color);
+  border-radius: var(--radius-md);
+  transition: background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease, opacity 200ms ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1), 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+}</code></pre>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Tabs -->
+    <section class="demo-section">
+      <h2 class="demo-heading">Tabs</h2>
+      <p class="demo-subtext">Tabbed navigation with keyboard support, ARIA roles, and horizontal scroll overflow.</p>
+
+      <!-- Example 1: Basic Tabs with 3 panels -->
+      <h3 style="font-size: var(--text-base); font-weight: var(--font-semibold); margin-bottom: var(--space-4);">Basic Tabs</h3>
+      <div class="tabs" style="margin-bottom: var(--space-12);">
+        <div class="tabs__list" role="tablist" aria-label="Project settings">
+          <button class="tabs__tab tabs__tab--active" role="tab"
+                  id="demo-tab-1" aria-selected="true" aria-controls="demo-panel-1"
+                  tabindex="0">Overview</button>
+          <button class="tabs__tab" role="tab"
+                  id="demo-tab-2" aria-selected="false" aria-controls="demo-panel-2"
+                  tabindex="-1">Settings</button>
+          <button class="tabs__tab" role="tab"
+                  id="demo-tab-3" aria-selected="false" aria-controls="demo-panel-3"
+                  tabindex="-1">Members</button>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="demo-panel-1"
+             aria-labelledby="demo-tab-1" tabindex="0">
+          <p style="margin: 0 0 var(--space-3);">Welcome to the project overview. This panel provides a summary of the current project status, recent activity, and key metrics.</p>
+          <p style="margin: 0;">Use the tabs above to navigate between different sections. You can also use the arrow keys to move between tabs and Enter or Space to activate them.</p>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="demo-panel-2"
+             aria-labelledby="demo-tab-2" tabindex="0" hidden>
+          <p style="margin: 0 0 var(--space-3);">Configure your project settings here. Adjust build options, environment variables, and deployment targets to match your workflow.</p>
+          <p style="margin: 0;">Changes are saved automatically and applied on the next build cycle.</p>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="demo-panel-3"
+             aria-labelledby="demo-tab-3" tabindex="0" hidden>
+          <p style="margin: 0 0 var(--space-3);">Manage team members and their roles. Invite collaborators, assign permissions, and review access levels for your project.</p>
+          <p style="margin: 0;">Admins can add or remove members at any time from this panel.</p>
+        </div>
+      </div>
+
+      <!-- Example 2: Scroll Overflow Tabs -->
+      <h3 style="font-size: var(--text-base); font-weight: var(--font-semibold); margin-bottom: var(--space-4);">Scroll Overflow</h3>
+      <div class="tabs" style="max-width: 36rem;">
+        <div class="tabs__list" role="tablist" aria-label="Documentation sections">
+          <button class="tabs__tab tabs__tab--active" role="tab"
+                  id="scroll-tab-1" aria-selected="true" aria-controls="scroll-panel-1"
+                  tabindex="0">Getting Started</button>
+          <button class="tabs__tab" role="tab"
+                  id="scroll-tab-2" aria-selected="false" aria-controls="scroll-panel-2"
+                  tabindex="-1">Installation</button>
+          <button class="tabs__tab" role="tab"
+                  id="scroll-tab-3" aria-selected="false" aria-controls="scroll-panel-3"
+                  tabindex="-1">Configuration</button>
+          <button class="tabs__tab" role="tab"
+                  id="scroll-tab-4" aria-selected="false" aria-controls="scroll-panel-4"
+                  tabindex="-1">Components</button>
+          <button class="tabs__tab" role="tab"
+                  id="scroll-tab-5" aria-selected="false" aria-controls="scroll-panel-5"
+                  tabindex="-1">Theming</button>
+          <button class="tabs__tab" role="tab"
+                  id="scroll-tab-6" aria-selected="false" aria-controls="scroll-panel-6"
+                  tabindex="-1">Accessibility</button>
+          <button class="tabs__tab" role="tab"
+                  id="scroll-tab-7" aria-selected="false" aria-controls="scroll-panel-7"
+                  tabindex="-1">API Reference</button>
+          <button class="tabs__tab" role="tab"
+                  id="scroll-tab-8" aria-selected="false" aria-controls="scroll-panel-8"
+                  tabindex="-1">Changelog</button>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="scroll-panel-1"
+             aria-labelledby="scroll-tab-1" tabindex="0">
+          <p style="margin: 0;">Learn the basics of the design system and how to integrate it into your project. This guide covers setup, token usage, and your first component.</p>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="scroll-panel-2"
+             aria-labelledby="scroll-tab-2" tabindex="0" hidden>
+          <p style="margin: 0;">Install the design system via npm or include the CSS directly. Supports both bundled and file:// workflows.</p>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="scroll-panel-3"
+             aria-labelledby="scroll-tab-3" tabindex="0" hidden>
+          <p style="margin: 0;">Customize tokens, breakpoints, and theme settings to match your brand. All configuration is done through CSS custom properties.</p>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="scroll-panel-4"
+             aria-labelledby="scroll-tab-4" tabindex="0" hidden>
+          <p style="margin: 0;">Browse the full component library including buttons, cards, modals, inputs, tables, and more. Each component follows BEM naming conventions.</p>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="scroll-panel-5"
+             aria-labelledby="scroll-tab-5" tabindex="0" hidden>
+          <p style="margin: 0;">Switch between light and dark themes using semantic tokens. The theme system works by redefining token values without component-specific overrides.</p>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="scroll-panel-6"
+             aria-labelledby="scroll-tab-6" tabindex="0" hidden>
+          <p style="margin: 0;">All components meet WCAG AA standards with proper ARIA attributes, keyboard navigation, and focus management built in.</p>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="scroll-panel-7"
+             aria-labelledby="scroll-tab-7" tabindex="0" hidden>
+          <p style="margin: 0;">Detailed API documentation for every component, including CSS classes, JavaScript methods, and HTML structure requirements.</p>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="scroll-panel-8"
+             aria-labelledby="scroll-tab-8" tabindex="0" hidden>
+          <p style="margin: 0;">Track all changes, new features, and bug fixes across design system releases.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal — Playground -->
+    <section class="demo-section">
+      <h2 class="demo-heading">Modal — Playground</h2>
+      <p class="demo-subtext">Open modals with different configurations. Each uses the existing <code class="text-code">data-modal-trigger</code> pattern and <code class="text-code">showModal()</code> API.</p>
+
+      <div style="display: flex; flex-wrap: wrap; gap: var(--space-4);">
+        <button type="button" class="button button--primary" data-modal-trigger="playground-modal-default">Default Modal</button>
+        <button type="button" class="button button--secondary" data-modal-trigger="playground-modal-no-footer">Without Footer</button>
+        <button type="button" class="button button--secondary" data-modal-trigger="playground-modal-compact">Compact Modal</button>
+      </div>
+    </section>
+
+    <!-- Header -->
+    <section class="demo-section">
+      <h2 class="demo-heading">Header</h2>
+      <p class="demo-subtext">Page header component with brand, content area, and actions. Available in full-width and sidebar-aligned variants.</p>
+
+      <!-- Full Width -->
+      <h3 style="font-size: var(--text-base); font-weight: var(--font-semibold); margin: 0 0 var(--space-3);">Full Width</h3>
+      <div style="border: 1px solid var(--border-default-color); border-radius: var(--radius-md); overflow: hidden; margin-bottom: var(--space-8);">
+        <header class="header header--full">
+          <div class="header__brand">Kiro DS</div>
+          <div class="header__content"></div>
+          <div class="header__actions">
+            <button type="button" class="button button--ghost button--sm">Docs</button>
+            <button type="button" class="button button--primary button--sm">Get Started</button>
+          </div>
+        </header>
+      </div>
+
+      <!-- Sidebar Aligned -->
+      <h3 style="font-size: var(--text-base); font-weight: var(--font-semibold); margin: 0 0 var(--space-3);">Sidebar Aligned</h3>
+      <div style="border: 1px solid var(--border-default-color); border-radius: var(--radius-md); overflow: hidden;">
+        <header class="header header--sidebar-aligned">
+          <div class="header__brand">Kiro DS</div>
+          <div class="header__content"></div>
+          <div class="header__actions">
+            <button type="button" class="button button--ghost button--sm">Settings</button>
+            <button type="button" class="button button--secondary button--sm">Profile</button>
+          </div>
+        </header>
+      </div>
+    </section>
+
+    <!-- Spacing Utilities -->
+    <section class="demo-section">
+      <h2 class="demo-heading">Spacing Utilities</h2>
+      <p class="demo-subtext">Clases utilitarias de margin, padding y gap basadas en la escala de tokens de espaciado. Permiten ajustes rápidos de layout sin CSS custom.</p>
+
+      <!-- Padding Scale -->
+      <h3 style="font-size: var(--text-base); font-weight: var(--font-semibold); margin: 0 0 var(--space-3);">Padding Scale</h3>
+      <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">Cada bloque aplica una clase <code class="text-code">.p-{n}</code>. El fondo gris muestra el padding alrededor del contenido interior.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: flex-start; margin-bottom: var(--space-8);">
+        <div class="p-1" style="background: var(--surface-1); border-radius: var(--radius-sm);">
+          <div style="background: var(--accent); color: white; padding: var(--space-1); border-radius: var(--radius-sm); font-size: var(--text-xs); white-space: nowrap;">p-1</div>
+        </div>
+        <div class="p-2" style="background: var(--surface-1); border-radius: var(--radius-sm);">
+          <div style="background: var(--accent); color: white; padding: var(--space-1); border-radius: var(--radius-sm); font-size: var(--text-xs); white-space: nowrap;">p-2</div>
+        </div>
+        <div class="p-3" style="background: var(--surface-1); border-radius: var(--radius-sm);">
+          <div style="background: var(--accent); color: white; padding: var(--space-1); border-radius: var(--radius-sm); font-size: var(--text-xs); white-space: nowrap;">p-3</div>
+        </div>
+        <div class="p-4" style="background: var(--surface-1); border-radius: var(--radius-sm);">
+          <div style="background: var(--accent); color: white; padding: var(--space-1); border-radius: var(--radius-sm); font-size: var(--text-xs); white-space: nowrap;">p-4</div>
+        </div>
+        <div class="p-6" style="background: var(--surface-1); border-radius: var(--radius-sm);">
+          <div style="background: var(--accent); color: white; padding: var(--space-1); border-radius: var(--radius-sm); font-size: var(--text-xs); white-space: nowrap;">p-6</div>
+        </div>
+        <div class="p-8" style="background: var(--surface-1); border-radius: var(--radius-sm);">
+          <div style="background: var(--accent); color: white; padding: var(--space-1); border-radius: var(--radius-sm); font-size: var(--text-xs); white-space: nowrap;">p-8</div>
+        </div>
+        <div class="p-12" style="background: var(--surface-1); border-radius: var(--radius-sm);">
+          <div style="background: var(--accent); color: white; padding: var(--space-1); border-radius: var(--radius-sm); font-size: var(--text-xs); white-space: nowrap;">p-12</div>
+        </div>
+      </div>
+
+      <!-- Margin Bottom -->
+      <h3 style="font-size: var(--text-base); font-weight: var(--font-semibold); margin: 0 0 var(--space-3);">Margin Bottom</h3>
+      <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">Bloques con diferentes valores de <code class="text-code">.mb-{n}</code> para demostrar el espaciado vertical entre elementos.</p>
+      <div style="max-width: 24rem; margin-bottom: var(--space-8);">
+        <div class="mb-1" style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">mb-1</div>
+        <div class="mb-2" style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">mb-2</div>
+        <div class="mb-3" style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">mb-3</div>
+        <div class="mb-4" style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">mb-4</div>
+        <div class="mb-6" style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">mb-6</div>
+        <div class="mb-8" style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">mb-8</div>
+        <div style="background: var(--surface-1); padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); color: var(--color-text-muted);">Siguiente elemento</div>
+      </div>
+
+      <!-- Gap -->
+      <h3 style="font-size: var(--text-base); font-weight: var(--font-semibold); margin: 0 0 var(--space-3);">Gap Utilities</h3>
+      <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">Contenedores flex con diferentes clases <code class="text-code">.gap-{n}</code> aplicadas. Los bloques interiores no tienen margin propio.</p>
+
+      <div style="display: flex; flex-direction: column; gap: var(--space-6);">
+        <!-- gap-2 -->
+        <div>
+          <span style="font-size: var(--text-xs); color: var(--color-text-muted); display: block; margin-bottom: var(--space-2);">gap-2</span>
+          <div class="gap-2" style="display: flex; flex-wrap: wrap;">
+            <div style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">A</div>
+            <div style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">B</div>
+            <div style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">C</div>
+            <div style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">D</div>
+          </div>
+        </div>
+        <!-- gap-4 -->
+        <div>
+          <span style="font-size: var(--text-xs); color: var(--color-text-muted); display: block; margin-bottom: var(--space-2);">gap-4</span>
+          <div class="gap-4" style="display: flex; flex-wrap: wrap;">
+            <div style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">A</div>
+            <div style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">B</div>
+            <div style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">C</div>
+            <div style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">D</div>
+          </div>
+        </div>
+        <!-- gap-8 -->
+        <div>
+          <span style="font-size: var(--text-xs); color: var(--color-text-muted); display: block; margin-bottom: var(--space-2);">gap-8</span>
+          <div class="gap-8" style="display: flex; flex-wrap: wrap;">
+            <div style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">A</div>
+            <div style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">B</div>
+            <div style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">C</div>
+            <div style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">D</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid System -->
+    <section class="demo-section">
+      <h2 class="demo-heading">Grid System</h2>
+      <p class="demo-subtext">Sistema de grid responsivo de 12 columnas, auto-fit grid y utilidades de stacking para construir layouts flexibles sin CSS custom.</p>
+
+      <!-- 12-Column Grid -->
+      <h3 style="font-size: var(--text-lg); font-weight: var(--font-semibold); margin-bottom: var(--space-2);">12-Column Grid</h3>
+      <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">Usa <code class="text-code">.grid</code> con clases <code class="text-code">.col-{n}</code> para controlar el ancho de cada columna.</p>
+
+      <div class="grid" style="margin-bottom: var(--space-6);">
+        <div class="col-4" style="background: var(--surface-1); padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center; border: 1px solid var(--border-default-color);">col-4</div>
+        <div class="col-8" style="background: var(--surface-1); padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center; border: 1px solid var(--border-default-color);">col-8</div>
+        <div class="col-6" style="background: var(--surface-1); padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center; border: 1px solid var(--border-default-color);">col-6</div>
+        <div class="col-6" style="background: var(--surface-1); padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center; border: 1px solid var(--border-default-color);">col-6</div>
+        <div class="col-3" style="background: var(--surface-1); padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center; border: 1px solid var(--border-default-color);">col-3</div>
+        <div class="col-3" style="background: var(--surface-1); padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center; border: 1px solid var(--border-default-color);">col-3</div>
+        <div class="col-3" style="background: var(--surface-1); padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center; border: 1px solid var(--border-default-color);">col-3</div>
+        <div class="col-3" style="background: var(--surface-1); padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center; border: 1px solid var(--border-default-color);">col-3</div>
+      </div>
+
+      <!-- Responsive Grid -->
+      <h3 style="font-size: var(--text-lg); font-weight: var(--font-semibold); margin-bottom: var(--space-2);">Responsive Grid</h3>
+      <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">Las columnas cambian de ancho en cada breakpoint. Redimensiona el navegador para ver el efecto: <code class="text-code">col-12 → sm:col-6 → md:col-4 → lg:col-3</code>.</p>
+
+      <div class="grid" style="margin-bottom: var(--space-6);">
+        <div class="col-12 sm:col-6 md:col-4 lg:col-3" style="background: var(--accent); color: white; padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center;">Item 1</div>
+        <div class="col-12 sm:col-6 md:col-4 lg:col-3" style="background: var(--accent); color: white; padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center;">Item 2</div>
+        <div class="col-12 sm:col-6 md:col-4 lg:col-3" style="background: var(--accent); color: white; padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center;">Item 3</div>
+        <div class="col-12 sm:col-6 md:col-4 lg:col-3" style="background: var(--accent); color: white; padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center;">Item 4</div>
+      </div>
+
+      <!-- Auto-Fit Grid -->
+      <h3 style="font-size: var(--text-lg); font-weight: var(--font-semibold); margin-bottom: var(--space-2);">Auto-Fit Grid</h3>
+      <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">Usa <code class="text-code">.grid-auto</code> para que las tarjetas se redistribuyan automáticamente según el ancho disponible (mínimo 280px por columna).</p>
+
+      <div class="grid-auto" style="margin-bottom: var(--space-6);">
+        <div style="background: var(--surface-1); padding: var(--space-4); border-radius: var(--radius-sm); border: 1px solid var(--border-default-color);">
+          <div style="font-size: var(--text-sm); font-weight: var(--font-semibold); margin-bottom: var(--space-1);">Card 1</div>
+          <div style="font-size: var(--text-xs); color: var(--color-text-muted);">Auto-fit reflows based on available width.</div>
+        </div>
+        <div style="background: var(--surface-1); padding: var(--space-4); border-radius: var(--radius-sm); border: 1px solid var(--border-default-color);">
+          <div style="font-size: var(--text-sm); font-weight: var(--font-semibold); margin-bottom: var(--space-1);">Card 2</div>
+          <div style="font-size: var(--text-xs); color: var(--color-text-muted);">No breakpoints needed — pure CSS grid magic.</div>
+        </div>
+        <div style="background: var(--surface-1); padding: var(--space-4); border-radius: var(--radius-sm); border: 1px solid var(--border-default-color);">
+          <div style="font-size: var(--text-sm); font-weight: var(--font-semibold); margin-bottom: var(--space-1);">Card 3</div>
+          <div style="font-size: var(--text-xs); color: var(--color-text-muted);">Minimum column width is configurable via --grid-auto-min.</div>
+        </div>
+        <div style="background: var(--surface-1); padding: var(--space-4); border-radius: var(--radius-sm); border: 1px solid var(--border-default-color);">
+          <div style="font-size: var(--text-sm); font-weight: var(--font-semibold); margin-bottom: var(--space-1);">Card 4</div>
+          <div style="font-size: var(--text-xs); color: var(--color-text-muted);">Resize the browser to see cards reflow.</div>
+        </div>
+        <div style="background: var(--surface-1); padding: var(--space-4); border-radius: var(--radius-sm); border: 1px solid var(--border-default-color);">
+          <div style="font-size: var(--text-sm); font-weight: var(--font-semibold); margin-bottom: var(--space-1);">Card 5</div>
+          <div style="font-size: var(--text-xs); color: var(--color-text-muted);">Works great for dashboards and galleries.</div>
+        </div>
+        <div style="background: var(--surface-1); padding: var(--space-4); border-radius: var(--radius-sm); border: 1px solid var(--border-default-color);">
+          <div style="font-size: var(--text-sm); font-weight: var(--font-semibold); margin-bottom: var(--space-1);">Card 6</div>
+          <div style="font-size: var(--text-xs); color: var(--color-text-muted);">Combine with gap utilities for custom spacing.</div>
+        </div>
+      </div>
+
+      <!-- Stacking Utilities -->
+      <h3 style="font-size: var(--text-lg); font-weight: var(--font-semibold); margin-bottom: var(--space-2);">Stacking Utilities</h3>
+      <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">Usa <code class="text-code">.stack-v</code> para apilar verticalmente y <code class="text-code">.stack-h</code> para apilar horizontalmente.</p>
+
+      <div class="grid" style="margin-bottom: 0;">
+        <div class="col-12 sm:col-6">
+          <span style="font-size: var(--text-xs); color: var(--color-text-muted); display: block; margin-bottom: var(--space-2);">.stack-v</span>
+          <div class="stack-v">
+            <div style="background: var(--surface-1); padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center; border: 1px solid var(--border-default-color);">Item A</div>
+            <div style="background: var(--surface-1); padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center; border: 1px solid var(--border-default-color);">Item B</div>
+            <div style="background: var(--surface-1); padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center; border: 1px solid var(--border-default-color);">Item C</div>
+          </div>
+        </div>
+        <div class="col-12 sm:col-6">
+          <span style="font-size: var(--text-xs); color: var(--color-text-muted); display: block; margin-bottom: var(--space-2);">.stack-h</span>
+          <div class="stack-h">
+            <div style="background: var(--accent); color: white; padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center; flex: 1;">Item A</div>
+            <div style="background: var(--accent); color: white; padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center; flex: 1;">Item B</div>
+            <div style="background: var(--accent); color: white; padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center; flex: 1;">Item C</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Modal trigger section -->
     <section class="demo-section" style="text-align: center; padding-bottom: var(--space-24);">
       <h2 class="demo-heading">¿Listo para empezar?</h2>
@@ -990,6 +1735,62 @@
       <button type="button" class="button button--primary" onclick="document.getElementById('demo-modal').close()">Guardar cambios</button>
     </div>
   </dialog>
+
+  <!-- Playground Modal: Default (header + body + footer) -->
+  <dialog id="playground-modal-default" class="modal">
+    <button class="modal__close" type="button" aria-label="Cerrar">&times;</button>
+    <div class="modal__header">
+      <h2 class="modal__title">Default Modal</h2>
+    </div>
+    <div class="modal__body">
+      <p style="margin: 0 0 var(--space-4);">
+        This is a default modal with header, body, and footer sections. It demonstrates the standard configuration used for confirmations and form dialogs.
+      </p>
+      <p style="margin: 0;">
+        Click the backdrop, press Escape, or use the buttons below to close.
+      </p>
+    </div>
+    <div class="modal__footer">
+      <button type="button" class="button button--secondary" onclick="document.getElementById('playground-modal-default').close()">Cancel</button>
+      <button type="button" class="button button--primary" onclick="document.getElementById('playground-modal-default').close()">Confirm</button>
+    </div>
+  </dialog>
+
+  <!-- Playground Modal: No Footer -->
+  <dialog id="playground-modal-no-footer" class="modal">
+    <button class="modal__close" type="button" aria-label="Cerrar">&times;</button>
+    <div class="modal__header">
+      <h2 class="modal__title">Information</h2>
+    </div>
+    <div class="modal__body">
+      <p style="margin: 0 0 var(--space-4);">
+        This modal has no footer section. It's useful for informational messages or read-only content where no user action is required beyond dismissing the dialog.
+      </p>
+      <p style="margin: 0;">
+        Close it using the × button, clicking the backdrop, or pressing Escape.
+      </p>
+    </div>
+  </dialog>
+
+  <!-- Playground Modal: Compact -->
+  <dialog id="playground-modal-compact" class="modal" style="max-width: 24rem;">
+    <button class="modal__close" type="button" aria-label="Cerrar">&times;</button>
+    <div class="modal__header">
+      <h2 class="modal__title">Compact Modal</h2>
+    </div>
+    <div class="modal__body">
+      <p style="margin: 0;">
+        A compact modal with reduced max-width for short messages or quick confirmations.
+      </p>
+    </div>
+    <div class="modal__footer">
+      <button type="button" class="button button--secondary button--sm" onclick="document.getElementById('playground-modal-compact').close()">Cancel</button>
+      <button type="button" class="button button--primary button--sm" onclick="document.getElementById('playground-modal-compact').close()">OK</button>
+    </div>
+  </dialog>
+
+  <!-- Sidebar Script -->
+  <script src="components/sidebar/sidebar.js"></script>
 
   <!-- Component Scripts (inline for file:// compatibility) -->
   <script>
@@ -1076,6 +1877,145 @@
     function initAllChips(){var closeBtns=document.querySelectorAll('.chip__close');for(var i=0;i<closeBtns.length;i++){initCloseButton(closeBtns[i]);}}
     if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initAllChips);}
     else{initAllChips();}
+  })();
+  </script>
+
+  <!-- Code Block -->
+  <script>
+  (function () {
+    'use strict';
+
+    function initCodeBlock(copyBtn) {
+      var codeblock = copyBtn.closest('.codeblock');
+      if (!codeblock) return;
+      var codeEl = codeblock.querySelector('.codeblock__code');
+      if (!codeEl) return;
+
+      copyBtn.addEventListener('click', function () {
+        var text = codeEl.textContent;
+
+        function onSuccess() {
+          copyBtn.textContent = 'Copied!';
+          copyBtn.setAttribute('aria-label', 'Copied');
+          setTimeout(function () {
+            copyBtn.textContent = 'Copy';
+            copyBtn.setAttribute('aria-label', 'Copy code');
+          }, 2000);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(onSuccess).catch(function () {
+            fallbackCopy(text, onSuccess);
+          });
+        } else {
+          fallbackCopy(text, onSuccess);
+        }
+      });
+    }
+
+    function fallbackCopy(text, onSuccess) {
+      var textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        onSuccess();
+      } catch (e) { /* silently fail */ }
+      document.body.removeChild(textarea);
+    }
+
+    function initAllCodeBlocks() {
+      var btns = document.querySelectorAll('.codeblock__copy');
+      for (var i = 0; i < btns.length; i++) {
+        initCodeBlock(btns[i]);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAllCodeBlocks);
+    } else {
+      initAllCodeBlocks();
+    }
+  })();
+  </script>
+
+  <!-- Tabs -->
+  <script>
+  (function () {
+    'use strict';
+
+    function initTabs(container) {
+      var tablist = container.querySelector('[role="tablist"]');
+      if (!tablist) return;
+      var tabs = tablist.querySelectorAll('[role="tab"]');
+      if (tabs.length === 0) return;
+
+      function activateTab(tab) {
+        for (var i = 0; i < tabs.length; i++) {
+          tabs[i].setAttribute('aria-selected', 'false');
+          tabs[i].setAttribute('tabindex', '-1');
+          tabs[i].classList.remove('tabs__tab--active');
+          var panelId = tabs[i].getAttribute('aria-controls');
+          var panel = document.getElementById(panelId);
+          if (panel) panel.hidden = true;
+        }
+        tab.setAttribute('aria-selected', 'true');
+        tab.setAttribute('tabindex', '0');
+        tab.classList.add('tabs__tab--active');
+        var targetPanel = document.getElementById(tab.getAttribute('aria-controls'));
+        if (targetPanel) targetPanel.hidden = false;
+        tab.focus();
+      }
+
+      for (var i = 0; i < tabs.length; i++) {
+        tabs[i].addEventListener('click', function () {
+          activateTab(this);
+        });
+      }
+
+      tablist.addEventListener('keydown', function (e) {
+        var currentIndex = -1;
+        for (var i = 0; i < tabs.length; i++) {
+          if (tabs[i] === document.activeElement) { currentIndex = i; break; }
+        }
+        if (currentIndex === -1) return;
+
+        var newIndex;
+        if (e.key === 'ArrowRight') {
+          newIndex = (currentIndex + 1) % tabs.length;
+          e.preventDefault();
+        } else if (e.key === 'ArrowLeft') {
+          newIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+          e.preventDefault();
+        } else if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          activateTab(tabs[currentIndex]);
+          return;
+        } else {
+          return;
+        }
+
+        tabs[currentIndex].setAttribute('tabindex', '-1');
+        tabs[newIndex].setAttribute('tabindex', '0');
+        tabs[newIndex].focus();
+      });
+    }
+
+    function initAllTabs() {
+      var containers = document.querySelectorAll('.tabs');
+      for (var i = 0; i < containers.length; i++) {
+        initTabs(containers[i]);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAllTabs);
+    } else {
+      initAllTabs();
+    }
   })();
   </script>
 </body>

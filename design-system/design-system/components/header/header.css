@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Componente Header — Design System v2
+   Cabecera de página con variantes full-width y sidebar-aligned
+   Nomenclatura BEM: .header, .header__brand, .header__content,
+                     .header__actions, .header--full, .header--sidebar-aligned
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base — <header> con layout flex, borde inferior, fondo
+   -------------------------------------------------------------------------- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-6);
+  border-bottom: 1px solid var(--border-default-color);
+  background-color: var(--background);
+}
+
+/* --------------------------------------------------------------------------
+   Brand — Marca/logo a la izquierda
+   -------------------------------------------------------------------------- */
+.header__brand {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+}
+
+/* --------------------------------------------------------------------------
+   Content — Área de contenido central, ocupa espacio disponible
+   -------------------------------------------------------------------------- */
+.header__content {
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Actions — Acciones a la derecha, flex con gap
+   -------------------------------------------------------------------------- */
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* --------------------------------------------------------------------------
+   Variant: Full — Ancho completo, padding estándar en ambos lados
+   -------------------------------------------------------------------------- */
+.header--full {
+  /* Standard padding inherited from .header base — no offset */
+}
+
+/* --------------------------------------------------------------------------
+   Variant: Sidebar-aligned — Offset izquierdo para alinear con sidebar
+   -------------------------------------------------------------------------- */
+.header--sidebar-aligned {
+  padding-left: var(--sidebar-width, 16rem);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive (<768px) — Eliminar offset del sidebar en mobile
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .header--sidebar-aligned {
+    padding-left: var(--space-6);
+  }
+}

@@ -1,0 +1,223 @@
+/* ==========================================================================
+   Componente Sidebar — Design System v2
+   Navegación lateral fija con soporte responsive y colapsable
+   Nomenclatura BEM: .sidebar, .sidebar__header, .sidebar__brand,
+                     .sidebar__nav, .sidebar__group, .sidebar__group-label,
+                     .sidebar__link, .sidebar__link--active, .sidebar__link-icon,
+                     .sidebar__footer, .sidebar__footer-text
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base — <aside> con posición fija izquierda, 100vh, flex column
+   -------------------------------------------------------------------------- */
+.sidebar {
+  --sidebar-width: 16rem;
+  --sidebar-padding: var(--space-4);
+  --sidebar-link-radius: var(--radius-sm);
+  --sidebar-link-padding-y: var(--space-2);
+  --sidebar-link-padding-x: var(--space-3);
+
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: var(--sidebar-width);
+  background: var(--background);
+  border-right: 1px solid var(--border-default-color);
+  display: flex;
+  flex-direction: column;
+  padding: var(--sidebar-padding);
+  z-index: 100;
+  overflow-y: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Header — Zona superior con padding inferior
+   -------------------------------------------------------------------------- */
+.sidebar__header {
+  padding-bottom: var(--space-4);
+}
+
+/* --------------------------------------------------------------------------
+   Brand — Enlace de marca dentro del header
+   -------------------------------------------------------------------------- */
+.sidebar__brand {
+  text-decoration: none;
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+  font-size: var(--text-base);
+}
+
+/* --------------------------------------------------------------------------
+   Nav — Contenedor de navegación, flex column con gap
+   -------------------------------------------------------------------------- */
+.sidebar__nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* --------------------------------------------------------------------------
+   Group — Agrupación de enlaces con label opcional
+   -------------------------------------------------------------------------- */
+.sidebar__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* --------------------------------------------------------------------------
+   Group label — Label del grupo, text-xs, muted, uppercase
+   -------------------------------------------------------------------------- */
+.sidebar__group-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  font-weight: var(--font-medium);
+  letter-spacing: var(--tracking-wide);
+  padding: var(--sidebar-link-padding-y) var(--sidebar-link-padding-x);
+}
+
+/* --------------------------------------------------------------------------
+   Link — Enlace de navegación con layout flex y estados interactivos
+   -------------------------------------------------------------------------- */
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--sidebar-link-padding-y) var(--sidebar-link-padding-x);
+  border-radius: var(--sidebar-link-radius);
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  transition: background-color 150ms ease;
+}
+
+.sidebar__link:hover {
+  background-color: var(--surface-1);
+}
+
+.sidebar__link:focus-visible {
+  outline: 2px solid var(--zinc-950);
+  outline-offset: 2px;
+}
+
+.sidebar__link:active {
+  background-color: var(--surface-1);
+}
+
+/* --------------------------------------------------------------------------
+   Link activo — surface-2, semibold, color-text
+   -------------------------------------------------------------------------- */
+.sidebar__link--active {
+  background-color: var(--surface-2);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+}
+
+/* --------------------------------------------------------------------------
+   Link icon — Icono opcional dentro del enlace
+   -------------------------------------------------------------------------- */
+.sidebar__link-icon {
+  width: 1em;
+  height: 1em;
+  color: currentColor;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Footer — Zona inferior empujada al fondo con margin-top auto
+   -------------------------------------------------------------------------- */
+.sidebar__footer {
+  margin-top: auto;
+  padding-top: var(--space-4);
+}
+
+/* --------------------------------------------------------------------------
+   Footer text — Texto auxiliar en footer
+   -------------------------------------------------------------------------- */
+.sidebar__footer-text {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Overlay — Semitransparente para mobile, cubre el contenido principal
+   -------------------------------------------------------------------------- */
+.sidebar__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms ease, visibility 200ms ease;
+}
+
+.sidebar__overlay--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --------------------------------------------------------------------------
+   Toggle — Botón hamburguesa, oculto en desktop, visible en mobile
+   -------------------------------------------------------------------------- */
+.sidebar__toggle {
+  display: none;
+  position: fixed;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 101;
+  background: var(--background);
+  border: 1px solid var(--border-default-color);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2);
+  cursor: pointer;
+  color: var(--color-text);
+  font-size: var(--text-base);
+  line-height: 1;
+}
+
+.sidebar__toggle:focus-visible {
+  outline: 2px solid var(--zinc-950);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Body scroll lock — Prevenir scroll cuando overlay está activo
+   -------------------------------------------------------------------------- */
+.sidebar-body-lock {
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile (<768px) — Sidebar oculto, desliza desde la izquierda
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .sidebar--open {
+    transform: translateX(0);
+  }
+
+  .sidebar__toggle {
+    display: block;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion — Eliminar animaciones de deslizamiento y overlay
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar {
+    transition: none;
+  }
+
+  .sidebar__overlay {
+    transition: none;
+  }
+}

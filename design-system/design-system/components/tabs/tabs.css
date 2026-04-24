@@ -1,0 +1,80 @@
+/* ==========================================================================
+   Componente Tabs — Design System v2
+   Secciones: tab list, tab buttons, tab panels
+   Nomenclatura BEM: .tabs, .tabs__list, .tabs__tab, .tabs__tab--active,
+                     .tabs__panel
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base — Contenedor principal
+   -------------------------------------------------------------------------- */
+.tabs {
+}
+
+/* --------------------------------------------------------------------------
+   List — Lista de pestañas con scroll horizontal oculto
+   -------------------------------------------------------------------------- */
+.tabs__list {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border-default-color);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tabs__list::-webkit-scrollbar {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Tab — Botón de pestaña individual
+   -------------------------------------------------------------------------- */
+.tabs__tab {
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+/* --------------------------------------------------------------------------
+   Tab Hover — Color de texto principal al pasar el cursor
+   -------------------------------------------------------------------------- */
+.tabs__tab:hover {
+  color: var(--color-text);
+}
+
+/* --------------------------------------------------------------------------
+   Tab Activo — Indicador inferior y peso de fuente semibold
+   -------------------------------------------------------------------------- */
+.tabs__tab--active {
+  color: var(--color-text);
+  font-weight: var(--font-semibold);
+  border-bottom-color: var(--color-text);
+}
+
+/* --------------------------------------------------------------------------
+   Tab Focus Visible — Outline inset para accesibilidad por teclado
+   -------------------------------------------------------------------------- */
+.tabs__tab:focus-visible {
+  outline: 2px solid var(--zinc-950);
+  outline-offset: -2px;
+}
+
+/* --------------------------------------------------------------------------
+   Panel — Contenido asociado a cada pestaña
+   -------------------------------------------------------------------------- */
+.tabs__panel {
+  padding: var(--space-6) 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+}
+
+.tabs__panel[hidden] {
+  display: none;
+}

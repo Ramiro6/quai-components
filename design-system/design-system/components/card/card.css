@@ -77,3 +77,65 @@
 .card--interactive:hover {
   background-color: var(--surface-2);
 }
+
+/* --------------------------------------------------------------------------
+   Variante: Elevated — Superficie elevada con sombra sutil
+   -------------------------------------------------------------------------- */
+.card--elevated {
+  background-color: var(--surface-2);
+  border: none;
+  box-shadow: 0 1px 3px 0 oklch(0% 0 0 / 0.1), 0 1px 2px -1px oklch(0% 0 0 / 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   Variante: Ghost — Sin fondo ni borde, solo estructura
+   -------------------------------------------------------------------------- */
+.card--ghost {
+  background-color: transparent;
+  border: none;
+  /* padding 1.5rem se hereda de .card base */
+}
+
+/* --------------------------------------------------------------------------
+   Variante: Accent Left — Borde izquierdo de color acento
+   -------------------------------------------------------------------------- */
+.card--accent-left {
+  border-left: 3px solid var(--accent);
+  border-top-left-radius: var(--radius-sm);
+  border-bottom-left-radius: var(--radius-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Variante: Outlined — Borde prominente sin fondo
+   -------------------------------------------------------------------------- */
+.card--outlined {
+  background-color: transparent;
+  border: 1px solid var(--border-default-color);
+}
+
+.card--outlined.card--interactive:hover {
+  border-color: var(--zinc-400);
+  transition: border-color 150ms ease;
+}
+
+/* --------------------------------------------------------------------------
+   Sub-elemento: Image — Imagen de cabecera edge-to-edge
+   -------------------------------------------------------------------------- */
+.card__image {
+  width: 100%;
+  height: var(--card-image-height, 12rem);
+  object-fit: cover;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+  width: calc(100% + 3rem);
+  display: block;
+  background-color: var(--surface-1);
+}
+
+/* --------------------------------------------------------------------------
+   Accesibilidad: Focus visible para cards interactivas
+   -------------------------------------------------------------------------- */
+.card--interactive:focus-visible {
+  outline: 2px solid var(--zinc-950);
+  outline-offset: 2px;
+}

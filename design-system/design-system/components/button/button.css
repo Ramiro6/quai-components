@@ -30,7 +30,7 @@
   cursor: pointer;
 
   /* Transición */
-  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, transform 150ms ease;
 
   /* Reset */
   text-decoration: none;
@@ -44,6 +44,13 @@
 .button:focus-visible {
   outline: 2px solid var(--zinc-950);
   outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Active — press animation, scale down on click
+   -------------------------------------------------------------------------- */
+.button:active:not([disabled]) {
+  transform: scale(0.97);
 }
 
 /* --------------------------------------------------------------------------
