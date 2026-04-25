@@ -11,3 +11,5 @@ export * from './lib/quai-boundary-error/error-labels.config';
 export * from './lib/quai-sidebar/quai-sidebar';
 export * from './lib/quai-header/quai-header';
 export * from './lib/quai-tabs/quai-tabs';
+export * from './lib/quai-list/quai-list';
+export * from './lib/quai-list-item/quai-list-item';

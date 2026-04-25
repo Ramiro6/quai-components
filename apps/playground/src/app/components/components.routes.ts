@@ -17,6 +17,10 @@ export const COMPONENTS_ROUTES: Route[] = [
         path: 'tab',
         loadChildren: () => import('./tab/tabs.routes').then((m) => m.TAB_ROUTES),
       },
+      {
+        path: 'list',
+        loadChildren: () => import('./list/lists.routes').then((m) => m.LIST_ROUTES),
+      },
     ],
   },
 ];

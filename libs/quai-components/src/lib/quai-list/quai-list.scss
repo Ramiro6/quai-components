@@ -1,0 +1,25 @@
+/* Styles from design-system sidebar — list container */
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: var(--quai-space-1);
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--quai-space-1);
+}
+
+.list__group-label {
+  font-size: var(--quai-text-xs);
+  color: var(--quai-color-text-muted);
+  text-transform: uppercase;
+  font-weight: var(--quai-font-medium);
+  letter-spacing: var(--quai-tracking-wide);
+  padding: var(--quai-sidebar-link-padding-y) var(--quai-sidebar-link-padding-x);
+}

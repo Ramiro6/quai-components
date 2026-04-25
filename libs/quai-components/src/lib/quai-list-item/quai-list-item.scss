@@ -1,0 +1,41 @@
+/* Styles for list item */
+
+.list__item {
+  display: flex;
+  align-items: center;
+  gap: var(--quai-space-2);
+  padding: var(--quai-sidebar-link-padding-y) var(--quai-sidebar-link-padding-x);
+  border-radius: var(--quai-sidebar-link-radius);
+  text-decoration: none;
+  color: var(--quai-color-text-secondary);
+  font-size: var(--quai-text-sm);
+  transition: background-color 150ms ease;
+  cursor: pointer;
+  list-style: none;
+
+  &:hover {
+    background-color: var(--quai-surface-1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--quai-zinc-950);
+    outline-offset: 2px;
+  }
+
+  &:active {
+    background-color: var(--quai-surface-1);
+  }
+}
+
+.list__item--active {
+  background-color: var(--quai-surface-2);
+  font-weight: var(--quai-font-semibold);
+  color: var(--quai-color-text);
+}
+
+.list__item-icon {
+  width: 1em;
+  height: 1em;
+  color: currentColor;
+  flex-shrink: 0;
+}

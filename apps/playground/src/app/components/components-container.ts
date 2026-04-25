@@ -35,6 +35,13 @@ import { QuaiHeader } from '@quai/quai-components';
         [routerLinkActiveOptions]="{ exact: false }"
         >Tabs</a
       >
+      <a
+        class="sidebar__link"
+        routerLink="list"
+        routerLinkActive="sidebar__link--active"
+        [routerLinkActiveOptions]="{ exact: false }"
+        >List</a
+      >
     </quai-sidebar>
     <section>
       <quai-header>
