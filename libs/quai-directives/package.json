@@ -1,0 +1,14 @@
+{
+  "name": "@quai/quai-directives",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "^21.2.6"
+  },
+  "exports": {
+    ".": {
+      "esm2022": "./esm2022/quai-directives.mjs",
+      "esm": "./esm2022/quai-directives.mjs"
+    }
+  },
+  "sideEffects": false
+}

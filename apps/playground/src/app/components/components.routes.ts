@@ -18,8 +18,12 @@ export const COMPONENTS_ROUTES: Route[] = [
         loadChildren: () => import('./tab/tabs.routes').then((m) => m.TAB_ROUTES),
       },
       {
-        path: 'list',
-        loadChildren: () => import('./list/lists.routes').then((m) => m.LIST_ROUTES),
+        path: 'nav-menu',
+        loadChildren: () => import('./nav-menu/nav-menu.routes').then((m) => m.NAV_MENU_ROUTES),
+      },
+      {
+        path: 'codeblock',
+        loadChildren: () => import('./codeblock/codeblock.routes').then((m) => m.CODEBLOCK_ROUTES),
       },
     ],
   },

@@ -1,0 +1,86 @@
+/* Styles from design-system/design-system/components/sidebar/sidebar.css — variant without icons */
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  //width: var(--quai-sidebar-width);
+  background: var(--quai-background);
+  border-right: 1px solid var(--quai-zinc-200);
+  padding: var(--quai-sidebar-padding);
+  overflow-y: auto;
+}
+
+.sidebar__header {
+  padding-bottom: var(--quai-space-4);
+}
+
+.sidebar__brand {
+  text-decoration: none;
+  font-weight: var(--quai-font-semibold);
+  color: var(--quai-color-text);
+  font-size: var(--quai-text-base);
+}
+
+.sidebar__nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--quai-space-2);
+}
+
+.sidebar__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--quai-space-1);
+}
+
+.sidebar__group-label {
+  font-size: var(--quai-text-xs);
+  color: var(--quai-color-text-muted);
+  text-transform: uppercase;
+  font-weight: var(--quai-font-medium);
+  letter-spacing: var(--quai-tracking-wide);
+  padding: var(--quai-sidebar-link-padding-y) var(--quai-sidebar-link-padding-x);
+}
+
+// remove this later
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  padding: var(--quai-sidebar-link-padding-y) var(--quai-sidebar-link-padding-x);
+  border-radius: var(--quai-sidebar-link-radius);
+  text-decoration: none;
+  color: var(--quai-color-text-secondary);
+  font-size: var(--quai-text-sm);
+  transition: background-color 150ms ease;
+}
+
+.sidebar__link:hover {
+  background-color: var(--quai-surface-1);
+}
+
+.sidebar__link:focus-visible {
+  outline: 2px solid var(--quai-zinc-950);
+  outline-offset: 2px;
+}
+
+.sidebar__link:active {
+  background-color: var(--quai-surface-1);
+}
+
+.sidebar__link--active {
+  background-color: var(--quai-surface-2);
+  font-weight: var(--quai-font-semibold);
+  color: var(--quai-color-text);
+}
+
+.sidebar__footer {
+  margin-top: auto;
+  padding-top: var(--quai-space-4);
+}
+
+.sidebar__footer-text {
+  font-size: var(--quai-text-xs);
+  color: var(--quai-color-text-muted);
+}

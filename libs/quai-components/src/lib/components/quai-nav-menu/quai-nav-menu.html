@@ -1,0 +1,26 @@
+@for (list of list(); track $index) {
+  @if (list?.item) {
+    <span class="list__group-label">{{ list?.label }}</span>
+    @for (child of list.item; track $index) {
+      <li class="list__item">
+        <a class="list__item__link"
+           [routerLink]="child?.routerLink"
+           routerLinkActive="list__item__link--active"
+           [routerLinkActiveOptions]="{ exact: false }">
+          {{ child?.label }}
+        </a>
+      </li>
+    }
+  } @else {
+    <li class="list__item" >
+      <a class="list__item__link"
+         [routerLink]="list?.routerLink"
+         routerLinkActive="list__item__link--active"
+         [routerLinkActiveOptions]="{ exact: false }">
+        {{ list?.label }}
+      </a>
+    </li>
+  }
+}
+
+

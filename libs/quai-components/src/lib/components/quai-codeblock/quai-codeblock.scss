@@ -1,0 +1,74 @@
+/* ==========================================================================
+   Componente Code Block — Design System v2
+   Secciones: header (lang label + copy button), code area (pre + code)
+   Nomenclatura BEM: .codeblock, .codeblock__header, .codeblock__lang,
+                     .codeblock__copy, .codeblock__pre, .codeblock__code
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base — Contenedor principal
+   -------------------------------------------------------------------------- */
+.codeblock {
+  border: var(--quai-color-border);
+  border-radius: var(--quai-radius-md);
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Header — Barra superior con label de lenguaje y botón de copiar
+   -------------------------------------------------------------------------- */
+.codeblock__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--quai-space-3) var(--quai-space-4);
+  border-bottom: var(--quai-color-border);
+}
+
+/* --------------------------------------------------------------------------
+   Lang — Etiqueta del lenguaje de programación
+   -------------------------------------------------------------------------- */
+.codeblock__lang {
+  font-size: var(--quai-text-xs);
+  font-weight: var(--quai-font-medium);
+  color: var(--quai-color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Copy — Botón de copiar al portapapeles (estilo ghost)
+   -------------------------------------------------------------------------- */
+.codeblock__copy {
+  background: transparent;
+  color: var(--quai-color-text-muted);
+  border: none;
+  border-radius: var(--quai-radius-sm);
+  padding: var(--quai-space-1) var(--quai-space-2);
+  font-size: var(--quai-text-xs);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--quai-color-text);
+    background: var(--quai-surface-2);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Pre — Contenedor de código con scroll horizontal
+   -------------------------------------------------------------------------- */
+.codeblock__pre {
+  margin: 0;
+  overflow-x: auto;
+  padding: var(--quai-space-4);
+  background-color: var(--quai-surface-1);
+}
+
+/* --------------------------------------------------------------------------
+   Code — Texto de código con fuente monoespaciada
+   -------------------------------------------------------------------------- */
+.codeblock__code {
+  font-family: var(--quai-font-family);
+  font-size: var(--quai-text-sm);
+  line-height: var(--quai-leading-body);
+  color: var(--quai-color-text);
+  white-space: pre;
+}

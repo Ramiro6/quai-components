@@ -1,47 +1,18 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { QuaiSidebar } from '@quai/quai-components';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import {
+  QuaiSidebar,
+  QuaiNavMenu,
+  QuaiNavMenuInterface,
+} from '@quai/quai-components';
 import { QuaiHeader } from '@quai/quai-components';
 
 @Component({
   selector: 'playground-components-container',
-  imports: [
-    RouterOutlet,
-    QuaiSidebar,
-    RouterLink,
-    RouterLinkActive,
-    QuaiHeader,
-  ],
+  imports: [RouterOutlet, QuaiSidebar, QuaiHeader, QuaiNavMenu],
   template: `
     <quai-sidebar>
-      <a
-        class="sidebar__link"
-        routerLink="buttons/example"
-        routerLinkActive="sidebar__link--active"
-        [routerLinkActiveOptions]="{ exact: false }"
-        >Buttons</a
-      >
-      <a
-        class="sidebar__link"
-        routerLink="text/example"
-        routerLinkActive="sidebar__link--active"
-        [routerLinkActiveOptions]="{ exact: false }"
-        >Text</a
-      >
-      <a
-        class="sidebar__link"
-        routerLink="tab/example"
-        routerLinkActive="sidebar__link--active"
-        [routerLinkActiveOptions]="{ exact: false }"
-        >Tabs</a
-      >
-      <a
-        class="sidebar__link"
-        routerLink="list"
-        routerLinkActive="sidebar__link--active"
-        [routerLinkActiveOptions]="{ exact: false }"
-        >List</a
-      >
+      <quai-nav-menu [list]="menuItems"></quai-nav-menu>
     </quai-sidebar>
     <section>
       <quai-header>
@@ -84,4 +55,17 @@ import { QuaiHeader } from '@quai/quai-components';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ComponentsContainer {}
+export class ComponentsContainer {
+  menuItems: QuaiNavMenuInterface[] = [
+    {
+      label: 'Components',
+      item: [
+        { label: 'Buttons', routerLink: 'buttons' },
+        { label: 'Codeblock', routerLink: 'codeblock' },
+        { label: 'Text', routerLink: 'text' },
+        { label: 'Tabs', routerLink: 'tab' },
+        { label: 'Nav Menu', routerLink: 'nav-menu' },
+      ],
+    },
+  ];
+}
