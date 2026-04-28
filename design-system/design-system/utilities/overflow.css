@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Overflow Utilities
+   Overflow control for both axes
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Overflow
+   -------------------------------------------------------------------------- */
+
+.overflow-hidden  { overflow: hidden; }
+.overflow-auto    { overflow: auto; }
+.overflow-scroll  { overflow: scroll; }
+.overflow-visible { overflow: visible; }
+
+/* --------------------------------------------------------------------------
+   Overflow — Axis-Specific
+   -------------------------------------------------------------------------- */
+
+.overflow-x-auto   { overflow-x: auto; }
+.overflow-x-hidden { overflow-x: hidden; }
+.overflow-y-auto   { overflow-y: auto; }
+.overflow-y-hidden { overflow-y: hidden; }

@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Media Utilities
+   Aspect ratio and object-fit classes
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Aspect Ratio
+   -------------------------------------------------------------------------- */
+
+.aspect-auto   { aspect-ratio: auto; }
+.aspect-square { aspect-ratio: 1 / 1; }
+.aspect-video  { aspect-ratio: 16 / 9; }
+
+/* --------------------------------------------------------------------------
+   Object Fit
+   -------------------------------------------------------------------------- */
+
+.object-cover      { object-fit: cover; }
+.object-contain    { object-fit: contain; }
+.object-fill       { object-fit: fill; }
+.object-none       { object-fit: none; }
+.object-scale-down { object-fit: scale-down; }

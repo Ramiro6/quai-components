@@ -1,0 +1,77 @@
+/* ==========================================================================
+   Display Utilities
+   Base display classes and responsive variants (sm/md/lg/xl)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base Display Classes
+   -------------------------------------------------------------------------- */
+
+.d-block        { display: block; }
+.d-inline-block { display: inline-block; }
+.d-flex         { display: flex; }
+.d-inline-flex  { display: inline-flex; }
+.d-grid         { display: grid; }
+.d-inline-grid  { display: inline-grid; }
+.d-none         { display: none; }
+.d-contents     { display: contents; }
+
+/* --------------------------------------------------------------------------
+   Responsive Display Variants — sm (≥640px)
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 640px) {
+  .sm\:d-block        { display: block; }
+  .sm\:d-inline-block { display: inline-block; }
+  .sm\:d-flex         { display: flex; }
+  .sm\:d-inline-flex  { display: inline-flex; }
+  .sm\:d-grid         { display: grid; }
+  .sm\:d-inline-grid  { display: inline-grid; }
+  .sm\:d-none         { display: none; }
+  .sm\:d-contents     { display: contents; }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Display Variants — md (≥768px)
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  .md\:d-block        { display: block; }
+  .md\:d-inline-block { display: inline-block; }
+  .md\:d-flex         { display: flex; }
+  .md\:d-inline-flex  { display: inline-flex; }
+  .md\:d-grid         { display: grid; }
+  .md\:d-inline-grid  { display: inline-grid; }
+  .md\:d-none         { display: none; }
+  .md\:d-contents     { display: contents; }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Display Variants — lg (≥1024px)
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 1024px) {
+  .lg\:d-block        { display: block; }
+  .lg\:d-inline-block { display: inline-block; }
+  .lg\:d-flex         { display: flex; }
+  .lg\:d-inline-flex  { display: inline-flex; }
+  .lg\:d-grid         { display: grid; }
+  .lg\:d-inline-grid  { display: inline-grid; }
+  .lg\:d-none         { display: none; }
+  .lg\:d-contents     { display: contents; }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Display Variants — xl (≥1280px)
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 1280px) {
+  .xl\:d-block        { display: block; }
+  .xl\:d-inline-block { display: inline-block; }
+  .xl\:d-flex         { display: flex; }
+  .xl\:d-inline-flex  { display: inline-flex; }
+  .xl\:d-grid         { display: grid; }
+  .xl\:d-inline-grid  { display: inline-grid; }
+  .xl\:d-none         { display: none; }
+  .xl\:d-contents     { display: contents; }
+}

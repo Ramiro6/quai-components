@@ -1,0 +1,23 @@
+/* ==========================================================================
+   Layout Tokens
+   Breakpoints, grid defaults, container widths
+   ========================================================================== */
+
+:root {
+  /* Breakpoints */
+  --quai-bp-sm: 640px;
+  --quai-bp-md: 768px;
+  --quai-bp-lg: 1024px;
+  --quai-bp-xl: 1280px;
+
+  /* Grid defaults */
+  --quai-grid-columns: 12;
+  --quai-grid-gap: var(--quai-space-4);
+  --quai-grid-auto-min: 280px;
+
+  /* Container max-widths */
+  --quai-container-sm: 640px;
+  --quai-container-md: 768px;
+  --quai-container-lg: 1024px;
+  --quai-container-xl: 1280px;
+}
