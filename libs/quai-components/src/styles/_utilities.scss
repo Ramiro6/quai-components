@@ -30,3 +30,586 @@
 .color-text           { color: var(--quai-color-text); }
 .color-text-secondary { color: var(--quai-color-text-secondary); }
 .color-text-muted     { color: var(--quai-color-text-muted); }
+
+/* ==========================================================================
+   Grid System
+   12-column responsive grid, auto-fit grid, flex helpers, stacking
+   ========================================================================== */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--quai-space-4);
+}
+
+/* Column spans */
+.col-1  { grid-column: span 1; }
+.col-2  { grid-column: span 2; }
+.col-3  { grid-column: span 3; }
+.col-4  { grid-column: span 4; }
+.col-5  { grid-column: span 5; }
+.col-6  { grid-column: span 6; }
+.col-7  { grid-column: span 7; }
+.col-8  { grid-column: span 8; }
+.col-9  { grid-column: span 9; }
+.col-10 { grid-column: span 10; }
+.col-11 { grid-column: span 11; }
+.col-12 { grid-column: span 12; }
+.col-full { grid-column: 1 / -1; }
+
+/* Responsive columns */
+@media (min-width: 640px) {
+  .sm\:col-1  { grid-column: span 1; }
+  .sm\:col-2  { grid-column: span 2; }
+  .sm\:col-3  { grid-column: span 3; }
+  .sm\:col-4  { grid-column: span 4; }
+  .sm\:col-5  { grid-column: span 5; }
+  .sm\:col-6  { grid-column: span 6; }
+  .sm\:col-7  { grid-column: span 7; }
+  .sm\:col-8  { grid-column: span 8; }
+  .sm\:col-9  { grid-column: span 9; }
+  .sm\:col-10 { grid-column: span 10; }
+  .sm\:col-11 { grid-column: span 11; }
+  .sm\:col-12 { grid-column: span 12; }
+}
+
+@media (min-width: 768px) {
+  .md\:col-1  { grid-column: span 1; }
+  .md\:col-2  { grid-column: span 2; }
+  .md\:col-3  { grid-column: span 3; }
+  .md\:col-4  { grid-column: span 4; }
+  .md\:col-5  { grid-column: span 5; }
+  .md\:col-6  { grid-column: span 6; }
+  .md\:col-7  { grid-column: span 7; }
+  .md\:col-8  { grid-column: span 8; }
+  .md\:col-9  { grid-column: span 9; }
+  .md\:col-10 { grid-column: span 10; }
+  .md\:col-11 { grid-column: span 11; }
+  .md\:col-12 { grid-column: span 12; }
+}
+
+@media (min-width: 1024px) {
+  .lg\:col-1  { grid-column: span 1; }
+  .lg\:col-2  { grid-column: span 2; }
+  .lg\:col-3  { grid-column: span 3; }
+  .lg\:col-4  { grid-column: span 4; }
+  .lg\:col-5  { grid-column: span 5; }
+  .lg\:col-6  { grid-column: span 6; }
+  .lg\:col-7  { grid-column: span 7; }
+  .lg\:col-8  { grid-column: span 8; }
+  .lg\:col-9  { grid-column: span 9; }
+  .lg\:col-10 { grid-column: span 10; }
+  .lg\:col-11 { grid-column: span 11; }
+  .lg\:col-12 { grid-column: span 12; }
+}
+
+/* Auto-fit grid */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--quai-grid-auto-min, 280px), 1fr));
+  gap: var(--quai-space-4);
+}
+
+/* Flex row */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--quai-space-4);
+}
+
+.col {
+  flex: 1 1 0%;
+}
+
+/* Stacking */
+.stack-v {
+  display: flex;
+  flex-direction: column;
+  gap: var(--quai-space-4);
+}
+
+.stack-h {
+  display: flex;
+  flex-direction: row;
+  gap: var(--quai-space-4);
+}
+
+/* ==========================================================================
+   Alignment Utilities
+   ========================================================================== */
+
+/* justify-content */
+.justify-start   { justify-content: flex-start; }
+.justify-center  { justify-content: center; }
+.justify-end     { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-around  { justify-content: space-around; }
+.justify-evenly  { justify-content: space-evenly; }
+
+/* align-items */
+.items-start    { align-items: flex-start; }
+.items-center   { align-items: center; }
+.items-end      { align-items: flex-end; }
+.items-stretch  { align-items: stretch; }
+.items-baseline { align-items: baseline; }
+
+/* align-self */
+.self-start   { align-self: flex-start; }
+.self-center  { align-self: center; }
+.self-end     { align-self: flex-end; }
+.self-stretch { align-self: stretch; }
+
+/* ==========================================================================
+   Spacing Utilities
+   Margin, padding, and gap
+   ========================================================================== */
+
+/* Margin — all sides */
+.m-0  { margin: 0; }
+.m-1  { margin: var(--quai-space-1); }
+.m-2  { margin: var(--quai-space-2); }
+.m-3  { margin: var(--quai-space-3); }
+.m-4  { margin: var(--quai-space-4); }
+.m-6  { margin: var(--quai-space-6); }
+.m-8  { margin: var(--quai-space-8); }
+.m-12 { margin: var(--quai-space-12); }
+.m-16 { margin: var(--quai-space-16); }
+
+/* Margin — individual sides */
+.mt-0  { margin-top: 0; }
+.mt-1  { margin-top: var(--quai-space-1); }
+.mt-2  { margin-top: var(--quai-space-2); }
+.mt-3  { margin-top: var(--quai-space-3); }
+.mt-4  { margin-top: var(--quai-space-4); }
+.mt-6  { margin-top: var(--quai-space-6); }
+.mt-8  { margin-top: var(--quai-space-8); }
+
+.mb-0  { margin-bottom: 0; }
+.mb-1  { margin-bottom: var(--quai-space-1); }
+.mb-2  { margin-bottom: var(--quai-space-2); }
+.mb-3  { margin-bottom: var(--quai-space-3); }
+.mb-4  { margin-bottom: var(--quai-space-4); }
+.mb-6  { margin-bottom: var(--quai-space-6); }
+.mb-8  { margin-bottom: var(--quai-space-8); }
+
+.ml-0  { margin-left: 0; }
+.ml-1  { margin-left: var(--quai-space-1); }
+.ml-2  { margin-left: var(--quai-space-2); }
+.ml-3  { margin-left: var(--quai-space-3); }
+.ml-4  { margin-left: var(--quai-space-4); }
+
+.mr-0  { margin-right: 0; }
+.mr-1  { margin-right: var(--quai-space-1); }
+.mr-2  { margin-right: var(--quai-space-2); }
+.mr-3  { margin-right: var(--quai-space-3); }
+.mr-4  { margin-right: var(--quai-space-4); }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
+.mx-0  { margin-left: 0; margin-right: 0; }
+.mx-2  { margin-left: var(--quai-space-2); margin-right: var(--quai-space-2); }
+.mx-4  { margin-left: var(--quai-space-4); margin-right: var(--quai-space-4); }
+.mx-6  { margin-left: var(--quai-space-6); margin-right: var(--quai-space-6); }
+.mx-8  { margin-left: var(--quai-space-8); margin-right: var(--quai-space-8); }
+
+.my-0  { margin-top: 0; margin-bottom: 0; }
+.my-2  { margin-top: var(--quai-space-2); margin-bottom: var(--quai-space-2); }
+.my-4  { margin-top: var(--quai-space-4); margin-bottom: var(--quai-space-4); }
+.my-6  { margin-top: var(--quai-space-6); margin-bottom: var(--quai-space-6); }
+.my-8  { margin-top: var(--quai-space-8); margin-bottom: var(--quai-space-8); }
+
+/* Padding — all sides */
+.p-0  { padding: 0; }
+.p-1  { padding: var(--quai-space-1); }
+.p-2  { padding: var(--quai-space-2); }
+.p-3  { padding: var(--quai-space-3); }
+.p-4  { padding: var(--quai-space-4); }
+.p-6  { padding: var(--quai-space-6); }
+.p-8  { padding: var(--quai-space-8); }
+.p-12 { padding: var(--quai-space-12); }
+.p-16 { padding: var(--quai-space-16); }
+
+/* Padding — individual sides */
+.pt-0  { padding-top: 0; }
+.pt-2  { padding-top: var(--quai-space-2); }
+.pt-4  { padding-top: var(--quai-space-4); }
+.pt-6  { padding-top: var(--quai-space-6); }
+.pt-8  { padding-top: var(--quai-space-8); }
+
+.pb-0  { padding-bottom: 0; }
+.pb-2  { padding-bottom: var(--quai-space-2); }
+.pb-4  { padding-bottom: var(--quai-space-4); }
+.pb-6  { padding-bottom: var(--quai-space-6); }
+.pb-8  { padding-bottom: var(--quai-space-8); }
+
+.pl-0  { padding-left: 0; }
+.pl-2  { padding-left: var(--quai-space-2); }
+.pl-4  { padding-left: var(--quai-space-4); }
+
+.pr-0  { padding-right: 0; }
+.pr-2  { padding-right: var(--quai-space-2); }
+.pr-4  { padding-right: var(--quai-space-4); }
+
+.px-0  { padding-left: 0; padding-right: 0; }
+.px-2  { padding-left: var(--quai-space-2); padding-right: var(--quai-space-2); }
+.px-3  { padding-left: var(--quai-space-3); padding-right: var(--quai-space-3); }
+.px-4  { padding-left: var(--quai-space-4); padding-right: var(--quai-space-4); }
+.px-6  { padding-left: var(--quai-space-6); padding-right: var(--quai-space-6); }
+.px-8  { padding-left: var(--quai-space-8); padding-right: var(--quai-space-8); }
+
+.py-0  { padding-top: 0; padding-bottom: 0; }
+.py-2  { padding-top: var(--quai-space-2); padding-bottom: var(--quai-space-2); }
+.py-3  { padding-top: var(--quai-space-3); padding-bottom: var(--quai-space-3); }
+.py-4  { padding-top: var(--quai-space-4); padding-bottom: var(--quai-space-4); }
+.py-6  { padding-top: var(--quai-space-6); padding-bottom: var(--quai-space-6); }
+.py-8  { padding-top: var(--quai-space-8); padding-bottom: var(--quai-space-8); }
+
+/* Gap */
+.gap-1  { gap: var(--quai-space-1); }
+.gap-2  { gap: var(--quai-space-2); }
+.gap-3  { gap: var(--quai-space-3); }
+.gap-4  { gap: var(--quai-space-4); }
+.gap-6  { gap: var(--quai-space-6); }
+.gap-8  { gap: var(--quai-space-8); }
+.gap-12 { gap: var(--quai-space-12); }
+.gap-16 { gap: var(--quai-space-16); }
+
+.gap-x-1  { column-gap: var(--quai-space-1); }
+.gap-x-2  { column-gap: var(--quai-space-2); }
+.gap-x-4  { column-gap: var(--quai-space-4); }
+.gap-x-6  { column-gap: var(--quai-space-6); }
+.gap-x-8  { column-gap: var(--quai-space-8); }
+
+.gap-y-1  { row-gap: var(--quai-space-1); }
+.gap-y-2  { row-gap: var(--quai-space-2); }
+.gap-y-4  { row-gap: var(--quai-space-4); }
+.gap-y-6  { row-gap: var(--quai-space-6); }
+.gap-y-8  { row-gap: var(--quai-space-8); }
+
+/* ==========================================================================
+   Display Utilities
+   Base display classes and responsive variants (sm/md/lg/xl)
+   ========================================================================== */
+
+/* Base Display Classes */
+.d-block        { display: block; }
+.d-inline-block { display: inline-block; }
+.d-flex         { display: flex; }
+.d-inline-flex  { display: inline-flex; }
+.d-grid         { display: grid; }
+.d-inline-grid  { display: inline-grid; }
+.d-none         { display: none; }
+.d-contents     { display: contents; }
+
+/* Responsive Display — sm (≥640px) */
+@media (min-width: 640px) {
+  .sm\:d-block        { display: block; }
+  .sm\:d-inline-block { display: inline-block; }
+  .sm\:d-flex         { display: flex; }
+  .sm\:d-inline-flex  { display: inline-flex; }
+  .sm\:d-grid         { display: grid; }
+  .sm\:d-inline-grid  { display: inline-grid; }
+  .sm\:d-none         { display: none; }
+  .sm\:d-contents     { display: contents; }
+}
+
+/* Responsive Display — md (≥768px) */
+@media (min-width: 768px) {
+  .md\:d-block        { display: block; }
+  .md\:d-inline-block { display: inline-block; }
+  .md\:d-flex         { display: flex; }
+  .md\:d-inline-flex  { display: inline-flex; }
+  .md\:d-grid         { display: grid; }
+  .md\:d-inline-grid  { display: inline-grid; }
+  .md\:d-none         { display: none; }
+  .md\:d-contents     { display: contents; }
+}
+
+/* Responsive Display — lg (≥1024px) */
+@media (min-width: 1024px) {
+  .lg\:d-block        { display: block; }
+  .lg\:d-inline-block { display: inline-block; }
+  .lg\:d-flex         { display: flex; }
+  .lg\:d-inline-flex  { display: inline-flex; }
+  .lg\:d-grid         { display: grid; }
+  .lg\:d-inline-grid  { display: inline-grid; }
+  .lg\:d-none         { display: none; }
+  .lg\:d-contents     { display: contents; }
+}
+
+/* Responsive Display — xl (≥1280px) */
+@media (min-width: 1280px) {
+  .xl\:d-block        { display: block; }
+  .xl\:d-inline-block { display: inline-block; }
+  .xl\:d-flex         { display: flex; }
+  .xl\:d-inline-flex  { display: inline-flex; }
+  .xl\:d-grid         { display: grid; }
+  .xl\:d-inline-grid  { display: inline-grid; }
+  .xl\:d-none         { display: none; }
+  .xl\:d-contents     { display: contents; }
+}
+
+/* ==========================================================================
+   Sizing Utilities
+   Width, min-width, max-width, height, min-height, max-height
+   ========================================================================== */
+
+/* Width */
+.w-full   { width: 100%; }
+.w-auto   { width: auto; }
+.w-screen { width: 100vw; }
+.w-1\/2   { width: 50%; }
+.w-1\/3   { width: 33.333333%; }
+.w-2\/3   { width: 66.666667%; }
+.w-1\/4   { width: 25%; }
+.w-3\/4   { width: 75%; }
+
+/* Min-Width */
+.min-w-0    { min-width: 0px; }
+.min-w-full { min-width: 100%; }
+
+/* Max-Width */
+.max-w-sm   { max-width: 24rem; }
+.max-w-md   { max-width: 28rem; }
+.max-w-lg   { max-width: 32rem; }
+.max-w-xl   { max-width: 36rem; }
+.max-w-full { max-width: 100%; }
+.max-w-none { max-width: none; }
+
+/* Height */
+.h-full   { height: 100%; }
+.h-screen { height: 100vh; }
+.h-auto   { height: auto; }
+
+/* Min-Height */
+.min-h-0      { min-height: 0px; }
+.min-h-full   { min-height: 100%; }
+.min-h-screen { min-height: 100vh; }
+
+/* Max-Height */
+.max-h-full   { max-height: 100%; }
+.max-h-screen { max-height: 100vh; }
+
+/* ==========================================================================
+   Position Utilities
+   Position, inset, and z-index classes
+   ========================================================================== */
+
+/* Position */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed    { position: fixed; }
+.sticky   { position: sticky; }
+.static   { position: static; }
+
+/* Inset */
+.inset-0    { inset: 0; }
+.inset-auto { inset: auto; }
+.top-0      { top: 0; }
+.right-0    { right: 0; }
+.bottom-0   { bottom: 0; }
+.left-0     { left: 0; }
+.inset-x-0  { left: 0; right: 0; }
+.inset-y-0  { top: 0; bottom: 0; }
+
+/* Z-Index */
+.z-0    { z-index: 0; }
+.z-10   { z-index: 10; }
+.z-20   { z-index: 20; }
+.z-30   { z-index: 30; }
+.z-40   { z-index: 40; }
+.z-50   { z-index: 50; }
+.z-auto { z-index: auto; }
+
+/* ==========================================================================
+   Overflow Utilities
+   ========================================================================== */
+
+.overflow-hidden  { overflow: hidden; }
+.overflow-auto    { overflow: auto; }
+.overflow-scroll  { overflow: scroll; }
+.overflow-visible { overflow: visible; }
+
+.overflow-x-auto   { overflow-x: auto; }
+.overflow-x-hidden { overflow-x: hidden; }
+.overflow-y-auto   { overflow-y: auto; }
+.overflow-y-hidden { overflow-y: hidden; }
+
+/* ==========================================================================
+   Media Utilities
+   Aspect ratio and object-fit
+   ========================================================================== */
+
+/* Aspect Ratio */
+.aspect-auto   { aspect-ratio: auto; }
+.aspect-square { aspect-ratio: 1 / 1; }
+.aspect-video  { aspect-ratio: 16 / 9; }
+
+/* Object Fit */
+.object-cover      { object-fit: cover; }
+.object-contain    { object-fit: contain; }
+.object-fill       { object-fit: fill; }
+.object-none       { object-fit: none; }
+.object-scale-down { object-fit: scale-down; }
+
+/* ==========================================================================
+   Container Utility
+   Responsive max-width container with auto margins
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 640px)  { .container { max-width: 640px; } }
+@media (min-width: 768px)  { .container { max-width: 768px; } }
+@media (min-width: 1024px) { .container { max-width: 1024px; } }
+@media (min-width: 1280px) { .container { max-width: 1280px; } }
+
+/* ==========================================================================
+   Visibility Utilities
+   ========================================================================== */
+
+.visible   { visibility: visible; }
+.invisible { visibility: hidden; }
+
+/* ==========================================================================
+   Flex Utilities
+   Flex grow, shrink, basis, and order
+   ========================================================================== */
+
+/* Flex Grow */
+.grow   { flex-grow: 1; }
+.grow-0 { flex-grow: 0; }
+
+/* Flex Shrink */
+.shrink   { flex-shrink: 1; }
+.shrink-0 { flex-shrink: 0; }
+
+/* Flex Basis */
+.basis-auto { flex-basis: auto; }
+.basis-full { flex-basis: 100%; }
+.basis-0    { flex-basis: 0px; }
+
+/* Order */
+.order-first { order: -9999; }
+.order-last  { order: 9999; }
+.order-none  { order: 0; }
+.order-1     { order: 1; }
+.order-2     { order: 2; }
+.order-3     { order: 3; }
+.order-4     { order: 4; }
+.order-5     { order: 5; }
+.order-6     { order: 6; }
+
+/* ==========================================================================
+   Complete Spacing Parity
+   Fill missing margin/padding/gap values for full scale:
+   0, 1, 2, 3, 4, 6, 8, 12, 16, 24
+   ========================================================================== */
+
+/* Margin — all sides (missing: 24) */
+.m-24 { margin: var(--quai-space-24); }
+
+/* Margin — top (missing: 12, 16, 24) */
+.mt-12 { margin-top: var(--quai-space-12); }
+.mt-16 { margin-top: var(--quai-space-16); }
+.mt-24 { margin-top: var(--quai-space-24); }
+
+/* Margin — bottom (missing: 12, 16, 24) */
+.mb-12 { margin-bottom: var(--quai-space-12); }
+.mb-16 { margin-bottom: var(--quai-space-16); }
+.mb-24 { margin-bottom: var(--quai-space-24); }
+
+/* Margin — right (missing: 6, 8, 12, 16, 24) */
+.mr-6  { margin-right: var(--quai-space-6); }
+.mr-8  { margin-right: var(--quai-space-8); }
+.mr-12 { margin-right: var(--quai-space-12); }
+.mr-16 { margin-right: var(--quai-space-16); }
+.mr-24 { margin-right: var(--quai-space-24); }
+
+/* Margin — left (missing: 6, 8, 12, 16, 24) */
+.ml-6  { margin-left: var(--quai-space-6); }
+.ml-8  { margin-left: var(--quai-space-8); }
+.ml-12 { margin-left: var(--quai-space-12); }
+.ml-16 { margin-left: var(--quai-space-16); }
+.ml-24 { margin-left: var(--quai-space-24); }
+
+/* Margin — horizontal axis (missing: 1, 3, 12, 16, 24) */
+.mx-1  { margin-left: var(--quai-space-1); margin-right: var(--quai-space-1); }
+.mx-3  { margin-left: var(--quai-space-3); margin-right: var(--quai-space-3); }
+.mx-12 { margin-left: var(--quai-space-12); margin-right: var(--quai-space-12); }
+.mx-16 { margin-left: var(--quai-space-16); margin-right: var(--quai-space-16); }
+.mx-24 { margin-left: var(--quai-space-24); margin-right: var(--quai-space-24); }
+
+/* Margin — vertical axis (missing: 1, 3, 12, 16, 24) */
+.my-1  { margin-top: var(--quai-space-1); margin-bottom: var(--quai-space-1); }
+.my-3  { margin-top: var(--quai-space-3); margin-bottom: var(--quai-space-3); }
+.my-12 { margin-top: var(--quai-space-12); margin-bottom: var(--quai-space-12); }
+.my-16 { margin-top: var(--quai-space-16); margin-bottom: var(--quai-space-16); }
+.my-24 { margin-top: var(--quai-space-24); margin-bottom: var(--quai-space-24); }
+
+/* Padding — all sides (missing: 24) */
+.p-24 { padding: var(--quai-space-24); }
+
+/* Padding — top (missing: 1, 3, 12, 16, 24) */
+.pt-1  { padding-top: var(--quai-space-1); }
+.pt-3  { padding-top: var(--quai-space-3); }
+.pt-12 { padding-top: var(--quai-space-12); }
+.pt-16 { padding-top: var(--quai-space-16); }
+.pt-24 { padding-top: var(--quai-space-24); }
+
+/* Padding — bottom (missing: 1, 3, 12, 16, 24) */
+.pb-1  { padding-bottom: var(--quai-space-1); }
+.pb-3  { padding-bottom: var(--quai-space-3); }
+.pb-12 { padding-bottom: var(--quai-space-12); }
+.pb-16 { padding-bottom: var(--quai-space-16); }
+.pb-24 { padding-bottom: var(--quai-space-24); }
+
+/* Padding — left (missing: 1, 3, 6, 8, 12, 16, 24) */
+.pl-1  { padding-left: var(--quai-space-1); }
+.pl-3  { padding-left: var(--quai-space-3); }
+.pl-6  { padding-left: var(--quai-space-6); }
+.pl-8  { padding-left: var(--quai-space-8); }
+.pl-12 { padding-left: var(--quai-space-12); }
+.pl-16 { padding-left: var(--quai-space-16); }
+.pl-24 { padding-left: var(--quai-space-24); }
+
+/* Padding — right (missing: 1, 3, 6, 8, 12, 16, 24) */
+.pr-1  { padding-right: var(--quai-space-1); }
+.pr-3  { padding-right: var(--quai-space-3); }
+.pr-6  { padding-right: var(--quai-space-6); }
+.pr-8  { padding-right: var(--quai-space-8); }
+.pr-12 { padding-right: var(--quai-space-12); }
+.pr-16 { padding-right: var(--quai-space-16); }
+.pr-24 { padding-right: var(--quai-space-24); }
+
+/* Padding — horizontal axis (missing: 1, 12, 16, 24) */
+.px-1  { padding-left: var(--quai-space-1); padding-right: var(--quai-space-1); }
+.px-12 { padding-left: var(--quai-space-12); padding-right: var(--quai-space-12); }
+.px-16 { padding-left: var(--quai-space-16); padding-right: var(--quai-space-16); }
+.px-24 { padding-left: var(--quai-space-24); padding-right: var(--quai-space-24); }
+
+/* Padding — vertical axis (missing: 1, 12, 16, 24) */
+.py-1  { padding-top: var(--quai-space-1); padding-bottom: var(--quai-space-1); }
+.py-12 { padding-top: var(--quai-space-12); padding-bottom: var(--quai-space-12); }
+.py-16 { padding-top: var(--quai-space-16); padding-bottom: var(--quai-space-16); }
+.py-24 { padding-top: var(--quai-space-24); padding-bottom: var(--quai-space-24); }
+
+/* Gap — all axes (missing: 24) */
+.gap-24 { gap: var(--quai-space-24); }
+
+/* Gap — column (missing: 3, 12, 16, 24) */
+.gap-x-3  { column-gap: var(--quai-space-3); }
+.gap-x-12 { column-gap: var(--quai-space-12); }
+.gap-x-16 { column-gap: var(--quai-space-16); }
+.gap-x-24 { column-gap: var(--quai-space-24); }
+
+/* Gap — row (missing: 3, 6, 8, 12, 16, 24) */
+.gap-y-3  { row-gap: var(--quai-space-3); }
+.gap-y-6  { row-gap: var(--quai-space-6); }
+.gap-y-8  { row-gap: var(--quai-space-8); }
+.gap-y-12 { row-gap: var(--quai-space-12); }
+.gap-y-16 { row-gap: var(--quai-space-16); }
+.gap-y-24 { row-gap: var(--quai-space-24); }

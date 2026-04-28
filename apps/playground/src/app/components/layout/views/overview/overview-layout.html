@@ -1,0 +1,143 @@
+<section class="overview">
+  <h2 class="size-xl weight-semibold">Layout</h2>
+  <p class="size-sm color-text-secondary">A comprehensive layout utility system built on CSS Grid and Flexbox. Includes a 12-column grid, auto-fit grid, stacking, spacing, alignment, display, sizing, positioning, overflow, container, visibility, and flex utilities with responsive support.</p>
+
+  <h3 class="size-base weight-semibold">Grid de 12 columnas</h3>
+  <pre class="code-block"><code>&lt;div class="grid"&gt;
+  &lt;div class="col-6"&gt;Half&lt;/div&gt;
+  &lt;div class="col-6"&gt;Half&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+  <h3 class="size-base weight-semibold">Auto-fit grid</h3>
+  <pre class="code-block"><code>&lt;div class="grid-auto"&gt;
+  &lt;div&gt;Adapts automatically&lt;/div&gt;
+  &lt;div&gt;Min 280px by default&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+  <h3 class="size-base weight-semibold">Stacking</h3>
+  <pre class="code-block"><code>&lt;!-- Vertical --&gt;
+&lt;div class="stack-v"&gt;...&lt;/div&gt;
+
+&lt;!-- Horizontal --&gt;
+&lt;div class="stack-h"&gt;...&lt;/div&gt;</code></pre>
+
+  <h3 class="size-base weight-semibold">Responsive columns</h3>
+  <pre class="code-block"><code>&lt;div class="grid"&gt;
+  &lt;div class="col-12 md:col-6 lg:col-4"&gt;Responsive&lt;/div&gt;
+  &lt;div class="col-12 md:col-6 lg:col-8"&gt;Responsive&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+  <h3 class="size-base weight-semibold">Display utilities</h3>
+  <pre class="code-block"><code>&lt;!-- Base display --&gt;
+&lt;div class="d-flex"&gt;...&lt;/div&gt;
+&lt;div class="d-grid"&gt;...&lt;/div&gt;
+&lt;div class="d-none"&gt;Hidden&lt;/div&gt;
+
+&lt;!-- Responsive: hidden on mobile, flex on md+ --&gt;
+&lt;div class="d-none md:d-flex"&gt;...&lt;/div&gt;</code></pre>
+
+  <h3 class="size-base weight-semibold">Sizing utilities</h3>
+  <pre class="code-block"><code>&lt;div class="w-full"&gt;Full width&lt;/div&gt;
+&lt;div class="w-1/2"&gt;Half width&lt;/div&gt;
+&lt;div class="max-w-lg"&gt;Max 32rem&lt;/div&gt;
+&lt;div class="h-screen"&gt;Full viewport height&lt;/div&gt;</code></pre>
+
+  <h3 class="size-base weight-semibold">Position &amp; inset</h3>
+  <pre class="code-block"><code>&lt;div class="relative"&gt;
+  &lt;div class="absolute top-0 right-0"&gt;Pinned top-right&lt;/div&gt;
+  &lt;div class="absolute inset-0"&gt;Full overlay&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+  <h3 class="size-base weight-semibold">Container</h3>
+  <pre class="code-block"><code>&lt;!-- Responsive max-width with auto margins --&gt;
+&lt;div class="container"&gt;
+  Content is centered and constrained
+&lt;/div&gt;</code></pre>
+
+  <h3 class="size-base weight-semibold">Flex utilities</h3>
+  <pre class="code-block"><code>&lt;div class="d-flex gap-4"&gt;
+  &lt;div class="shrink-0"&gt;Fixed&lt;/div&gt;
+  &lt;div class="grow"&gt;Fills remaining space&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="d-flex"&gt;
+  &lt;div class="order-2"&gt;Appears second&lt;/div&gt;
+  &lt;div class="order-1"&gt;Appears first&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+  <h3 class="size-base weight-semibold">Overflow</h3>
+  <pre class="code-block"><code>&lt;div class="overflow-hidden"&gt;Clips content&lt;/div&gt;
+&lt;div class="overflow-y-auto"&gt;Vertical scroll&lt;/div&gt;</code></pre>
+
+  <h3 class="size-base weight-semibold">Visibility</h3>
+  <pre class="code-block"><code>&lt;div class="invisible"&gt;Hidden but occupies space&lt;/div&gt;
+&lt;div class="visible"&gt;Visible (default)&lt;/div&gt;</code></pre>
+
+  <h3 class="size-base weight-semibold">Layout tokens</h3>
+  <table class="props-table">
+    <thead>
+      <tr>
+        <th>Token</th>
+        <th>Value</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>--quai-bp-sm</code></td>
+        <td><code>640px</code></td>
+        <td>Breakpoint small</td>
+      </tr>
+      <tr>
+        <td><code>--quai-bp-md</code></td>
+        <td><code>768px</code></td>
+        <td>Breakpoint medium</td>
+      </tr>
+      <tr>
+        <td><code>--quai-bp-lg</code></td>
+        <td><code>1024px</code></td>
+        <td>Breakpoint large</td>
+      </tr>
+      <tr>
+        <td><code>--quai-bp-xl</code></td>
+        <td><code>1280px</code></td>
+        <td>Breakpoint extra large</td>
+      </tr>
+      <tr>
+        <td><code>--quai-grid-columns</code></td>
+        <td><code>12</code></td>
+        <td>Grid columns</td>
+      </tr>
+      <tr>
+        <td><code>--quai-grid-gap</code></td>
+        <td><code>var(--quai-space-4)</code></td>
+        <td>Default grid gap</td>
+      </tr>
+      <tr>
+        <td><code>--quai-grid-auto-min</code></td>
+        <td><code>280px</code></td>
+        <td>Min width in auto-fit grid</td>
+      </tr>
+      <tr>
+        <td><code>--quai-container-sm</code></td>
+        <td><code>640px</code></td>
+        <td>Container max-width at sm</td>
+      </tr>
+      <tr>
+        <td><code>--quai-container-md</code></td>
+        <td><code>768px</code></td>
+        <td>Container max-width at md</td>
+      </tr>
+      <tr>
+        <td><code>--quai-container-lg</code></td>
+        <td><code>1024px</code></td>
+        <td>Container max-width at lg</td>
+      </tr>
+      <tr>
+        <td><code>--quai-container-xl</code></td>
+        <td><code>1280px</code></td>
+        <td>Container max-width at xl</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

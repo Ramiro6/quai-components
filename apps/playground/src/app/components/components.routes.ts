@@ -25,6 +25,10 @@ export const COMPONENTS_ROUTES: Route[] = [
         path: 'codeblock',
         loadChildren: () => import('./codeblock/codeblock.routes').then((m) => m.CODEBLOCK_ROUTES),
       },
+      {
+        path: 'layout',
+        loadChildren: () => import('./layout/layouts.routes').then((m) => m.LAYOUT_ROUTES),
+      },
     ],
   },
 ];

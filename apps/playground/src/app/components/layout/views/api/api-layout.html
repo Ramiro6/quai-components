@@ -1,0 +1,301 @@
+<section class="api">
+  <h2 class="size-xl weight-semibold">API Reference — Layout</h2>
+  <pre class="code-block"><code>&#64;use '&#64;quai/quai-components/styles';</code></pre>
+
+  <h3 class="size-base weight-semibold">Grid</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.grid</code></td><td>12-column CSS Grid container with default gap.</td></tr>
+      <tr><td><code>.col-1</code> … <code>.col-12</code></td><td>Column span. E.g. <code>.col-6</code> spans 6 of 12 columns.</td></tr>
+      <tr><td><code>.col-full</code></td><td>Full grid span (1 / -1).</td></tr>
+      <tr><td><code>.grid-auto</code></td><td>Auto-fit grid with minmax(280px, 1fr).</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Responsive Columns</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Prefix</th><th>Breakpoint</th><th>Example</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>sm:</code></td><td>&ge; 640px</td><td><code>.sm\:col-6</code></td></tr>
+      <tr><td><code>md:</code></td><td>&ge; 768px</td><td><code>.md\:col-4</code></td></tr>
+      <tr><td><code>lg:</code></td><td>&ge; 1024px</td><td><code>.lg\:col-3</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Flex Helpers</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.row</code></td><td>Flex row with flex-wrap and gap.</td></tr>
+      <tr><td><code>.col</code></td><td>Flex child that grows equally (flex: 1 1 0%).</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Stacking</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.stack-v</code></td><td>Flex column with gap. Stacks elements vertically.</td></tr>
+      <tr><td><code>.stack-h</code></td><td>Flex row with gap. Stacks elements horizontally.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Alignment</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>Property</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.justify-start</code></td><td>justify-content</td><td>flex-start</td></tr>
+      <tr><td><code>.justify-center</code></td><td>justify-content</td><td>center</td></tr>
+      <tr><td><code>.justify-end</code></td><td>justify-content</td><td>flex-end</td></tr>
+      <tr><td><code>.justify-between</code></td><td>justify-content</td><td>space-between</td></tr>
+      <tr><td><code>.justify-around</code></td><td>justify-content</td><td>space-around</td></tr>
+      <tr><td><code>.justify-evenly</code></td><td>justify-content</td><td>space-evenly</td></tr>
+      <tr><td><code>.items-start</code></td><td>align-items</td><td>flex-start</td></tr>
+      <tr><td><code>.items-center</code></td><td>align-items</td><td>center</td></tr>
+      <tr><td><code>.items-end</code></td><td>align-items</td><td>flex-end</td></tr>
+      <tr><td><code>.items-stretch</code></td><td>align-items</td><td>stretch</td></tr>
+      <tr><td><code>.items-baseline</code></td><td>align-items</td><td>baseline</td></tr>
+      <tr><td><code>.self-start</code></td><td>align-self</td><td>flex-start</td></tr>
+      <tr><td><code>.self-center</code></td><td>align-self</td><td>center</td></tr>
+      <tr><td><code>.self-end</code></td><td>align-self</td><td>flex-end</td></tr>
+      <tr><td><code>.self-stretch</code></td><td>align-self</td><td>stretch</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Spacing</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Pattern</th><th>Description</th><th>Scale</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.m-*</code></td><td>Margin all sides</td><td>0, 1, 2, 3, 4, 6, 8, 12, 16, 24</td></tr>
+      <tr><td><code>.mt-*</code> <code>.mr-*</code> <code>.mb-*</code> <code>.ml-*</code></td><td>Margin individual sides</td><td>0, 1, 2, 3, 4, 6, 8, 12, 16, 24</td></tr>
+      <tr><td><code>.mx-*</code> <code>.my-*</code></td><td>Margin horizontal / vertical</td><td>0, 1, 2, 3, 4, 6, 8, 12, 16, 24, auto (mx)</td></tr>
+      <tr><td><code>.p-*</code></td><td>Padding all sides</td><td>0, 1, 2, 3, 4, 6, 8, 12, 16, 24</td></tr>
+      <tr><td><code>.pt-*</code> <code>.pr-*</code> <code>.pb-*</code> <code>.pl-*</code></td><td>Padding individual sides</td><td>0, 1, 2, 3, 4, 6, 8, 12, 16, 24</td></tr>
+      <tr><td><code>.px-*</code> <code>.py-*</code></td><td>Padding horizontal / vertical</td><td>0, 1, 2, 3, 4, 6, 8, 12, 16, 24</td></tr>
+      <tr><td><code>.gap-*</code></td><td>Gap all axes</td><td>1, 2, 3, 4, 6, 8, 12, 16, 24</td></tr>
+      <tr><td><code>.gap-x-*</code> <code>.gap-y-*</code></td><td>Column gap / Row gap</td><td>1, 2, 3, 4, 6, 8, 12, 16, 24</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Display</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>CSS Property</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.d-block</code></td><td>display: block</td></tr>
+      <tr><td><code>.d-inline-block</code></td><td>display: inline-block</td></tr>
+      <tr><td><code>.d-flex</code></td><td>display: flex</td></tr>
+      <tr><td><code>.d-inline-flex</code></td><td>display: inline-flex</td></tr>
+      <tr><td><code>.d-grid</code></td><td>display: grid</td></tr>
+      <tr><td><code>.d-inline-grid</code></td><td>display: inline-grid</td></tr>
+      <tr><td><code>.d-none</code></td><td>display: none</td></tr>
+      <tr><td><code>.d-contents</code></td><td>display: contents</td></tr>
+    </tbody>
+  </table>
+  <p class="size-sm color-text-secondary">Responsive variants: <code>.sm\:d-*</code>, <code>.md\:d-*</code>, <code>.lg\:d-*</code>, <code>.xl\:d-*</code> at 640px, 768px, 1024px, 1280px respectively.</p>
+
+  <h3 class="size-base weight-semibold">Sizing — Width</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>CSS Property</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.w-full</code></td><td>width: 100%</td></tr>
+      <tr><td><code>.w-auto</code></td><td>width: auto</td></tr>
+      <tr><td><code>.w-screen</code></td><td>width: 100vw</td></tr>
+      <tr><td><code>.w-1\/2</code></td><td>width: 50%</td></tr>
+      <tr><td><code>.w-1\/3</code></td><td>width: 33.333%</td></tr>
+      <tr><td><code>.w-2\/3</code></td><td>width: 66.667%</td></tr>
+      <tr><td><code>.w-1\/4</code></td><td>width: 25%</td></tr>
+      <tr><td><code>.w-3\/4</code></td><td>width: 75%</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Sizing — Min/Max Width</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>CSS Property</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.min-w-0</code></td><td>min-width: 0px</td></tr>
+      <tr><td><code>.min-w-full</code></td><td>min-width: 100%</td></tr>
+      <tr><td><code>.max-w-sm</code></td><td>max-width: 24rem</td></tr>
+      <tr><td><code>.max-w-md</code></td><td>max-width: 28rem</td></tr>
+      <tr><td><code>.max-w-lg</code></td><td>max-width: 32rem</td></tr>
+      <tr><td><code>.max-w-xl</code></td><td>max-width: 36rem</td></tr>
+      <tr><td><code>.max-w-full</code></td><td>max-width: 100%</td></tr>
+      <tr><td><code>.max-w-none</code></td><td>max-width: none</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Sizing — Height</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>CSS Property</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.h-full</code></td><td>height: 100%</td></tr>
+      <tr><td><code>.h-screen</code></td><td>height: 100vh</td></tr>
+      <tr><td><code>.h-auto</code></td><td>height: auto</td></tr>
+      <tr><td><code>.min-h-0</code></td><td>min-height: 0px</td></tr>
+      <tr><td><code>.min-h-full</code></td><td>min-height: 100%</td></tr>
+      <tr><td><code>.min-h-screen</code></td><td>min-height: 100vh</td></tr>
+      <tr><td><code>.max-h-full</code></td><td>max-height: 100%</td></tr>
+      <tr><td><code>.max-h-screen</code></td><td>max-height: 100vh</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Position</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>CSS Property</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.relative</code></td><td>position: relative</td></tr>
+      <tr><td><code>.absolute</code></td><td>position: absolute</td></tr>
+      <tr><td><code>.fixed</code></td><td>position: fixed</td></tr>
+      <tr><td><code>.sticky</code></td><td>position: sticky</td></tr>
+      <tr><td><code>.static</code></td><td>position: static</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Inset</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>CSS Property</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.inset-0</code></td><td>inset: 0</td></tr>
+      <tr><td><code>.inset-auto</code></td><td>inset: auto</td></tr>
+      <tr><td><code>.top-0</code></td><td>top: 0</td></tr>
+      <tr><td><code>.right-0</code></td><td>right: 0</td></tr>
+      <tr><td><code>.bottom-0</code></td><td>bottom: 0</td></tr>
+      <tr><td><code>.left-0</code></td><td>left: 0</td></tr>
+      <tr><td><code>.inset-x-0</code></td><td>left: 0; right: 0</td></tr>
+      <tr><td><code>.inset-y-0</code></td><td>top: 0; bottom: 0</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Z-Index</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>CSS Property</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.z-0</code></td><td>z-index: 0</td></tr>
+      <tr><td><code>.z-10</code></td><td>z-index: 10</td></tr>
+      <tr><td><code>.z-20</code></td><td>z-index: 20</td></tr>
+      <tr><td><code>.z-30</code></td><td>z-index: 30</td></tr>
+      <tr><td><code>.z-40</code></td><td>z-index: 40</td></tr>
+      <tr><td><code>.z-50</code></td><td>z-index: 50</td></tr>
+      <tr><td><code>.z-auto</code></td><td>z-index: auto</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Overflow</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>CSS Property</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.overflow-hidden</code></td><td>overflow: hidden</td></tr>
+      <tr><td><code>.overflow-auto</code></td><td>overflow: auto</td></tr>
+      <tr><td><code>.overflow-scroll</code></td><td>overflow: scroll</td></tr>
+      <tr><td><code>.overflow-visible</code></td><td>overflow: visible</td></tr>
+      <tr><td><code>.overflow-x-auto</code></td><td>overflow-x: auto</td></tr>
+      <tr><td><code>.overflow-x-hidden</code></td><td>overflow-x: hidden</td></tr>
+      <tr><td><code>.overflow-y-auto</code></td><td>overflow-y: auto</td></tr>
+      <tr><td><code>.overflow-y-hidden</code></td><td>overflow-y: hidden</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Aspect Ratio</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>CSS Property</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.aspect-auto</code></td><td>aspect-ratio: auto</td></tr>
+      <tr><td><code>.aspect-square</code></td><td>aspect-ratio: 1 / 1</td></tr>
+      <tr><td><code>.aspect-video</code></td><td>aspect-ratio: 16 / 9</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Object Fit</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>CSS Property</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.object-cover</code></td><td>object-fit: cover</td></tr>
+      <tr><td><code>.object-contain</code></td><td>object-fit: contain</td></tr>
+      <tr><td><code>.object-fill</code></td><td>object-fit: fill</td></tr>
+      <tr><td><code>.object-none</code></td><td>object-fit: none</td></tr>
+      <tr><td><code>.object-scale-down</code></td><td>object-fit: scale-down</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Container</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.container</code></td><td>width: 100%, margin: auto, responsive max-width at each breakpoint (640/768/1024/1280px)</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Visibility</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>CSS Property</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.visible</code></td><td>visibility: visible</td></tr>
+      <tr><td><code>.invisible</code></td><td>visibility: hidden</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Flex Grow / Shrink / Basis</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>CSS Property</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.grow</code></td><td>flex-grow: 1</td></tr>
+      <tr><td><code>.grow-0</code></td><td>flex-grow: 0</td></tr>
+      <tr><td><code>.shrink</code></td><td>flex-shrink: 1</td></tr>
+      <tr><td><code>.shrink-0</code></td><td>flex-shrink: 0</td></tr>
+      <tr><td><code>.basis-auto</code></td><td>flex-basis: auto</td></tr>
+      <tr><td><code>.basis-full</code></td><td>flex-basis: 100%</td></tr>
+      <tr><td><code>.basis-0</code></td><td>flex-basis: 0px</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="size-base weight-semibold">Order</h3>
+  <table class="api-table">
+    <thead>
+      <tr><th>Class</th><th>CSS Property</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>.order-first</code></td><td>order: -9999</td></tr>
+      <tr><td><code>.order-last</code></td><td>order: 9999</td></tr>
+      <tr><td><code>.order-none</code></td><td>order: 0</td></tr>
+      <tr><td><code>.order-1</code> … <code>.order-6</code></td><td>order: 1 … 6</td></tr>
+    </tbody>
+  </table>
+</section>

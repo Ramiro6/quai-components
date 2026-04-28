@@ -1,0 +1,157 @@
+/* ==========================================================================
+   Layout Examples — Demo-specific visual styles only
+   Layout behavior uses lib utility classes (.grid, .col-*, .stack-h, etc.)
+   ========================================================================== */
+
+.layout-demo {
+  /* --------------------------------------------------------------------------
+     Headings & descriptions
+     -------------------------------------------------------------------------- */
+  .demo-heading {
+    font-size: var(--quai-text-lg);
+    font-weight: var(--quai-font-semibold);
+    margin-bottom: var(--quai-space-2);
+  }
+
+  .demo-desc {
+    font-size: var(--quai-text-sm);
+    color: var(--quai-color-text-muted);
+    line-height: var(--quai-leading-body);
+    margin-bottom: var(--quai-space-4);
+
+    code {
+      font-family: 'Geist Mono', ui-monospace, monospace;
+      font-size: 0.875em;
+      background: var(--quai-surface-1);
+      padding: 0.125em 0.25em;
+      border-radius: var(--quai-radius-sm);
+    }
+  }
+
+  .demo-label {
+    font-size: var(--quai-text-xs);
+    color: var(--quai-color-text-muted);
+    display: block;
+    margin-bottom: var(--quai-space-2);
+  }
+
+  .demo-group {
+    margin-bottom: var(--quai-space-6);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Demo cell — the visual box used in every example
+     -------------------------------------------------------------------------- */
+  .demo-cell {
+    background: var(--quai-surface-1);
+    padding: var(--quai-space-3);
+    border-radius: var(--quai-radius-sm);
+    font-size: var(--quai-text-xs);
+    text-align: center;
+    border: 1px solid var(--quai-zinc-200);
+  }
+
+  .demo-cell--accent {
+    background: var(--quai-accent);
+    color: white;
+    border-color: transparent;
+  }
+
+  /* --------------------------------------------------------------------------
+     Demo card — used in auto-fit grid
+     -------------------------------------------------------------------------- */
+  .demo-card {
+    background: var(--quai-surface-1);
+    padding: var(--quai-space-4);
+    border-radius: var(--quai-radius-sm);
+    border: 1px solid var(--quai-zinc-200);
+  }
+
+  .demo-card-title {
+    font-size: var(--quai-text-sm);
+    font-weight: var(--quai-font-semibold);
+    margin-bottom: var(--quai-space-1);
+  }
+
+  .demo-card-desc {
+    font-size: var(--quai-text-xs);
+    color: var(--quai-color-text-muted);
+  }
+
+  /* --------------------------------------------------------------------------
+     Bordered container for alignment demos
+     -------------------------------------------------------------------------- */
+  .demo-bordered {
+    padding: var(--quai-space-3);
+    border: 1px solid var(--quai-zinc-200);
+    border-radius: var(--quai-radius-sm);
+  }
+
+  /* --------------------------------------------------------------------------
+     Spacing scale visualization
+     -------------------------------------------------------------------------- */
+  .demo-spacing-bar {
+    background-color: var(--quai-accent);
+    border-radius: 2px;
+    width: 2rem;
+  }
+
+  .demo-spacing-label {
+    font-size: 0.625rem;
+    color: var(--quai-color-text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* --------------------------------------------------------------------------
+     Position demo — relative container with absolute children
+     -------------------------------------------------------------------------- */
+  .demo-position-box {
+    background: var(--quai-surface-1);
+    border: 1px solid var(--quai-zinc-200);
+    border-radius: var(--quai-radius-sm);
+    height: 10rem;
+  }
+
+  .demo-position-child {
+    background: var(--quai-accent);
+    color: white;
+    font-size: var(--quai-text-xs);
+    padding: var(--quai-space-2) var(--quai-space-3);
+    border-radius: var(--quai-radius-sm);
+  }
+
+  /* --------------------------------------------------------------------------
+     Sizing demo bars
+     -------------------------------------------------------------------------- */
+  .demo-size-bar {
+    background: var(--quai-surface-1);
+    border: 1px solid var(--quai-zinc-200);
+    border-radius: var(--quai-radius-sm);
+    padding: var(--quai-space-2) var(--quai-space-3);
+    font-size: var(--quai-text-xs);
+    text-align: center;
+  }
+
+  /* --------------------------------------------------------------------------
+     Container demo
+     -------------------------------------------------------------------------- */
+  .demo-container-wrapper {
+    background: var(--quai-surface-1);
+    border: 1px solid var(--quai-zinc-200);
+    border-radius: var(--quai-radius-sm);
+    padding: var(--quai-space-4);
+  }
+
+  .demo-container-inner {
+    background: var(--quai-accent);
+    color: white;
+    font-size: var(--quai-text-xs);
+    padding: var(--quai-space-3);
+    border-radius: var(--quai-radius-sm);
+    text-align: center;
+  }
+}

@@ -67,5 +67,11 @@ export class ComponentsContainer {
         { label: 'Nav Menu', routerLink: 'nav-menu' },
       ],
     },
+    {
+      label: 'Layout',
+      item: [
+        { label: 'Grid & Spacing', routerLink: 'layout' },
+      ],
+    },
   ];
 }
