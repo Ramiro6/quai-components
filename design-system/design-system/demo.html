@@ -606,6 +606,11 @@
     .grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--grid-auto-min, 280px), 1fr)); gap: var(--space-4); }
     .stack-v { display: flex; flex-direction: column; gap: var(--space-4); }
     .stack-h { display: flex; flex-direction: row; gap: var(--space-4); }
+
+    /* === Alignment Utilities === */
+    .justify-start { justify-content: flex-start; } .justify-center { justify-content: center; } .justify-end { justify-content: flex-end; } .justify-between { justify-content: space-between; } .justify-around { justify-content: space-around; } .justify-evenly { justify-content: space-evenly; }
+    .items-start { align-items: flex-start; } .items-center { align-items: center; } .items-end { align-items: flex-end; } .items-stretch { align-items: stretch; } .items-baseline { align-items: baseline; }
+    .self-start { align-self: flex-start; } .self-center { align-self: center; } .self-end { align-self: flex-end; } .self-stretch { align-self: stretch; }
   </style>
 </head>
 <body>
@@ -1678,6 +1683,49 @@ async function fetchData&lt;T&gt;(url: string): Promise&lt;ApiResponse&lt;T&gt;&
             <div style="background: var(--accent); color: white; padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center; flex: 1;">Item B</div>
             <div style="background: var(--accent); color: white; padding: var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); text-align: center; flex: 1;">Item C</div>
           </div>
+        </div>
+      </div>
+
+      <!-- Alignment Utilities -->
+      <h3 style="font-size: var(--text-lg); font-weight: var(--font-semibold); margin-bottom: var(--space-2);">Alignment Utilities</h3>
+      <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">Clases <code class="text-code">.justify-*</code> y <code class="text-code">.items-*</code> para controlar la distribución y alineación de elementos dentro de contenedores flex.</p>
+
+      <!-- justify-between -->
+      <div style="margin-bottom: var(--space-6);">
+        <span style="font-size: var(--text-xs); color: var(--color-text-muted); display: block; margin-bottom: var(--space-2);">.row .justify-between</span>
+        <div class="row justify-between" style="padding: var(--space-3); border: 1px solid var(--border-default-color); border-radius: var(--radius-sm);">
+          <div style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">Left</div>
+          <div style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">Right</div>
+        </div>
+      </div>
+
+      <!-- justify-center -->
+      <div style="margin-bottom: var(--space-6);">
+        <span style="font-size: var(--text-xs); color: var(--color-text-muted); display: block; margin-bottom: var(--space-2);">.row .justify-center</span>
+        <div class="row justify-center" style="padding: var(--space-3); border: 1px solid var(--border-default-color); border-radius: var(--radius-sm);">
+          <div style="background: var(--surface-1); padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); border: 1px solid var(--border-default-color);">A</div>
+          <div style="background: var(--surface-1); padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); border: 1px solid var(--border-default-color);">B</div>
+          <div style="background: var(--surface-1); padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); border: 1px solid var(--border-default-color);">C</div>
+        </div>
+      </div>
+
+      <!-- justify-evenly -->
+      <div style="margin-bottom: var(--space-6);">
+        <span style="font-size: var(--text-xs); color: var(--color-text-muted); display: block; margin-bottom: var(--space-2);">.row .justify-evenly</span>
+        <div class="row justify-evenly" style="padding: var(--space-3); border: 1px solid var(--border-default-color); border-radius: var(--radius-sm);">
+          <div style="background: var(--surface-1); padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); border: 1px solid var(--border-default-color);">A</div>
+          <div style="background: var(--surface-1); padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); border: 1px solid var(--border-default-color);">B</div>
+          <div style="background: var(--surface-1); padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs); border: 1px solid var(--border-default-color);">C</div>
+        </div>
+      </div>
+
+      <!-- items-center with different heights -->
+      <div>
+        <span style="font-size: var(--text-xs); color: var(--color-text-muted); display: block; margin-bottom: var(--space-2);">.row .items-center .justify-between</span>
+        <div class="row items-center justify-between" style="padding: var(--space-3); border: 1px solid var(--border-default-color); border-radius: var(--radius-sm);">
+          <div style="background: var(--accent); color: white; padding: var(--space-4) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">Tall</div>
+          <div style="background: var(--accent); color: white; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">Short</div>
+          <div style="background: var(--accent); color: white; padding: var(--space-6) var(--space-3); border-radius: var(--radius-sm); font-size: var(--text-xs);">Taller</div>
         </div>
       </div>
     </section>
