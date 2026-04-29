@@ -10,5 +10,7 @@ import { ChangeDetectionStrategy, Component, viewChild, ElementRef, input, effec
 export class QuaiCodeBlockComponent {
   readonly title = input<string>();
   readonly contentCode = viewChild<ElementRef>('ref');
-  readonly contentCp = computed(() => this.contentCode()?.nativeElement?.textContent)
+  readonly contentCp = computed(
+    () => this.contentCode()?.nativeElement?.textContent
+  );
 }
