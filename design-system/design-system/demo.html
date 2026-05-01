@@ -559,6 +559,18 @@
     .tabs__panel { padding: var(--space-6) 0; font-size: var(--text-sm); line-height: var(--leading-body); }
     .tabs__panel[hidden] { display: none; }
 
+    /* Tabs — Pill variant */
+    .tabs--pill .tabs__list { display: inline-flex; gap: var(--space-1); padding: var(--space-1); background: var(--surface-1); border-bottom: none; border-radius: var(--radius-md); }
+    .tabs--pill .tabs__tab { border-bottom: none; border-radius: var(--radius-sm); color: var(--color-text-muted); padding: var(--space-2) var(--space-3); background: transparent; transition: color 150ms ease, background-color 150ms ease; }
+    .tabs--pill .tabs__tab:hover { color: var(--color-text); }
+    .tabs--pill .tabs__tab--active { background: var(--surface-2); color: var(--color-text); font-weight: var(--font-semibold); border-bottom-color: transparent; border-radius: var(--radius-sm); box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+    .tabs--pill .tabs__tab:focus-visible { outline: 2px solid var(--zinc-950); outline-offset: 0; border-radius: var(--radius-sm); }
+
+    /* CSS Icons */
+    [class^="icon-"], [class*=" icon-"] { display: inline-block; width: 1em; height: 1em; background-color: currentColor; mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; vertical-align: -0.125em; }
+    .icon-copy { mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2724%27%20height%3D%2724%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27currentColor%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Crect%20x%3D%273%27%20y%3D%275%27%20width%3D%2712%27%20height%3D%2716%27%20rx%3D%272%27%2F%3E%3Crect%20x%3D%278%27%20y%3D%272%27%20width%3D%2713%27%20height%3D%2714%27%20rx%3D%272%27%2F%3E%3C%2Fsvg%3E"); -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2724%27%20height%3D%2724%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27currentColor%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Crect%20x%3D%273%27%20y%3D%275%27%20width%3D%2712%27%20height%3D%2716%27%20rx%3D%272%27%2F%3E%3Crect%20x%3D%278%27%20y%3D%272%27%20width%3D%2713%27%20height%3D%2714%27%20rx%3D%272%27%2F%3E%3C%2Fsvg%3E"); }
+    .icon-check { mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2724%27%20height%3D%2724%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27currentColor%27%20stroke-width%3D%272.5%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpolyline%20points%3D%274%2C12.5%209.5%2C18%2020%2C6%27%2F%3E%3C%2Fsvg%3E"); -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2724%27%20height%3D%2724%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27currentColor%27%20stroke-width%3D%272.5%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpolyline%20points%3D%274%2C12.5%209.5%2C18%2020%2C6%27%2F%3E%3C%2Fsvg%3E"); }
+
     /* === Header Component === */
     .header { display: flex; align-items: center; justify-content: space-between; padding: var(--space-3) var(--space-6); border-bottom: 1px solid var(--border-default-color); background-color: var(--background); }
     .header__brand { font-size: var(--text-base); font-weight: var(--font-semibold); color: var(--color-text); }
@@ -1515,6 +1527,80 @@ async function fetchData&lt;T&gt;(url: string): Promise&lt;ApiResponse&lt;T&gt;&
              aria-labelledby="scroll-tab-8" tabindex="0" hidden>
           <p style="margin: 0;">Track all changes, new features, and bug fixes across design system releases.</p>
         </div>
+      </div>
+
+      <!-- Example 3: Pill Variant -->
+      <h3 style="font-size: var(--text-base); font-weight: var(--font-semibold); margin-top: var(--space-12); margin-bottom: var(--space-4);">Pill Variant</h3>
+      <div class="tabs tabs--pill" style="margin-bottom: var(--space-12);">
+        <div class="tabs__list" role="tablist" aria-label="Account settings">
+          <button class="tabs__tab tabs__tab--active" role="tab"
+                  id="pill-tab-1" aria-selected="true" aria-controls="pill-panel-1"
+                  tabindex="0">Account</button>
+          <button class="tabs__tab" role="tab"
+                  id="pill-tab-2" aria-selected="false" aria-controls="pill-panel-2"
+                  tabindex="-1">Password</button>
+          <button class="tabs__tab" role="tab"
+                  id="pill-tab-3" aria-selected="false" aria-controls="pill-panel-3"
+                  tabindex="-1">Notifications</button>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="pill-panel-1"
+             aria-labelledby="pill-tab-1" tabindex="0">
+          <p style="margin: 0;">Manage your account details, display name, and profile information. Changes are saved automatically.</p>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="pill-panel-2"
+             aria-labelledby="pill-tab-2" tabindex="0" hidden>
+          <p style="margin: 0;">Update your password and configure two-factor authentication for enhanced security.</p>
+        </div>
+        <div class="tabs__panel" role="tabpanel" id="pill-panel-3"
+             aria-labelledby="pill-tab-3" tabindex="0" hidden>
+          <p style="margin: 0;">Choose which notifications you receive and how they are delivered — email, push, or in-app.</p>
+        </div>
+      </div>
+
+      <!-- Example 4: CSS Icons -->
+      <h3 style="font-size: var(--text-base); font-weight: var(--font-semibold); margin-bottom: var(--space-4);">Custom Icons</h3>
+      <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-6);">CSS icons using <code class="text-code">mask-image</code>. They inherit <code class="text-code">currentColor</code> and scale with font size.</p>
+
+      <!-- Default size (1em) -->
+      <div style="display: flex; align-items: center; gap: var(--space-6); margin-bottom: var(--space-6);">
+        <span style="display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm);">
+          <span class="icon-copy"></span> Copy (default 1em)
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm);">
+          <span class="icon-check"></span> Check (default 1em)
+        </span>
+      </div>
+
+      <!-- Larger sizes -->
+      <div style="display: flex; align-items: center; gap: var(--space-6); margin-bottom: var(--space-6);">
+        <span style="display: inline-flex; align-items: center; gap: var(--space-2); font-size: 1.5rem;">
+          <span class="icon-copy"></span> Copy (1.5rem)
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: var(--space-2); font-size: 1.5rem;">
+          <span class="icon-check"></span> Check (1.5rem)
+        </span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: var(--space-6); margin-bottom: var(--space-6);">
+        <span style="display: inline-flex; align-items: center; gap: var(--space-2); font-size: 2rem;">
+          <span class="icon-copy"></span> Copy (2rem)
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: var(--space-2); font-size: 2rem;">
+          <span class="icon-check"></span> Check (2rem)
+        </span>
+      </div>
+
+      <!-- Color variants -->
+      <div style="display: flex; align-items: center; gap: var(--space-6);">
+        <span style="display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-base); color: var(--color-text);">
+          <span class="icon-copy"></span> Default
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-base); color: var(--color-success);">
+          <span class="icon-check"></span> Success
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-base); color: var(--color-text-muted);">
+          <span class="icon-copy"></span> Muted
+        </span>
       </div>
     </section>
 

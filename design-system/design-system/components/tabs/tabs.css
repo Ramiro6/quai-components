@@ -78,3 +78,59 @@
 .tabs__panel[hidden] {
   display: none;
 }
+
+/* ==========================================================================
+   Pill Variant — Segmented-control style tabs (.tabs--pill modifier)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Pill List — Muted container background, rounded, padded
+   -------------------------------------------------------------------------- */
+.tabs--pill .tabs__list {
+  display: inline-flex;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  background: var(--surface-1);
+  border-bottom: none;
+  border-radius: var(--radius-md);
+}
+
+/* --------------------------------------------------------------------------
+   Pill Tab — Transparent bg, rounded, muted text
+   -------------------------------------------------------------------------- */
+.tabs--pill .tabs__tab {
+  border-bottom: none;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  padding: var(--space-2) var(--space-3);
+  background: transparent;
+  transition: color 150ms ease, background-color 150ms ease;
+}
+
+/* --------------------------------------------------------------------------
+   Pill Tab Hover — Text color change on inactive tabs
+   -------------------------------------------------------------------------- */
+.tabs--pill .tabs__tab:hover {
+  color: var(--color-text);
+}
+
+/* --------------------------------------------------------------------------
+   Pill Tab Active — Elevated surface, semibold, full text color
+   -------------------------------------------------------------------------- */
+.tabs--pill .tabs__tab--active {
+  background: var(--surface-2);
+  color: var(--color-text);
+  font-weight: var(--font-semibold);
+  border-bottom-color: transparent;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* --------------------------------------------------------------------------
+   Pill Tab Focus Visible — Outline for keyboard navigation
+   -------------------------------------------------------------------------- */
+.tabs--pill .tabs__tab:focus-visible {
+  outline: 2px solid var(--zinc-950);
+  outline-offset: 0;
+  border-radius: var(--radius-sm);
+}
