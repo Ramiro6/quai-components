@@ -6,6 +6,7 @@ import { Directive, ElementRef, inject, input, output } from '@angular/core';
   host: { '(click)': 'onCopy($event)' },
 })
 export class QuaiCopyContentDirective {
+  private _currentCopy = false;
   readonly quaiCopyContent = input<string>();
   readonly time = input<number>(2000);
   readonly copySuccess = output<boolean>();
@@ -19,18 +20,21 @@ export class QuaiCopyContentDirective {
 
     if (this.quaiCopyContent()) {
       const textClip = this.quaiCopyContent() as string;
+      if (this._currentCopy) return;
       navigator.clipboard
         .writeText(textClip)
         .then(() => {
-          const currentCopy = true;
-          this.copySuccess.emit(currentCopy);
+          this._currentCopy = true;
+          this.copySuccess.emit(this._currentCopy);
 
-          this.copySuccessWithTime.emit(currentCopy);
+          this.copySuccessWithTime.emit(this._currentCopy);
           setTimeout(() => {
-            this.copySuccessWithTime.emit(!currentCopy);
+            this._currentCopy = false;
+            this.copySuccessWithTime.emit(this._currentCopy);
           }, this.time());
         })
         .catch((error) => {
+          this._currentCopy = false;
           console.error('Error copying text: ', error);
         });
     }

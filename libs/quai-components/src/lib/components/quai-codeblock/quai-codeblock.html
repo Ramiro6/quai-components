@@ -1,10 +1,10 @@
 <div class="codeblock">
   <div class="codeblock__header">
-    <ng-content select="[header]"></ng-content>
+    <ng-container *ngTemplateOutlet="header()" />
   </div>
   <pre class="codeblock__pre">
-    <code class="codeblock__code" #ref>
-        <ng-content select="[content]"></ng-content>
+    <code class="codeblock__code">
+      <ng-container *ngTemplateOutlet="content()" />
     </code>
   </pre>
 </div>

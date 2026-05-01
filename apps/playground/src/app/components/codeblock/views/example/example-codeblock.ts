@@ -2,7 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  viewChild,
+  effect, ElementRef,
+  viewChild
 } from '@angular/core';
 import { QuaiCodeBlockComponent } from '@quai/quai-components';
 import { QuaiCopyContentDirective } from '@quai/quai-directives';
@@ -19,31 +20,29 @@ import { QuaiCopyContentDirective } from '@quai/quai-directives';
       </p>
 
       <div class="stack-v gap-6">
-        <!-- header -->
-        <!-- content-->
-        <quai-codeblock>
-          <div
-            class="row justify-end"
-            header
-            [quaiCopyContent]="''"
-            [time]="1000"
-            (copySuccessWithTime)="copyText = !copyText"
-          >
-            <button
-              class="row justify-end"
-              type="button"
-              aria-label="Copy code"
-            >
-              @if (copyText) { Copy! } @else { Copy }
-            </button>
-          </div>
 
-          <ng-container #ref content> console.log('holaaaa') </ng-container>
-          <!--          <span class="codeblock__lang">{{ title() }}</span>-->
-          <!--TODO change this button later-->
-          <!--          <button class="codeblock__copy" type="button" aria-label="Copy code">-->
-          <!--            Copy-->
-          <!--          </button>-->
+        <quai-codeblock>
+          <ng-template #header>
+            <div
+              class="row justify-end"
+              [quaiCopyContent]="refContentBlock()"
+              [time]="1000"
+              (copySuccessWithTime)="copyText = !copyText"
+            >
+              <button
+                class="row justify-end"
+                type="button"
+                aria-label="Copy code"
+              >
+                @if (copyText) { Copy! } @else { Copy }
+              </button>
+            </div>
+          </ng-template>
+
+          <ng-template #body>
+            <span #ref content> console.log('holaaaa') </span>
+          </ng-template>
+
         </quai-codeblock>
       </div>
     </div>
@@ -54,8 +53,8 @@ import { QuaiCopyContentDirective } from '@quai/quai-directives';
 })
 export class ExampleCodeblock {
   copyText = false;
-  contentBlock = viewChild('ref');
-  refContentBlock = computed(
-    () => this.contentBlock() ?? ''
+  readonly contentBlock = viewChild<ElementRef>('ref');
+  readonly refContentBlock = computed<string>(
+    () => this.contentBlock()?.nativeElement?.textContent ?? ''
   );
 }
